@@ -12,10 +12,12 @@
  * GNU General Public License for more details.
  */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>
 #include <errno.h>
+#include <signal.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <wait.h>
 
 /**
  * mAsh - my Awesome shell
@@ -27,7 +29,7 @@
 #define DEBUG 1
 
 #define LINE_SIZE 80 // 80 bytes should be enough for anybody
-#define ARGS_SIZE LINE_SIZE/2
+#define ARGS_SIZE LINE_SIZE/2 + 1
 
 char* error_string = "Error!\n";
 int error_string_len = 7;
@@ -51,9 +53,17 @@ int parse_input( char* input, char *args[] ) {
 	int i = 0;      // current position of parsing
 	int space = 1;  // are we parsing whitespace
 
+	// Gather input from user
+	memset( input, ' ', LINE_SIZE );
 	length = read( STDIN_FILENO, input, LINE_SIZE );
 
-	do {
+	// EOF sent by user
+	if( length < 1 ) {
+		return -1;
+	}
+
+	// Start parsing argument tokens
+	for( i = 0; i < length; i++ ) {
 		switch( input[i] ) {
 			// argument delimiters
 			case ' ':
@@ -76,8 +86,9 @@ int parse_input( char* input, char *args[] ) {
 				}
 				space = 0;
 		}
-	} while( i++ < length );
+	}
 
+	// Nullify next argument
 	args[count] = NULL;
 
 	if ( DEBUG ) {
@@ -99,11 +110,13 @@ int main( void ) {
 	int pid;   // process ID from fork()
 	int error; // error from exec()
 
+	// parse and execute input until EOF
 	while(1) {
 		swrite( STDOUT_FILENO, ">> ", 3 );
 		count = parse_input( input, args );
 
-		if ( count < 1 ) { // EOF from user, quit shell
+		// EOF from user, quit shell
+		if ( count < 0 ) {
 			swrite( STDOUT_FILENO, "\nGood bye!\n", 11 );
 			return 0;
 		}
@@ -113,13 +126,15 @@ int main( void ) {
 
 		if ( DEBUG ) { printf( "Fork pid: %d\n", pid ); }
 
-		if ( pid == 0 ) { // child
+		// Child
+		if ( pid == 0 ) {
 			error = execvp( input, args );
 			perror( "Error" );
 			return 0;
 
-		} else { //parent
-			wait();
+		// Parent
+		} else {
+			wait(0);
 		}
 	}
 
