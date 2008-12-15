@@ -54,7 +54,6 @@ int parse_input( char* input, char *args[] ) {
 	int space = 1;  // are we parsing whitespace
 
 	// Gather input from user
-	memset( input, ' ', LINE_SIZE );
 	length = read( STDIN_FILENO, input, LINE_SIZE );
 
 	// EOF sent by user
