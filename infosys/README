@@ -1,0 +1,16 @@
+Game N Watch
+------------
+
+John Reese
+Benjamin Roux
+Andrew Storrow
+
+Designed as a project that would track existing and upcoming video games with
+their basic information, with ratings, sales statistics, and a user system that
+would foster a community sharing interests in various games.  
+
+All documentation can be found in the doc/ directory, Java object source code 
+in the src/ directory, and JSP views and other web items in the war/ directory.
+
+A working example site can be viewed at http://leetcode.homeip.net/gamenwatch
+

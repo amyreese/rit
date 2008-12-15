@@ -1,0 +1,252 @@
+
+Name: John Reese
+
+Twenty Questions (PLUS ONE)
+A Treasure Hunt for the C Programming Language
+
+PLC
+4003-450/709-70
+Wed Dec 14 2005
+Due: 8:30 PM, 12/14/2005
+Instructor: Ben K Steele, bks@cs.rit.edu
+
+INSTRUCTIONS
+
+You have the full class period (6-8PM) to complete this exercise.
+You may use your books, notes, lecture slides, the internet, and
+all the CS computer network resources, or your PC.
+You must write the answers in this file, and you may supply
+other accompanying files. 
+To submit your work, logon onto a CS network system and run this
+command:
+
+	submit bks 3lab TreasureHunt-C.txt [other files, if any]
+
+You must submit by 8:30 PM TONIGHT, 12/14/2005, to be accepted.
+As soon as I reach home, the submit doors will close...
+
+The total points is 200, and this is part of the project exercises
+grade of the course. Points per question are noted in parentheses
+by each question.
+
+NOTES
+
+For all questions, unless specifically noted, the C language
+shall be that defined by the current ANSI standard.
+Ostensibly, all these questions are about C, and many ask you to
+relate your learnings about programming language concepts.
+
+This file has UNIX line-endings. If you do your work on a PC, please
+convert it back to UNIX line-ending format before you submit it.
+To do this, after you bring your file into UNIX, run the
+program dos2unix that converts line-endings appropriately. 
+
+--bks
+--------------- DONT FORGET YOUR NAME (ABOVE) --------------------------
+
+1. (5 points)
+What are the language ancestors of C?
+There is more than one, and you need to describe any chains of
+inheritance.
+
+C was based on B, BCPL, CPL, and Algol in that order.
+
+
+2. (5 points)
+Who developed C, where did they do it, and on what machine(s)?
+
+C was created by Dennis Ritchie of Bell Labs in 1972 using a 
+DEC PDP-11 computer.
+
+3. (10 points) 
+Are functions first class entities in C?
+If so, state why or why not?
+What can't you do with functions in C and why?
+
+No, because C functions cannot be created at runtime.
+
+4. (10 points)
+Using Perl's regular expression syntax, what is the
+regular expression that represents legal variable names in C?
+
+[a-zA-Z][_a-zA-Z0-9]*
+
+
+5. (5 points)
+What statement of C did Gosling remove when he created Java?
+(hint: look at reserved words)
+
+goto
+
+
+6. (10 points)
+How do you create a module in the C language?
+How do you keep other code units from accessing parts of the model?
+
+You create a module by using a header file and make some parts 
+of the module inaccesible by using external declarations
+
+
+7. (15 points)
+What is the syntax for declaring a pointer to a function
+that has a character pointer as a parameter and returns a double result?
+How do you then call that function?
+(For your examples, use the symbol cp for the character pointer,
+the symbol func for the function, and res for holding the return value.
+Assume that cp has been initialized.)
+
+int (*funcPointer) (char *cp) = NULL;
+funcPointer = &func;
+
+res = (*funcPointer) (cp);
+
+
+
+8. (10 points)
+Would you say that C is a closed scope language?
+How can you tell if C or another language has (or provides) closed scope?
+
+C is open scope, because a block of code can "see" variables declared in sections containing the block of code.
+
+
+9. (5 points)
+What is the syntax for comments in C?
+
+/*  */  for comments that start and end at specific points, and can 
+be contained between two pieces of code on one line, or on multiple
+lines.
+
+// is for comments that simply go to the end of the line and stop
+
+
+10. (15 points)
+What does the following code do?
+Be as specific as possible in your description and use
+your understanding of names, binding and scope.
+(line numberings are provided for your use and are not part of the code.)
+
+0)	#define IMG_SIZE	512 * 512
+1)	{
+2)	...
+3)	char* p = (char*)malloc( IMG_SIZE );
+4)	for ( j = IMG_SIZE - 1; j > 0; j-- ) *(p+j) = 0xAF;
+5)	...
+6)	}
+7)	...
+
+- a preprocessor variable IMG_SIZE is defined at compile time
+- a char pointer p is defined to memory allocated large enough
+to hold IMG_SIZE bytes
+- loop through every byte in memory and set as hex value 0xAF
+
+
+11. (10 points)
+In the previous question, what are the errors and omissions in the code?
+What aspect of language processing could catch each error?
+
+
+
+
+12. (5 points)
+What does this code do?
+(putchar outputs its argument to stdout.)
+
+	do { putchar( *c++ ); } while ( c );
+
+outputs every byte of memory to standard output beginning with the
+address initially stored in c
+
+
+13. (5 points)
+What could you do to make the previous question's code more cryptic?
+(note: C is noted for the terseness of its syntax;
+       each statement may pack a significant punch.)
+
+for (;c++;) putchar(*c);
+
+
+14. (5 points)
+What is true and false in C?
+
+false is exactly 0, and true is anything not false
+
+
+15. (15 points)
+What code segment should you attach to this post-increment grammar rule?
+Write the code segment as if your were writing Bison code for C.
+You may assume and use the same token structuring as in the last lab.
+The rule for postincrement expressions (e.g. x++ ) is as follows:
+
+postincrement-expression ->
+	primary-expression  ++ 
+	
+	{ $$.value = ($1.value = $1.value + 1) - 1; }
+
+
+16. (10 points)
+What can you state about the following grammar rule for C?
+What are some issues of building a parser for this rule?
+
+enumeration-constant-definition-list ->
+	   enumeration-constant-definition  
+	|  enumeration-definition-list , enumeration-constant-definition 
+
+it is left-to-right derivation
+
+
+
+17. (5 points)
+What differences exist between C bitwise shift operators and Java's 
+shift operators?
+
+Java allows for sign-filled and zero-filled bit shifts, while C
+only allows sign-filled bit shifts.
+
+
+18. (15 points)
+C has no garbage collection.
+How do you manage the heap storage in a C program?
+What is one way the programmer can address heap fragmentation concerns?
+Management means getting it, using it and disposing of it.
+
+
+
+
+
+19. (10 points)
+What are the major identifier scopes in C?
+Name all the language constructs that affect the scope of a name.
+
+
+
+
+
+20. (5 points)
+What are the lexical tokens for dereferencing a pointer in C?
+How are they used in code?
+Why do you think there is a choice?
+
+
+
+
+21. (25 points)
+What does this code do? Where would you find code like this?
+(dierror is a non-returning function that handles serious errors.)
+
+0)    ...
+1)    {
+2)    ...
+3)    if ( frmp++ >= &sframe[SFRAMEDEPTH - 1] )
+4)        dierror( "nested too deeply");
+5)    frmp->sym  =  sym;
+6)    frmp->numargs  =  (int) Dipc[1];
+7)    frmp->retpc  =  Dipc + 2;
+8)    frmp->argn  =  dstkp - 1;    /* set arg pointer to top of stk frm */
+9)    execute( &(sym->obj.ifp) );
+A)    proc_return = 0;
+B)    jump_made = 0;
+C)    ...
+D)    }
+E)    ...
+
+

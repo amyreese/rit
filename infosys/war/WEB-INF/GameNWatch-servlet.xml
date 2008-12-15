@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="GameNWatchController" class="GameNWatchController"/>
+	<bean id="HomeController" class="HomeController"/>
+	<bean id="GamePageController" class="GamePageController"/>
+	<bean id="UserPageController" class="UserPageController"/>
+	<bean id="QuickSearchController" class="QuickSearchController"/>
+	<bean id="GameImageController" class="GameImageController"/>
+	<bean id="FillDatabaseController" class="FillDatabaseController"/>
+
+	<!--  Validator and Form Controller for the "Game Search" page -->
+    <bean id="GameSearchValidator" class="GameSearchValidator"/>
+    <bean id="GameSearchController" class="GameSearchController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>game</value></property>
+        <property name="commandClass"><value>gamenwatch.Game</value></property>
+        <property name="validator"><ref bean="GameSearchValidator"/></property>
+        <property name="formView"><value>gamesearch</value></property>
+    </bean>
+
+	<!-- Form Controller for the "User Search" page -->
+    <bean id="UserSearchController" class="UserSearchController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>user</value></property>
+        <property name="commandClass"><value>gamenwatch.User</value></property>
+        <property name="formView"><value>usersearch</value></property>
+    </bean>
+
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/index.html">HomeController</prop>
+				<prop key="/game.html">GamePageController</prop>
+				<prop key="/user.html">UserPageController</prop>
+				<prop key="/searchgames.html">GameSearchController</prop>
+				<prop key="/searchusers.html">UserSearchController</prop>
+				<prop key="/qresults.html">QuickSearchController</prop>
+				<prop key="/fill.html">FillDatabaseController</prop>
+				<prop key="/image.jpg">GameImageController</prop>
+            </props>
+        </property>
+    </bean>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
+		<property name="prefix"><value>/WEB-INF/jsp/</value></property>
+		<property name="suffix"><value>.jsp</value></property>
+	</bean>
+</beans>

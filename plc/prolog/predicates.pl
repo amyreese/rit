@@ -1,0 +1,15 @@
+%lastElem
+
+
+
+%rev
+
+
+
+%isPalindrome
+
+
+
+%duplicate
+
+

@@ -1,0 +1,38 @@
+
+$#include "Machine.h"
+
+struct Transition {
+	char symbol;
+	string destination;
+};
+
+struct State {
+	string name;
+	bool accepting;
+	vector<Transition*> transits;
+};
+
+class Machine 
+{
+
+public:
+	Machine();
+	~Machine();
+
+	void setDebug( int level = MACHINE_DEBUG );
+
+	bool addSymbol( string symbol );
+
+	bool addState( string name, bool accepting = false, bool starting = false );
+	bool addTransition( string state, string destination, string symbol, string read = "", string write = "" );
+
+	bool setStarting( string name, bool starting = true );
+	bool setAccepting( string name, bool accepting = true );
+
+	bool accepts( string test );
+
+	void dumpMachine();
+	static void error( string message, bool ignore = false );
+};
+
+

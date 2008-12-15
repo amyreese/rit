@@ -1,0 +1,495 @@
+======================================================================
+Automata
+CS Theory Automata Simulator
+======================================================================
+
+Author: John Reese (jmr8223)
+Contact: jreese@leetcode.net
+
+Description: Accepts input from standard in to define the structure
+of a non-deterministic finite or pushdown automata, as well as a list 
+of strings to test against the machine for acceptance.  Output will 
+be displayed on standard out. 
+
+Developers: The latest version of this software can be checked out
+from its Subversion repository located at the following location:
+    http://svn.leetcode.net/rit/cstheory/trunk
+
+======================================================================
+
+Table of Contents:
+
+  1 - General Usage
+    1.1 - Running the application
+    1.2 - Expected input format
+    1.3 - Sample interaction
+  2 - Extended Usage
+    2.1 - Command line options
+  3 - Special Execution Modes
+    3.1 - Control script mode
+    3.2 - Interactive mode
+  4 - Lua API
+    4.1 - Input / output functions
+    4.2 - Machine object API
+
+======================================================================
+
+1 - General Usage
+
+Automata's default execution expects specially formatted input from
+standard input stream, which is parsed to generate the structure and 
+behavior of a finite or pushdown automata.  The resulting state 
+machine can then be used to test input strings for acceptance by the 
+defined finite or pushdown automata.
+
+  1.1 - Running the application
+
+  The application must be run from the command line, and is designed
+  to make use of Unix command shell features.  The default method of
+  running Automata is by simply executing the binary from the command
+  shell:
+  
+      cd /path/to
+      ./automata
+
+  Note that the default execution of Automata requires the presence
+  of the control file 'automata.lua' in the file search path.  If it
+  is in a different location, you can run Automata as such:
+
+      /path/to/automata -l /path/to/automata.lua
+
+  Once the application has started, it will immediatly expect input
+  on the standard input stream, as specified in the next section.  
+  This input can come either from an interactive keyboard session, 
+  or it can be piped from a text file as specified by the active
+  command shell.  Using bash, the following command would suffice:
+
+      ./automata < /path/to/inputfile
+
+  Using the above method, the user would only see the output from 
+  the program, in the form of an 'accepted' or 'rejected' message
+  for each test string specified in the input file.
+
+  1.2 - Expected input format
+
+  The input format is a generalised line-based text format, requiring
+  that input tokens be separated by some form of white space.  Either
+  spaces or tab characters are acceptable.  Most other characters are
+  acceptable input for the application, with only a couple reserved
+  as noted in the following sections.  
+  
+  Note that this input format ONLY applies to the default use of 
+  Automata, and is specified by the Lua control file 'automata.lua'.
+  If you run Automata with a different control file, or if you run it
+  in interactive mode, input formats WILL be different.
+
+    1.2.1 - Comments
+
+    While defining the automata's structure, any line beginning with 
+    the forward slash character (/) denotes a comment line, and it 
+    will not be parsed.  A comment line may contain any characters 
+    except a newline, which marks the end of the comment.
+
+        / This is a comment line
+
+    1.2.2 - Alphabet
+
+    The automata's entire alphabet is specified on the first line of
+    input that is not a comment line.  The alphabet must consist of
+    single characters separated by whitespace.  The only restriction
+    on the alphabet is that the '_' character is not allowed, as it 
+    is treated as Lamda, and the '/' character must not be the first
+    character defined by the alphabet.
+     
+        / Alphabet definition:
+        a b $ k @
+
+    1.2.3 - States
+
+    After the alphabet is defined, each line after that represents 
+    the resulting automata's various states, and their transitions to
+    each other.  A definition consists of a state's name, and may
+    include a transition to another state, specified by the alphabet
+    symbol and destination state's name.  A state need not be already
+    declared before being specified as a destination state.  For a 
+    Lambda transition, the special '_' character can be used.
+
+    When all states have been defined, a line beginning with the hash
+    symbol (#) denotes the end of state definitions, and the start
+    of test strings.  Once the machine definition has been ended with
+    the hash symbol, comment lines can no longer be used.
+
+        / State definitions:
+	II a IV
+	I b III
+	II _ III
+	III $ IV
+	IV k II
+	# end of states
+    
+    1.2.4 - Special states
+
+    If the definition starts with a '>' character, the state is 
+    defined as the automata's starting state.  There must be a 
+    starting state defined, but only one state may be defined as the 
+    automata's starting state.
+
+    If the definition contains a '<' character, the state is defined
+    as an accepting state for the automata.  There may be any number
+    of accepting states, and a starting state can be an accepting 
+    state as well, but the starting and accepting definitions must
+    be on separate lines of input.
+    
+        / Starting and accepting states:
+	II a IV
+	> I
+	< I
+	< III @ II
+	IV a III
+	I $ II
+	# done
+
+    In this example, state I is the starting state, and both state I
+    and state III are accepting states.
+
+    1.2.5 - Test strings
+
+    Once the automata's states have been defined, every line of input
+    after that is interpreted as a string to be tested by the defined
+    automata.  The string is tested character by character, and the
+    output 'accepted' or 'rejected' will be displayed when processing
+    has completed.  An empty line represents the null string (Lambda)
+    and will be tested accordingly.  
+
+    When the user is done testing strings, the End of File signal
+    must be sent to the application.  This is performed implicitly
+    when piping a text file to the application, but can be sent by
+    pressing Ctrl-D on the keyboard as well.
+
+    1.2.6 - Pushdown Automata
+
+    The above sections have all been dealing with defining a simple
+    finite automata.  In order to define a pushdown automata, the
+    input follows all of the same rules and restrictions as noted 
+    in the previous sections, with all stack manipulations placed at
+    the end of the state transition definiton. There is no need to
+    define a separate stack alphabet, and a pushdown automata is
+    implied simply by defining stack read and write parameters.
+    
+    The character to pop from the stack comes immediatly after the
+    destination state, and a string to push onto the stack may be 
+    defined after that.  For either the push or pop definiton, the
+    special character '_' is used to represent the 'empty stack' 
+    marker.  For the transition symbol, the '_' chracter will still 
+    represent Lamda.
+
+    When processing strings for a pushdown automata, it is assumed
+    that the only condition for a string to be accepted is when the
+    automata has processed the entire input string, the stack is
+    empty, and the automata is in an accepting state.  However, the
+    automata will still attempt to make all valid Lambda transitions
+    it can to reach an accepting state once its input is exhausted.
+
+    The following defines a pushdown automata that accepts any string
+    with an equal number of a's and b's.
+
+        / Alphabet
+	a b
+	/ State transitions
+	> 1 _ 2 _ _
+	2 a 2 _ a_
+	2 a 2 a aa
+	2 a 2 b 
+	2 b 2 _ b_
+	2 b 2 b bb
+	2 b 2 a 
+	2 _ 3 _ _
+	< 3 
+	# done
+	
+	ababa
+	abbaabab
+	abbaababa
+	abbaabaabaabbabb
+     
+    The above input to Automata should produce the following output:
+        
+	Accepted.
+	Rejected.
+	Accepted.
+	Rejected.
+	Accepted.
+
+  1.3 - Sample interaction
+
+  The following is an example set of input and output between the 
+  user and the application.  User input is left-justified, and 
+  application is right-justified, to show the order of interaction.
+  
+      / Alphabet
+      a b c
+      / States
+      > I a II
+      II b II
+      II c III
+      III a IV
+      III b II
+      < IV
+      # end of states
+      abbbbbca
+                                        Accepted.
+      abcbca
+                                        Accepted.
+      abccbc
+                                        Rejected.
+      
+                                        Rejected.
+      abca
+                                        Accepted.
+      ^D
+
+  Note that the program output 'rejected' after the empty line, as 
+  the defined automata did not have the starting state also as an 
+  accepting state.
+
+======================================================================
+
+2 - Extended Usage
+
+Automata includes support for extra features and functionality, some 
+of which can be accessed through the internal Lua scripting engine, 
+and others can be enabled with various command line options.
+
+  2.1 - Command line options
+
+  When running Automata, command line options follow the general GNU
+  command option style, with both short and long name variants. 
+
+      -i | --interactive  
+           Enter interactive interpreter mode.  Uses the integrated
+	   Lua interpreter to interface with the Machine object API.
+	   See sections 3.2 and 4.0 for information on interactive
+	   mode and the available APIs.
+
+      -l | --lua-file <filename>
+           Specify a Lua control script for Automata. The control 
+	   script determines what Automata does and when. The 
+	   default control script is 'automata.lua'.  See section
+	   3.1 for more information on Lua control scripts.
+
+      -h | --help
+           View basic usage information for the Automata program.
+
+      -v | --version
+           View the Automata binary's version and date information.
+
+======================================================================
+
+3 - Special Execution Modes
+
+There are two special execution modes for Automata.  The first (and
+default) execution method relies on an external Lua control script to
+manage Automata and handle input and output, and the second method is
+an interactive Lua interpreter session, where the user can control 
+Automata in real-time by using the Machine object and Lua API's.
+
+  3.1 - Control script mode
+
+  By default, Automata relies on a Lua control script to process any
+  input and manipulate the core logic routines.  If no control script
+  is specified using the -l command option, then Automata looks for 
+  a control script named 'automata.lua' in your current working
+  directory.  
+  
+  When you build Automata with the given Makefile, it will place the 
+  default control script in the same directory as it puts the Automata 
+  executable.  This control script defines the required input format
+  as described in section 1.2 of this document.
+
+  By creating another Lua control script that adheres to the Machine
+  object API (defined in section 4.2), you can point Automata to that
+  control script with -l, and Automata will then behave as defined in
+  the new script.
+
+  3.2 - Interactive mode
+
+  Interactive mode places you in a real-time Lua interpreter session,
+  using line-by-line input, which allows you to directly utilize the
+  Machine object API (defined in section 4.2) to build a finite or 
+  pushdown automata and test it with multiple string inputs.
+
+  After you've entered interactive mode using the -i command option,
+  Automata will continuously prompt you for command input, which will
+  then be processed by the Lua interpeter, giving immediate output
+  for feedback.  From this mode, you have full access to the Machine
+  object API, as well the Base, Math, String, and Table libraries
+  that ship with the standalone Lua interpreter.
+  
+  In this mode, any errors will still be displayed, but the offending
+  commands will be ignored by the interpreter, and the session will 
+  continue on as normal.
+
+  For quick reference, you can enter the 'help()' command while in
+  interactive mode to display a short table listing important pieces
+  of the Machine object API, and will remind you which Lua libraries
+  have been included for your use.
+
+======================================================================
+
+4 - Lua API
+
+For both control script execution and interactive mode, Automata 
+provides a set of functions and libraries to the Lua interpreter. The
+standard Lua libraries Base, Math, String and Table are loaded by
+default, but Automata also adds the Machine library and a few extra
+functions for input and output usage.
+
+More information about Lua, including the official reference manual,
+official book, and more, can be found at http://www.lua.org
+
+  4.1 - Input / output functions
+
+    4.1.1 - string inputLine()
+
+    Gathers a line of input from standard in, trims the string of 
+    surrounding whitespace, and returns the result to Lua.  In the
+    case of an error on input, or end of file, it returns nil.
+
+    4.1.2 - string tokenize( string )
+
+    Takes a string as input, and then breaks the string into tokens
+    using whitespace as the separator.  Returns an integer-indexed
+    table (array) to Lua with each token from the input string.
+
+    4.1.3 - void printerr( string )
+
+    Prints the input string to standard out, returning nothing.
+
+    4.1.4 - void help()
+
+    Prints a textual table to standard out containing a quick guide
+    to the Machine object API, as well as a list of Lua libraries
+    that have been loaded into the interpreter.
+
+  4.2 - Machine object API
+
+    The Machine object API is centered around the Machine class, 
+    which provides an object-oriented method to build a finite or
+    pushdown automata from an alphabet, a set of states, and a set of
+    transitions between states.  The Machine object can then be
+    given an input string, and it will test to see if the string is
+    accepted.  Shown below is a brief class listing of the Machine
+    object API:
+
+    Machine {
+      Machine new()
+
+      bool addSymbol( name )
+      bool addState( name, accepting=false, starting=false )
+      bool addTransition( start, symbol, destination, read="", write="" )
+
+      bool setAccepting( name, accepting=true )
+      bool setStarting( name, starting=true )
+
+      bool accepts( string )
+
+      void error( message, ignore=false )
+      void setDebug( level )
+      void dumpMachine()
+    }
+
+    4.2.1 - Machine Machine:new()
+      
+      Used to create a new Machine object.  Simply returns a 
+      reference to the newly created object.  This is a static
+      function, and should be called like so:
+        
+  	  m = Machine:new()
+      
+    4.2.2 - bool addSymbol( symbol )
+
+      Adds the given symbol to the Machine alphabet.  The symbol 
+      cannot be the special '_' character.  Returns true if the 
+      symbol is added successfully.  If the given string is empty, 
+      if it is longer than a single character, or it contains a 
+      symbol that is already defined, it returns false. 
+
+    4.2.3 - bool addState( name, accepting=false, starting=false )
+      
+      Adds a new state to the Machine object, with the given name,
+      and set as an accepting or starting state.  Defaults to not
+      being either accepting or starting.  Returns true if the state
+      does not already exist and if there is no other starting state
+      already defined.  Returns false if the name is empty, or 
+      otherwise.
+
+    4.2.4 - bool addTransition( start, symbol, destination,
+    					read="", write="" )
+
+      Adds a new transition from start to destination over the given
+      symbol.  The transition symbol must be a member of the machine
+      alphabet as defined with addSymbol(), or it may be the special
+      character '_' to define a Lambda transition.  Both the start
+      and destination states must already exist in the machine.
+      
+      For pushdown automata, the read and write parameters define a
+      character that is to be read from the stack, and a string that
+      is to be written to the stack. The special '_' character 
+      defines the "empty stack" condition, and can be used in both
+      the read and write parameters.  Both parameters default to
+      empty for finite automata.
+
+      This function returns true if the start and destination states
+      exist, the symbol is in the machine alphabet or is Lambda, and
+      and read parameter is either empty or only one character long.
+      Otherwise, the transition is not added, and the function
+      returns false.
+
+    4.2.5 - bool setAccepting( name, accepting=true )
+      
+      Defines whether a given state is an accepting state or not.
+      By default, sets the state as accepting.  Returns true if the
+      state exists; false otherwise.
+      
+    4.2.6 - bool setStarting( name, starting=true )
+      
+      Defines whether a given state is the machine's starting state
+      or not.  By default, sets the state as the starting state.
+      If a different starting state is already defined, or if the
+      given state does not exist, returns false.  Returns true 
+      otherwise.
+
+    4.2.7 - bool accepts( string )
+      
+      Initiates a depth-first search of the Machine object given the
+      string as input.  If the Machine consumes the entire string,
+      and can reach an accepting state with the "empty stack" symbol
+      on top of the stack, then the string is accepted, and the
+      function returns true.  Otherwise, the function returns false.
+      
+    4.2.8 - void setDebug( level )
+      
+      Set an integer debug level for printing status messages while
+      the Machine object is executing different functions.  Debug
+      level 0 means no messages, level 1 is minimal messages, and
+      2, 3, and 4 each print progressively more output and detail.
+
+    4.2.9 - void dumpMachine()
+      
+      Prints a textual representation of the current Machine object,
+      including its alphabet, states, and transitions.
+
+    4.2.10 - void Machine:error( message, ignore=false )
+      
+      Prints an error message to standard error.  The ignore 
+      parameter determines if the error is fatal and should halt
+      execution.  Defaults to not ignoring errors.
+
+      This is a static function, and does not require a valid Machine
+      object to call it, like so:
+          
+	  Machine:error( "Error Message." )
+
+======================================================================
+
+

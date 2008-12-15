@@ -1,0 +1,42 @@
+-------------------------
+
+Automated Checkout System
+
+John Reese
+Erik Mathesius
+
+-------------------------
+
+Building
+
+  The application can be built using the included Ant script.  The possible
+  Ant targets include:
+
+	- 'build' - Compile the Java source code into the 'bin/' directory.
+	- 'dist' - Create an executable jar file 'Checkout.jar'
+
+	- 'clean' - Remove the 'bin/' directory
+	- 'dist-clean' - Remove the jar file
+
+-------------------------
+
+Execution
+
+  Once a compiled version has been created, the executable takes a single
+  command line parameter: the number of checkout lanes to manage.
+
+    java Checkout <num_lanes>
+    java -jar Checkout.jar <num_lanes>
+
+  Once running, the application repeatedly requests pairs of input, starting
+  with the lane number to target, and the action to send to the target. Actions
+  understood by the lanes include:
+
+	- 'scan <cost>'
+	- 'done'
+	- 'insert <amount>'
+	- 'pay'
+	- 'reset'
+
+-------------------------
+

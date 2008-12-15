@@ -1,0 +1,38 @@
+Applications Testing Chart
+
+[Remove all bracketed text before submitting]
+
+Brian Flood, John Reese
+
+Application Name: labgrep
+
+Test #1 
+
+  a. Input file(s): File with one line: "oioioioi"
+
+  b. Command line arguments: "oi"
+
+  c. Desired Outcome: Output file should contain only one line: "oioioioi"
+
+  d. labgrep12 Outcome: Failed - printed a line for each match in a line
+
+  e. labgrep13 Outcome: Passed
+
+  f. labgrep14 Outcome: Passed
+
+  g. labgrep15 Outcome: Passed
+
+  h. labgrep16 Outcome: Passed
+
+  i. labgrep17 Outcome: Passed
+
+[Repeat for all tests]
+
+
+
+Test Result Summary
+
+[Identify bugs in each implementation]
+
+
+

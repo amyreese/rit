@@ -1,0 +1,12 @@
+tick-handling - Chapter 12
+Free to use textboox implementation of time manager
+
+    pre-tick()
+  	Outputs
+	Communications with other objects
+		Allows objcets to exchange info and state before 
+		any state changes start happening.
+
+    tick()
+    	State changes
+	Passage of time actions

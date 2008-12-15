@@ -1,0 +1,94 @@
+/*
+John Reese
+Stephen Wright
+*/
+
+const POOLSIZE = 6
+const REQUEST_LIMIT = 3
+
+range POOL_RANGE = 0..POOLSIZE
+range REQUEST_RANGE = 1..REQUEST_LIMIT
+
+/* Actions:
+	status:		I	ask for a total of VM units available
+	free[n]:	O	response to 'status' indicating n VM units available
+
+	request[n]:	I	client request for allocation of n VM units
+	assign[c]:	O	allocation of a single VM unit to client c
+	release:	I	client returns a single VM unit to the allocation pool
+
+	work:		I	client does processing without aid of VM units
+	use:		I	client does processing using VM unit(s)
+
+	crash:		I	allocator signalling a crash to all clients
+	report[n]:	O	client response to server crash indicating n VM units allocated
+*/
+
+// Start with a full pool of VM units
+ALLOCATOR(NCLIENTS=3) = ALLOCATOR[POOLSIZE],
+
+// Normal operation: client requests accepted for VM units less or equal to minimum of pool size
+//	or request limit.  Client releases and status messages handled in-state.
+ALLOCATOR[p:POOL_RANGE] = 
+	( when(p>0 && p<REQUEST_LIMIT) request[c:1..NCLIENTS][n:1..p] -> ASSIGN[c][p][n]
+	| when(p>0 && p>=REQUEST_LIMIT) request[c:1..NCLIENTS][n:REQUEST_RANGE] -> ASSIGN[c][p][n]
+	| when(p<POOLSIZE) release -> ALLOCATOR[p+1]
+	| status -> free[p] -> ALLOCATOR[p]
+	| crash -> RECOVER[POOLSIZE][0] ),
+
+// Assignment operation: continuosly assign VM units to client until crash or fulfilled request.
+ASSIGN[c:1..NCLIENTS][p:POOL_RANGE][a:REQUEST_RANGE] = 
+	( when(a>1 && p>1) assign[c] -> ASSIGN[c][p-1][a-1]
+	| when(a==1 && p>0) assign[c] -> ALLOCATOR[p-1]
+	| crash -> RECOVER[POOLSIZE][0]),
+
+// Crash recovery: wait for all clients to report the number VM units allocated to each,
+//	then return to normal operation.
+RECOVER[p:POOL_RANGE][c:0..NCLIENTS] = 
+	( when(p>=0 && c<NCLIENTS-1) report[n:0..p] -> RECOVER[p-n][c+1]
+	| when(p>=0 && c==NCLIENTS-1) report[n:0..p] -> ALLOCATOR[p-n]).
+
+// Start with no VM units allocated.
+CLIENT = CLIENT[0],
+
+// Normal operation: do some isolated work, or request VM unit allocation.  If allocator
+//	crashes, report no VM units assigned.
+CLIENT[0] = 
+	( work -> CLIENT[0]
+	| request[n:REQUEST_RANGE] -> REQUEST[n][0]
+    | crash -> report[0] -> CLIENT[0]),
+
+// Allocated operation: use the VM units for processing, or release a VM unit until none left.
+//	If allocator crashes, report the numebr of VM units still allocated.
+CLIENT[m:REQUEST_RANGE] = 
+	( use -> CLIENT[m]
+	| release -> CLIENT[m-1]
+	| crash -> report[m] -> CLIENT[m]),
+
+// Allocation request: wait for the allocator to assign each VM unit requested.
+//	If allocator crashes, report the number of VM units acquired, then begin releasing them.
+REQUEST[r:REQUEST_RANGE][a:POOL_RANGE] =
+	( when(a<r-1) assign -> REQUEST[r][a+1]
+	| when(a==r-1) assign -> CLIENT[r]
+	| when(r>0) crash -> report[a] -> CRASH[r][a]
+	| when(r==0) crash -> report[0] -> REQUEST[r][0]),
+
+// Crash recovery: release the partial allocation of VM units, then return to allocation task.
+//	If allocator crashes again, report the number of VM units left and continue releasing.
+CRASH[r:REQUEST_RANGE][a:POOL_RANGE] =
+	( when(a>0) release -> CRASH[r][a-1]
+	| when(a==0) request[r] -> REQUEST[r][0]
+	| crash -> report[a] -> CRASH[r][a]).
+
+// Represent a system an allocator and NCLIENTS number of clients.
+//	Connect appropriate actions between the two.
+||SYSTEM(NCLIENTS=3) = (client[i:1..NCLIENTS]:CLIENT||ALLOCATOR(NCLIENTS))
+/{
+	forall [i:1..NCLIENTS] {
+		client[i].request[r:REQUEST_RANGE]/request[i][r],
+		client[i].release/release,
+		crash/client[i].crash,
+		client[i].report[a:POOL_RANGE]/report[a],
+		assign[i]/client[i].assign
+	}
+}.

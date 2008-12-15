@@ -1,0 +1,269 @@
+======================================================================
+Automata
+CS Theory Automata Simulator
+======================================================================
+
+Author: John Reese (jmr8223)
+Contact: johnreese@leetcode.net
+
+Description: Accepts input from standard in to define the structure
+of a finite automata, as well as a list of strings to accept or
+reject.  Output will be displayed on standard out.
+
+======================================================================
+
+Table of Contents:
+
+  1 - Requirements
+  2 - Testing
+
+======================================================================
+
+1 - Requirements
+
+  1 -  Lines beginning with the '/' character are designated comment
+       lines, and are ignored entirely.
+
+  2 -  The first non-comment line of input defines the automata's 
+       alphabet.  Each symbol must be separated by whitespace, and can
+       only be one character long.  The '/' character is allowed in 
+       the alphabet, but must not be the first symbol defined.
+
+  3 -  Alphabet symbols are case sensitive.
+
+  4 -  Alphabet symbols must not be defined more than once.
+
+  5 -  One and only one state must be defined as the starting state.
+
+  6 -  State definition lines consist of a state's identifier,
+       possibly followed by the alphabet symbol of a transition and
+       the destination state's identifier, possibly followed by
+       a read character and write string for the stack.
+
+  7 -  The first line beginning with the '#' character defines the 
+       end of the automata's definition, and the beginning of input 
+       strings to be tested by the automata.
+
+  8 -  Any blank line during the input strings definition will be 
+       treated as Lambda.
+
+  9 -  Any input string containing character's not defined in the 
+       automata's alphabet is rejected.
+  
+======================================================================
+
+2 - Testing
+
+  1 -  Sequence:
+       
+         / Comment lines
+         / go here
+
+       Expected Output:
+
+         < no output >
+
+       Actual Output:
+
+         < no output >
+
+  2 -  Sequence:
+         
+	 / Alphabet definition
+	 a b c
+
+       Expected Output:
+
+         < no output >
+
+       Actual Output:
+
+         < no output >
+
+  3 -  Sequence:
+         
+	 / Alphabet definition
+	 a b c A B
+
+       Expected Output:
+         
+	 < no output >
+
+       Actual Output:
+
+         < no output >
+
+  4 -  Sequence:
+         
+	 / Alphabet definition
+	 a b c a
+
+       Expected Output:
+
+         Duplicate alphabet character specified.
+
+       Actual Output:
+
+         Duplicate alphabet character specified.
+
+  5 -  Sequence:
+         
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1 
+	 > 2 a 1
+
+       Expected Output:
+
+         Incorrect machine definition.
+
+       Actual Output:
+
+         Incorrect machine definition.
+
+  6 -  Sequence 1:
+        
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1
+	 1 a 
+
+       Expected Output:
+
+	 Incorrect machine definition.
+
+       Actual Output:
+
+	 Incorrect machine definition.
+
+       Sequence 2:
+
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1
+	 1 a 2 b a
+	 2 b 3 a b c
+
+       Expected Output:
+
+         Incorrect machine definition.
+
+       Actual Output:
+
+         Incorrect machine definition.
+
+  7 -  Sequence:
+         
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1
+	 1 a 2
+	 2 b 1
+	 1 c 3
+	 < 3 b 1
+	 # Input strings
+	 abc
+	 abba
+	 cbababc
+
+       Expected Output:
+         
+	 Accepted.
+	 Rejected.
+	 Accepted.
+
+       Actual Output:
+
+	 Accepted.
+	 Rejected.
+	 Accepted.
+
+  8 -  Sequence 1:
+         
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1
+	 1 a 2
+	 2 b 1
+	 1 c 3
+	 < 3 b 1
+	 # Input strings
+	 abc
+
+	 cbababc
+
+       Output 1:
+         
+	 Accepted.
+	 Rejected.
+	 Accepted.
+
+       Actual Output:
+
+	 Accepted.
+	 Rejected.
+	 Accepted.
+
+       Sequence 2:
+         
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1
+	 < 1 a 2
+	 2 b 1
+	 1 c 3
+	 < 3 b 1
+	 # Input strings
+	 abc
+
+	 cbababc
+
+       Output 2:
+         
+	 Accepted.
+	 Accepted.
+	 Accepted.
+
+       Actual Output:
+
+	 Accepted.
+	 Accepted.
+	 Accepted.
+
+  9 -  Sequence:
+         
+	 Sequence:
+         
+	 / Alphabet definition
+	 a b c
+	 / Machine definition
+	 > 1
+	 1 a 2
+	 2 b 1
+	 1 c 3
+	 < 3 b 1
+	 # Input strings
+	 abc
+	 add
+	 cbababc
+
+       Expected Output:
+         
+	 Accepted.
+	 Rejected.
+	 Accepted.
+
+       Actual Output:
+
+	 Accepted.
+	 Rejected.
+	 Accepted.
+
+======================================================================
+

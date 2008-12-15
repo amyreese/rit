@@ -1,0 +1,25 @@
+===============================================================================
+Automata
+CS Theory Automata Simulator
+===============================================================================
+
+Building Automata from source code:
+
+  The Automata project should be compilable on any POSIX-compatible system
+  with the standard GNU C++ compiler and toolchain.  It can be built using the
+  GNU make program.  Replace 'x.x' with the version of Automata that you have.
+  On some Unix systems, you may need to substitute gmake for the make command:
+
+      gunzip automata-x.x.tgz
+      tar xf automata-x.x.tar
+      cd automata-x.x
+      make
+      
+Running Automata from source build:
+
+  After extracting and compiling, you can immediatly run the Automata binary:
+
+      ./automata
+
+  For more information, please look to the README file, section 1.1.
+

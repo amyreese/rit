@@ -1,0 +1,55 @@
+Applications Testing Chart
+
+[Remove all bracketed text before submitting]
+
+Brian Flood, John Reese
+
+Application Name: labgrep
+
+Test #1 
+
+  a. Input file(s): File with one line: "oioioioi"
+
+  b. Command line arguments: "oi"
+
+  c. Desired Outcome: Output file should contain only one line: "oioioioi"
+
+  d. labgrep12 Outcome: Failed - printed a line for each match in a line
+
+  e. labgrep13 Outcome: Passed
+
+  f. labgrep14 Outcome: Passed
+
+  g. labgrep15 Outcome: Passed
+
+  h. labgrep16 Outcome: Passed
+
+  i. labgrep17 Outcome: Passed
+
+
+Test #2 
+
+  a. Input file(s): File with six lines: "123", "123toil123", "foil12",
+					 "lion23", "cro123codile"
+
+  b. Command line arguments: "123"
+
+  c. Desired Outcome: Output file should contain only 3 lines: "123"
+							       "123toil123"
+							       "cro123codile"
+
+  d. labgrep12 Outcome: Failed - printed a line for each match in a line
+
+  e. labgrep13 Outcome: Passed
+
+  f. labgrep14 Outcome: Passed
+
+  g. labgrep15 Outcome: Failed - printed when new line reached before end of
+				 search string.
+
+  h. labgrep16 Outcome: Passed
+
+  i. labgrep17 Outcome: Failed - did not print when new line ended right 
+				 after search string
+
+

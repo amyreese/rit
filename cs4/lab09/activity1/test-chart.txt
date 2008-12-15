@@ -1,0 +1,71 @@
+Stack Classes Testing Chart
+
+Brian Flood, John Reese
+
+Test Strategy #1:
+
+Actions: Create a stack.
+Initial State (Precondition): stack does not exist.
+Desired Outcome: stack should be empty, and its size should be 0
+
+
+Test Strategy #2:
+
+Actions: Push 'a', then 'b', then 'c'
+Initial State (Precondition): stack is not full
+Desired Outcome: stack should not be empty, it may fill up during any
+        of the operations if its size reaches the max, the top should be
+	'c', and its size should increase by 3 unless it filled up earlier
+
+Test Strategy #3:
+
+Actions: Pop 'a', then 'b', then 'c'
+Initial State (Precondition): stack is no empty
+Desired Outcome: stack should remove 3 elements and the new top should 
+				 not exist
+
+Test Strategy #4:
+
+Actions: Push 20 elements 'd' through 'w'( Fills DumbStack4 )
+Initial State (Precondition): stack is not full
+Desired Outcome: DumbStack4 should be full and the top should be 'w'
+				 Other stacks are not full and top should be 'w'
+
+Test Strategy #5:
+
+Actions: Pop the stack until empty
+Initial State (Precondition): Stack is not empty
+Desired Outcome: stack should be empty and top should not exist
+
+
+------------------------------------------------
+
+Test results
+
+[put in the actual test results using . for OK and X for failed tests]
+
+         DumbStack1  DumbStack2  DumbStack3  DumbStack4
+
+Test 1:      OK          OK          OK          OK
+Test 2:      OK          X           OK          OK
+Test 3:      X           X           X           OK
+Test 4:      OK          X           OK          OK
+Test 5:      OK          OK          OK          X
+
+
+-------------------------------------------------
+
+Summary
+
+
+DumbStack1: Top is never changed after a pop.
+
+
+DumbStack2: Stack does not push things on in proper order.
+
+
+DumbStack3: Stack is not displaying the top properly.
+
+
+DumbStack4: Once the full flag is set it is not being changed after 
+			a pop, even if stack is empty.

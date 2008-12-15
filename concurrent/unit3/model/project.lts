@@ -1,0 +1,206 @@
+/*
+ * Robert Larivee - rll8081
+ * John Reese - jmr8223
+ *
+ *	We used subversion for our version control. 
+ *
+ * Flexible Manufacturing System
+ */
+
+const NUM_UAVS = 2
+range UAVS = 1..NUM_UAVS
+
+const A = 1
+const B = 2
+const Y = 3
+const Z = 4
+const S1 = 5
+const S2 = 6
+const FINAL = 7
+
+range PARTS = A..FINAL
+
+/*
+* Process Cell - this represents any one of the three types of cells once it is composed in
+* ||CELLS.  P and Q are the two components to build type R.  All of the values are enumerated
+* in the constants above.
+* 
+* 	Actions
+* 	I	request[P]	make a request for part P
+*	I	request[Q]	make a request for part Q
+*
+*	Local Process WAITING, WAITINGP, and WAITINGQ represents when a cell 
+*	is waiting for items to be delivered.
+*
+*	O	deliver[P]  represents when a part P is delivered to the cell
+*   O	deliver[Q]  represents when a part Q is delivered to the cell
+*
+*	Local Process BUILD represents when the cell is ready to build the 
+*	cell's product.
+*
+*	0	assemble[R]	action for assembling the cell's product
+*
+*	Local process DONE, DONEWAITING, DONEWAITINGP, DONEWAITINGQ, and 
+*	DONERECEIVED represent states after the cell has completed construction
+*	and is either waiting for the product to be picked up or requesting new parts.
+*
+*	O	remove[R]	action that represents when the UAV picks up the assembled part.
+*/
+
+CELL(P=1, Q=2, R=5)  = (
+	request[P] -> request[Q] -> WAITING
+),
+
+WAITING = (
+	deliver[P] -> WAITINGP
+	| deliver[Q] -> WAITINGQ
+),
+
+WAITINGP = (
+	deliver[Q] -> BUILD
+),
+
+WAITINGQ = (
+	deliver[P] -> BUILD
+),
+
+BUILD = (
+	when( R != FINAL ) assemble[R] -> DONE
+	| when( R == FINAL ) assemble[R] -> DONEFINAL
+),
+
+DONEFINAL = (
+	request[R] -> DONE
+),
+
+DONE = (
+	request[P] -> request[Q] -> DONEWAITING
+	| remove[R] -> CELL
+),
+
+DONEWAITING = (
+	remove[R] -> WAITING
+	| deliver[P] -> DONEWAITINGP
+	| deliver[Q] -> DONEWAITINGQ
+),
+
+DONEWAITINGP = (
+	remove[R] -> WAITINGP
+	| deliver[Q] -> DONERECEIVED
+),
+
+DONEWAITINGQ = (
+	remove[R] -> WAITINGQ
+	| deliver[P] -> DONERECEIVED
+),
+
+DONERECEIVED = (
+	remove[R] -> BUILD
+).
+
+||CELLS = ( ab:CELL(A,B,S1) || yz:CELL(Y,Z,S2) || final:CELL(S1,S2,FINAL) ).
+
+/*
+*	Process UAV represents a UAV in the factory.  It can pick up parts and
+*	deliver them to other cells or the storeroom.
+*
+*	Actions
+*	I	answer[p:PARTS]	answers a UAV_CONTROLLERS command to get part p
+*	O	moveToPickUp[p]	represents a UAV travelling to pick up a part p
+*	O	pickUp[p]		UAV picking up part p
+*
+*	Local Process PICKEDUP[p:PARTS] represents the state of the UAv when 
+*	it is holding a part.
+*
+*	O	moveToDeliver[p]	UAV is travelling to deliver part p.
+*	O	deliver[p]			UAV delivers the part once it arrives
+*	O	idle[p]				UAV is idle, which is overridden by storeroom exit
+*
+*/
+
+UAV = (answer[p:PARTS] -> moveToPickup[p] -> pickUp[p] -> PICKEDUP[p]),
+PICKEDUP[p:PARTS] = (moveToDeliver[p] -> deliver[p] -> idle[p] -> UAV).
+						//|tick).
+
+/*
+*	Process UAV_CONTROLLER controls the UAV by interacting with commands from 
+*	the cells.
+*
+*	Action
+*	I	request[p:PARTS]	gets a request for part p from a cell
+*	O	command[u:UAVS][p]	commands UAV u to get part p
+*
+*/
+
+UAV_CONTROLLER = (request[p:PARTS] -> command[u:UAVS][p] -> UAV_CONTROLLER).
+
+/*
+*	Process STOREROOM represents the storeroom in the factory which allows 
+*	UAVs to enter the storeroom one at a time and pickup or dropoff parts.
+*
+*	Action
+*	I	enter[u:UAVS]	action representing a UAv entering the storeroom
+*
+*	Local process IN_STOREROOM represents the state of the system while 
+*	UAV u is inside the storeroom.
+*
+*	O	give[p]		the storeroom gives part p to the UAV 
+*	O	exit		the UAV exits the storeroom
+*	0	receive		the UAV gives the final product to the storeroom
+*
+*/
+
+STOREROOM = (enter[u:UAVS] -> IN_STOREROOM[u] ),
+
+IN_STOREROOM[u:UAVS] = ( give[p:A..B] -> exit -> STOREROOM
+				| give[p:Y..Z] -> exit -> STOREROOM
+				| receive -> exit -> STOREROOM).
+
+/*
+*	This is the SYSTEM process composition that properly relabels all of
+*	the actions so that the system works together. 
+*
+*/
+
+||SYSTEM = ( CELLS || [UAVS]:UAV || uc:UAV_CONTROLLER || sr:STOREROOM || rq:REQUEST_QUEUE || sq:STOREROOM_QUEUE)
+/{ ab.request[p:A..B]/rq.in[p], uc.request[p:PARTS]/rq.out[p], yz.request[p:Y..Z]/rq.in[p],
+ final.request[p:S1..FINAL]/rq.in[p], [UAVS].pickUp[FINAL]/final.remove[FINAL],
+ uc.command[u:UAVS][p:PARTS]/[u].answer[p],[UAVS].deliver[p:PARTS]/{ab,yz,final}.deliver[p],
+ [u:UAVS].moveToPickup[p:A..B]/sq.in[u], [u:UAVS].moveToPickup[p:Y..Z]/sq.in[u],
+ sr.enter[u:UAVS]/sq.out[u], [UAVS].moveToDeliver[p:A..B]/sr.exit, [UAVS].moveToDeliver[p:Y..Z]/sr.exit,
+ [UAVS].pickUp[p:A..B]/sr.give[p], [UAVS].pickUp[p:Y..Z]/sr.give[p],
+ [u:UAVS].moveToDeliver[FINAL]/sq.in[u], [UAVS].idle[FINAL]/sr.exit, [UAVS].deliver[FINAL]/sr.receive,
+ [UAVS].pickUp[S1]/ab.remove[S1], [UAVS].pickUp[S2]/yz.remove[S2], [UAVS].deliver[p:S1..S2]/final.deliver[p]
+  }.
+
+BUFF(Max=4) = (in[v:1..Max] -> out[v] -> BUFF).
+||NBUFF(N=3,M=4) = (b[1..N]:BUFF(M))
+/{forall [i:1..N-1] {b[i].out/b[i+1].in},
+  in/b[1].in, out/b[N].out}
+@{in[1..M], out[1..M]}.
+
+/*
+*	Composed process STOREROOM_QUEUE represents a queue for access to the 
+*	storeroom.  UAVs enter the queue and one by one they enter and exit the 
+*	storeroom.
+*
+*	Composed process REQUEST_QUEUE represents the queue of the requests made 
+*	to the UAV_CONTROLLER.  This queue makes sure that all the requests are 
+*	handled in the order in which they are received.
+*
+*	All of the queues use the BUFF process, which represents a buffer, and the 
+*	NBUFF composed process.  These processes were supplied from previous examples.
+*
+*/
+
+||STOREROOM_QUEUE = (NBUFF(NUM_UAVS,NUM_UAVS)).
+||REQUEST_QUEUE = (NBUFF(3,7)).
+
+/*
+*	Menu to limit the commands that the user can preform to requesting parts
+*	to be picked up and delivered and assembling units.
+*
+*/
+
+menu FMS = {ab.{request[A..B], assemble[S1]}, yz.{request[Y..Z], assemble[S2]},
+			final.{request[S1..FINAL], assemble[FINAL]}}

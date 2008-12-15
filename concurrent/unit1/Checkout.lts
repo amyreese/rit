@@ -1,0 +1,74 @@
+// Checkout.lts - Automated Checkout System
+//
+// Authors: Erik Mathesius, John Reese
+// $Date$
+//
+// Action Table
+// scan[c]          I  scan an item of cost c dollars
+// reset            I  reset the transaction, refunding if money was payed
+// done             I  proceed to payment after finished scanning
+// insert_1         I  insert $1
+// insert_5	        I  insert $5
+// pay      		I  after tendering cash, proceed to COMPLETEPAYMENT
+// return_1		    O  refund $1
+// return_5 		O  refund $5
+// receipt[c][p][r] O  print the receipt with cost c, payment p, and change r
+
+const MAX_ITEMS = 5                              // max. items in one purchase
+const MAX_COST  = 2                              // max. cost per item
+const LANES     = 2                              // number of self service lanes
+
+range NITEMS    = 0 .. MAX_ITEMS                 // range of items purchased
+
+range ICOST     = 1 .. MAX_COST                  // item cost range
+range TOT_COST  = 0 .. MAX_ITEMS * MAX_COST      // total cost range
+range PAYMENT   = 0 .. MAX_ITEMS * MAX_COST + 4  // payment range (up to $5 over TOT_COST)
+
+// START is the first state, start to begin SCANNING
+START = ( start -> SCANNING[0][0] ),
+
+//SCANNING        Represents the state in which the customer is scanning items in the lane.  The
+//                scan action adds an item and increments the total cost.  Pressing done proceeds
+//                to PAYMENT.  Pressing reset cancels the purchase.
+SCANNING[i: NITEMS][c: TOT_COST] = (
+	  reset -> SCANNING[0][0]
+	| when (i > 0) done -> PAYMENT[c][0]
+	| when (i < MAX_ITEMS && c <= (MAX_ITEMS * MAX_COST) - MAX_COST) scan[p: ICOST] -> SCANNING[i+1][c+p]
+),
+
+//PAYMENT         Represtents the state in which the customer is inserting cash to pay for the scanned
+//                items.  1 and 5 dollar bills can be inserted until the ammount tendered is at above
+//                the total cost.  Pressing pay proceeds to COMPLETEPAYMENT.  Pressing reset proceeds to
+//                REFUNDALL if any money was inserted.  Otherwise, reset goes back to SCANNING.
+PAYMENT[c: TOT_COST][p: PAYMENT] = (
+	  when (p < c) insert_1 -> PAYMENT[c][p+1]
+	| when (p < c) insert_5 -> PAYMENT[c][p+5]
+	| when (p >= c) pay -> COMPLETEPAYMENT[c][p][0]
+	| when (p > 0) reset -> REFUNDALL[p]
+	| when (p == 0) reset -> SCANNING[0][0]
+),
+
+//REFUNDALL       Any cash that was inserted is returned to the customer, in 1 and 5 dollar bills. When this
+//                is complete, the process goes back to SCANNING.
+REFUNDALL[p: PAYMENT] = (
+	  when (p >= 5) return_5 -> REFUNDALL[p-5]
+	| when (p > 1 && p < 5) return_1 -> REFUNDALL[p-1]
+	| when (p == 1) return_1 -> SCANNING[0][0]
+),
+
+//COMPLETEPAYMENT Any payments in excess of the total cost are returned to the customer.  A receipt is printed
+//                containing the total cost, the total paid, and the total refunded.  After the receipt is printed
+//                it goes back to SCANNING.
+COMPLETEPAYMENT[c: TOT_COST][p: PAYMENT][r: PAYMENT] = (
+	  when (p-c-r >= 5) return_5 -> COMPLETEPAYMENT[c][p][r+5]
+	| when (p-c-r >= 1 && p-c-r < 5) return_1 -> COMPLETEPAYMENT[c][p][r+1]
+	| when (p-c-r == 0) receipt[c][p][r] -> SCANNING[0][0]
+).
+
+//only input actions are available to the user/customer
+menu DEFAULT = {lane[i:1..LANES].scan[c:ICOST], lane[i:1..LANES].reset, 
+	lane[i:1..LANES].done, lane[i:1..LANES].insert_1, 
+	lane[i:1..LANES].insert_5, lane[i:1..LANES].pay}
+
+//run multiple lanes concurrently
+||ALL_LANES(N=LANES) = (lane[i:1..N]:START).

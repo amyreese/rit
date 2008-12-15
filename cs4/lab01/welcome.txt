@@ -1,0 +1,20 @@
+Welcome to the Mastermind program!
+Let us see if you can guess my secret number!
+
+  Enter a series of 4-digit guesses, with no repeated digits.
+
+  The score for each guess will be two numbers.
+
+  The first number indicates the number of correct digits
+        that are also in the correct position.
+  The second number indicates the number of other correct digits
+	but which are not in the correct position.
+
+  For example, if my secret number is 0796, and your guess is 2690,
+	your score would be ( 1 2 ).
+
+  Obviously, a score of ( 4 0 ) wins the game.
+
+  To quit the program in the middle, type "quit"
+
+Good luck!

@@ -1,0 +1,12 @@
+How many UAVS for the model?
+
+Does ABCELL need to request the removal of S1? YZCELL request the removal of S2?
+  If not, how does UAV handle requests for S1/S2 when requested by FINALCELL?
+
+What is the difference between the two sets of ticks listed for UAVS?
+
+How does battery power affect the system?
+  Does it recharge in place when delivering?
+  How to handle parts?
+
+Do we need to model the storeroom itself in any manner beyond the queue?

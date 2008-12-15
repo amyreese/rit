@@ -1,0 +1,136 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="ProgId" content="Word.Document">
+   <meta name="Generator" content="Microsoft Word 9">
+   <meta name="Originator" content="Microsoft Word 9">
+   <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <title>Abstract Classes, Assertions, and Testing</title>
+<!--[if gte mso 9]><xml>
+  <o:DocumentProperties>
+  <o:Author>Sidney Marshall</o:Author>
+  <o:LastAuthor>James Heliotis</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  </o:DocumentProperties>
+  </xml><![endif]-->
+</head>
+<body lang="EN-US" style="tab-interval:.5in">
+
+<h1 class="MsoNormal">
+Programs to test</h1>
+
+<div class="MsoNormal">Following are descriptions of some simplified utilities.
+Read the specification carefully and then devise a set of tests to test
+conformance with the specifications. If the specification is incomplete,
+point this out and include tests to verify program behavior in these unspecified
+areas.</div>
+
+<h2>
+labcmp &lt;file1> &lt;file2></h2>
+
+<h3>
+Description</h3>
+
+<div class="MsoNormal">The labcmp utility compares two files. If the files
+are identical, labcmp will write a message to that effect on standard out.
+If they differ, it writes to standard output a message containing the number
+of lines that were the same. If one file is an initial subsequence of the
+other, that fact is noted. If exactly two file names are not specified
+on the command line a usage message is printed on standard output and the
+program terminates.</div>
+
+<h2>
+labgrep &lt;searchString></h2>
+
+<h3>
+Description</h3>
+
+<div class="MsoNormal">The labgrep utility reads standard input and copies
+only lines that contains at least one occurance of the search string to
+standard output. If no search string is specified or there are too many
+arguments a usage message is printed on standard output and the program
+terminates.</div>
+
+<h2>
+labsort &lt;column></h2>
+
+<h3>
+Description</h3>
+
+<div class="MsoNormal">The sort command sorts lines of standard input and
+writes the result on the standard output. The first character of a line
+is in column 0. The sort key is the decimal value of the longest sequence
+of digits in the line starting with the indicated column. If there is no
+digit in the indicated column then the sort key is zero.
+<br>&nbsp;</div>
+
+<div class="MsoNormal">For example, if the column number indicated in the
+command line argument is 5, here are some sample lines with their resulting
+keys:</div>
+
+<center><table BORDER COLS=2 WIDTH="100%" NOSAVE >
+<tr>
+<td><b>LINE</b></td>
+
+<td><b>KEY</b></td>
+</tr>
+
+<tr>
+<td><tt>I am 72 years old today.</tt></td>
+
+<td>72</td>
+</tr>
+
+<tr>
+<td><tt>I am only 72 years old today.</tt></td>
+
+<td>0</td>
+</tr>
+
+<tr>
+<td><tt>I'm 72 years old today.</tt></td>
+
+<td>2</td>
+</tr>
+
+<tr>
+<td><tt>123456789 that's all folks!</tt></td>
+
+<td>6789</td>
+</tr>
+</table></center>
+
+
+<p class="MsoNormal">This is a stable sort, i.e., the order of lines with
+identical keys is not changed. If no column is specified or there are too
+many arguments a usage message is printed on standard output and the program
+terminates.
+<h2>
+labsum (sum a list of numbers modulo 10<sup>n</sup>)</h2>
+
+<h3>
+Description</h3>
+
+<div class="MsoNormal">The labsum utility calculates and prints the last
+n digits of the sum of the numbers read from standard input. A single argument
+is expected on the command line which is the number of digits to accumulate.
+If there is not exactly one command line argument specifying the number
+of digits to print a usage message is printed on standard output and the
+program terminates.</div>
+
+<h2>
+labtail (list the last n lines of a file)</h2>
+
+<h3>
+Description</h3>
+
+<div class="MsoNormal">The labtail utility copies standard input to the
+standard output beginning at the nth to to last line. Copying begins at
+the nth to to last line and continues to the end of the input. Exactly
+n lines will be copied to standard output. If there is not exactly one
+command line argument specifying the number of lines to be output a usage
+message is printed on standard output and the program terminates.</div>
+
+</body>
+</html>

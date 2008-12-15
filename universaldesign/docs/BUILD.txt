@@ -1,0 +1,17 @@
+----------------------------
+* How to build the project *
+----------------------------
+
+1. Enter the QMake enviroment
+--- Linux: open a terminal and 'cd' to the trunk folder
+--- Windows: open a Qt QMake command prompt and 'cd' to the trunk folder
+
+2. Run 'qmake' to build a Makefile
+--- Only needs to be done once, unless the .pro file has changed
+
+3. Run 'make' to build the project
+--- If you can't get things to compile after a lot of changes, try running
+      'make clean' first to remove previous object files, then run 'make'
+
+4. Run the binary
+--- You can find it in the 'bin' directory

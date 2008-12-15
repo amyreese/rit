@@ -1,0 +1,30 @@
+<project name="Checkout" default="dist" basedir=".">
+	<property name="srcdir" location="src"/>
+	<property name="bindir" location="bin"/>
+	<property name="jarfile" location="Checkout.jar"/>
+
+	<target name="prep">
+		<mkdir dir="${bindir}"/>
+	</target>
+
+	<target name="build" depends="prep">
+		<javac srcdir="${srcdir}" destdir="${bindir}"/>
+	</target>
+
+	<target name="dist" depends="prep,build">
+		<jar jarfile="${jarfile}" basedir="${bindir}">
+			<manifest>
+				<attribute name="Main-Class" value="Checkout"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="clean">
+		<delete dir="${bindir}"/>
+	</target>
+
+	<target name="dist-clean" depends="clean">
+		<delete file="${jarfile}"/>
+	</target>
+
+</project>

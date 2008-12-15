@@ -1,0 +1,380 @@
+State 20 conflicts: 4 reduce/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: program statement
+    2        | /* empty */
+
+    3 statement: expr NEWLINE
+    4          | VARIABLE ASSIGNMENT expr NEWLINE
+
+    5 expr: sum
+
+    6 term: INTEGER
+    7     | VARIABLE
+
+    8 sum: sum PLUS product
+    9    | sum MINUS product
+   10    | LEFTPAREN sum RIGHTPAREN
+   11    | product
+
+   12 product: product MULTIPLY term
+   13        | product term
+   14        | product DIVIDE term
+   15        | LEFTPAREN sum RIGHTPAREN
+   16        | term
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ASSIGNMENT (258) 4
+PLUS (259) 8
+MINUS (260) 9
+MULTIPLY (261) 12
+DIVIDE (262) 14
+NEWLINE (263) 3 4
+LEFTPAREN (264) 10 15
+RIGHTPAREN (265) 10 15
+VARIABLE (266) 4 7
+INTEGER (267) 6
+
+
+Nonterminals, with rules where they appear
+
+$accept (13)
+    on left: 0
+program (14)
+    on left: 1 2, on right: 0 1
+statement (15)
+    on left: 3 4, on right: 1
+expr (16)
+    on left: 5, on right: 3 4
+term (17)
+    on left: 6 7, on right: 12 13 14 16
+sum (18)
+    on left: 8 9 10 11, on right: 5 8 9 10 15
+product (19)
+    on left: 12 13 14 15 16, on right: 8 9 11 12 13 14
+
+
+state 0
+
+    0 $accept: . program $end
+
+    $default  reduce using rule 2 (program)
+
+    program  go to state 1
+
+
+state 1
+
+    0 $accept: program . $end
+    1 program: program . statement
+
+    $end       shift, and go to state 2
+    LEFTPAREN  shift, and go to state 3
+    VARIABLE   shift, and go to state 4
+    INTEGER    shift, and go to state 5
+
+    statement  go to state 6
+    expr       go to state 7
+    term       go to state 8
+    sum        go to state 9
+    product    go to state 10
+
+
+state 2
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 3
+
+   10 sum: LEFTPAREN . sum RIGHTPAREN
+   15 product: LEFTPAREN . sum RIGHTPAREN
+
+    LEFTPAREN  shift, and go to state 3
+    VARIABLE   shift, and go to state 11
+    INTEGER    shift, and go to state 5
+
+    term     go to state 8
+    sum      go to state 12
+    product  go to state 10
+
+
+state 4
+
+    4 statement: VARIABLE . ASSIGNMENT expr NEWLINE
+    7 term: VARIABLE .
+
+    ASSIGNMENT  shift, and go to state 13
+
+    $default  reduce using rule 7 (term)
+
+
+state 5
+
+    6 term: INTEGER .
+
+    $default  reduce using rule 6 (term)
+
+
+state 6
+
+    1 program: program statement .
+
+    $default  reduce using rule 1 (program)
+
+
+state 7
+
+    3 statement: expr . NEWLINE
+
+    NEWLINE  shift, and go to state 14
+
+
+state 8
+
+   16 product: term .
+
+    $default  reduce using rule 16 (product)
+
+
+state 9
+
+    5 expr: sum .
+    8 sum: sum . PLUS product
+    9    | sum . MINUS product
+
+    PLUS   shift, and go to state 15
+    MINUS  shift, and go to state 16
+
+    $default  reduce using rule 5 (expr)
+
+
+state 10
+
+   11 sum: product .
+   12 product: product . MULTIPLY term
+   13        | product . term
+   14        | product . DIVIDE term
+
+    MULTIPLY  shift, and go to state 17
+    DIVIDE    shift, and go to state 18
+    VARIABLE  shift, and go to state 11
+    INTEGER   shift, and go to state 5
+
+    $default  reduce using rule 11 (sum)
+
+    term  go to state 19
+
+
+state 11
+
+    7 term: VARIABLE .
+
+    $default  reduce using rule 7 (term)
+
+
+state 12
+
+    8 sum: sum . PLUS product
+    9    | sum . MINUS product
+   10    | LEFTPAREN sum . RIGHTPAREN
+   15 product: LEFTPAREN sum . RIGHTPAREN
+
+    PLUS        shift, and go to state 15
+    MINUS       shift, and go to state 16
+    RIGHTPAREN  shift, and go to state 20
+
+
+state 13
+
+    4 statement: VARIABLE ASSIGNMENT . expr NEWLINE
+
+    LEFTPAREN  shift, and go to state 3
+    VARIABLE   shift, and go to state 11
+    INTEGER    shift, and go to state 5
+
+    expr     go to state 21
+    term     go to state 8
+    sum      go to state 9
+    product  go to state 10
+
+
+state 14
+
+    3 statement: expr NEWLINE .
+
+    $default  reduce using rule 3 (statement)
+
+
+state 15
+
+    8 sum: sum PLUS . product
+
+    LEFTPAREN  shift, and go to state 22
+    VARIABLE   shift, and go to state 11
+    INTEGER    shift, and go to state 5
+
+    term     go to state 8
+    product  go to state 23
+
+
+state 16
+
+    9 sum: sum MINUS . product
+
+    LEFTPAREN  shift, and go to state 22
+    VARIABLE   shift, and go to state 11
+    INTEGER    shift, and go to state 5
+
+    term     go to state 8
+    product  go to state 24
+
+
+state 17
+
+   12 product: product MULTIPLY . term
+
+    VARIABLE  shift, and go to state 11
+    INTEGER   shift, and go to state 5
+
+    term  go to state 25
+
+
+state 18
+
+   14 product: product DIVIDE . term
+
+    VARIABLE  shift, and go to state 11
+    INTEGER   shift, and go to state 5
+
+    term  go to state 26
+
+
+state 19
+
+   13 product: product term .
+
+    $default  reduce using rule 13 (product)
+
+
+state 20
+
+   10 sum: LEFTPAREN sum RIGHTPAREN .
+   15 product: LEFTPAREN sum RIGHTPAREN .
+
+    PLUS        reduce using rule 10 (sum)
+    PLUS        [reduce using rule 15 (product)]
+    MINUS       reduce using rule 10 (sum)
+    MINUS       [reduce using rule 15 (product)]
+    MULTIPLY    reduce using rule 15 (product)
+    DIVIDE      reduce using rule 15 (product)
+    NEWLINE     reduce using rule 10 (sum)
+    NEWLINE     [reduce using rule 15 (product)]
+    RIGHTPAREN  reduce using rule 10 (sum)
+    RIGHTPAREN  [reduce using rule 15 (product)]
+    VARIABLE    reduce using rule 15 (product)
+    INTEGER     reduce using rule 15 (product)
+    $default    reduce using rule 10 (sum)
+
+
+state 21
+
+    4 statement: VARIABLE ASSIGNMENT expr . NEWLINE
+
+    NEWLINE  shift, and go to state 27
+
+
+state 22
+
+   15 product: LEFTPAREN . sum RIGHTPAREN
+
+    LEFTPAREN  shift, and go to state 3
+    VARIABLE   shift, and go to state 11
+    INTEGER    shift, and go to state 5
+
+    term     go to state 8
+    sum      go to state 28
+    product  go to state 10
+
+
+state 23
+
+    8 sum: sum PLUS product .
+   12 product: product . MULTIPLY term
+   13        | product . term
+   14        | product . DIVIDE term
+
+    MULTIPLY  shift, and go to state 17
+    DIVIDE    shift, and go to state 18
+    VARIABLE  shift, and go to state 11
+    INTEGER   shift, and go to state 5
+
+    $default  reduce using rule 8 (sum)
+
+    term  go to state 19
+
+
+state 24
+
+    9 sum: sum MINUS product .
+   12 product: product . MULTIPLY term
+   13        | product . term
+   14        | product . DIVIDE term
+
+    MULTIPLY  shift, and go to state 17
+    DIVIDE    shift, and go to state 18
+    VARIABLE  shift, and go to state 11
+    INTEGER   shift, and go to state 5
+
+    $default  reduce using rule 9 (sum)
+
+    term  go to state 19
+
+
+state 25
+
+   12 product: product MULTIPLY term .
+
+    $default  reduce using rule 12 (product)
+
+
+state 26
+
+   14 product: product DIVIDE term .
+
+    $default  reduce using rule 14 (product)
+
+
+state 27
+
+    4 statement: VARIABLE ASSIGNMENT expr NEWLINE .
+
+    $default  reduce using rule 4 (statement)
+
+
+state 28
+
+    8 sum: sum . PLUS product
+    9    | sum . MINUS product
+   15 product: LEFTPAREN sum . RIGHTPAREN
+
+    PLUS        shift, and go to state 15
+    MINUS       shift, and go to state 16
+    RIGHTPAREN  shift, and go to state 29
+
+
+state 29
+
+   15 product: LEFTPAREN sum RIGHTPAREN .
+
+    $default  reduce using rule 15 (product)

@@ -1,0 +1,13 @@
+John Reese
+CG1 - Lab 2
+
+Implement basic 2D drawing routines using a provided setPixel() function in 
+place of OpenGL calls.  This is a really broken implementation, but it 
+should compile and run perfectly fine.
+
+Written for use on most Linux or Unix variants using FreeGLUT3 (or similar).  
+Type the following command to compile, link, and execute all tests:
+
+    make test
+
+Enjoy.

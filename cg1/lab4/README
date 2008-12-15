@@ -1,0 +1,9 @@
+John Reese
+CG1 - Lab 4
+
+Written for use on most Linux or Unix variants using FreeGLUT3 (or similar).  
+Type the following command to compile, link, and execute all tests:
+
+    make test
+
+Enjoy.

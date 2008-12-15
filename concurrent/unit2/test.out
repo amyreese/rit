@@ -1,0 +1,1773 @@
+Creating allocator...
+Setting up allocator...
+Executing allocator...
+Creating client...
+Setting up client...
+Executing client...
+Client 2: request[1]		Client 2 initiates request for 1 unit
+Allocator: request[1]
+Creating client...
+Setting up client...
+Executing client...
+Client 3: request[3]		Client 3 initiates request for 3 units
+Allocator: assign		Client 2 assigned all of 1 units
+Client 2: assign
+Allocator: request[3]		
+Client 2: use			Client 2 uses VM
+Allocator: assign		Client 3 assigned 1 of 3 units
+Client 3: assign
+Client 2: release		Client 2 releases last unit
+Allocator: release
+Allocator: crash		Allocator crashes
+Client 2: crash
+Client 3: crash
+Client 2: work
+Client 2: report[0]		Client 2 reports no units allocated
+Allocator: report[0]
+Client 3: report[1]		Client 3 reports one unit allocated
+Allocator: report[1]
+Client 2: work
+Allocator: crash		
+Client 3: release		Client 3 releases one unit from crash
+Allocator: release
+Client 2: request[2]		Client 2 initiates request for 2 units
+Allocator: request[2]
+Client 2: crash
+Client 3: request[3]		Client 3 re-requests 3 units
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]		Client 2 re-requests 2 units
+Allocator: request[2]
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: assign
+Client 3: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Client 3: report[1]
+Allocator: report[1]
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: request[3]
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: release
+Allocator: release
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: assign
+Client 3: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Client 3: report[1]
+Allocator: report[1]
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Client 3: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Client 2: report[1]
+Allocator: report[1]
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Client 3: report[1]
+Allocator: report[1]
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Client 3: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Client 2: report[1]
+Allocator: report[1]
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Client 3: report[1]
+Allocator: report[1]
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: request[3]
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 3: report[0]
+Allocator: report[0]
+Client 3: request[3]
+Allocator: request[3]
+Client 2: release
+Allocator: release
+Allocator: assign
+Client 3: assign
+Client 2: request[2]
+Allocator: assign
+Client 3: assign
+Allocator: assign
+Client 3: assign
+Allocator: request[2]
+Client 3: release
+Allocator: release
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 3: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 3: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Client 3: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Allocator: request[1]
+Allocator: assign
+Client 3: assign
+Client 2: use
+Client 3: use
+Client 2: release
+Allocator: release
+Client 3: use
+Client 3: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 3: work
+Client 3: work
+Client 2: use
+Client 3: work
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 3: report[0]
+Allocator: report[0]
+Client 2: release
+Allocator: release
+Client 3: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 3: assign
+Client 2: request[3]
+Allocator: request[3]
+Client 3: use
+Allocator: assign
+Client 2: assign
+Client 3: use
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 3: request[3]
+Allocator: request[3]
+Client 2: use
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Allocator: assign
+Client 3: assign
+Client 2: use
+Client 2: use
+Allocator: assign
+Client 3: assign
+Client 3: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 3: use
+Client 2: use
+Client 3: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 3: report[1]
+Allocator: report[1]
+Client 2: use
+Client 3: use
+Client 2: use
+Client 3: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 3: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 3: assign
+Client 2: request[1]
+Allocator: assign
+Client 3: assign
+Client 3: release
+Allocator: release
+Allocator: request[1]
+Client 3: release
+Allocator: release
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 3: work
+Client 3: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 3: work
+Client 3: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 3: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: assign
+Client 3: assign
+Client 2: request[1]
+Allocator: assign
+Client 3: assign
+Client 3: use
+Allocator: request[1]
+Client 3: use
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 3: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Client 3: release
+Allocator: release
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 3: use
+Client 3: release
+Allocator: release
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 3: request[3]
+Allocator: request[3]
+Client 2: use
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Allocator: assign
+Client 3: assign
+Client 3: use
+Client 2: use
+Client 3: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 3: use
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Client 3: release
+Allocator: release
+Allocator: assign
+Client 2: assign
+Client 3: use
+Client 3: use
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 3: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 3: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Client 3: release
+Allocator: release
+Client 2: use
+Client 3: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 3: assign
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: assign
+Client 3: assign
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[3]
+Allocator: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[2]
+Allocator: report[2]
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: work
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[3]
+Allocator: report[3]
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: work
+Client 2: work
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: use
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[1]
+Allocator: report[1]
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: work
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[2]
+Allocator: request[2]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[3]
+Allocator: request[3]
+Allocator: crash
+Client 2: crash
+Client 3: crash
+Client 2: report[0]
+Allocator: report[0]
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: use
+Client 2: use
+Client 2: release
+Allocator: release
+Client 2: work
+Client 2: request[1]
+Allocator: request[1]
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+Client 2: request[3]
+Allocator: request[3]
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Allocator: assign
+Client 2: assign
+Client 2: release
+Allocator: release
+

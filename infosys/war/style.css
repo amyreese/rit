@@ -1,0 +1,99 @@
+body {
+margin:0px 20px 0px 20px;
+}
+
+a{
+text-decoration:none;
+color:#900B09;
+}
+
+a:hover{
+text-decoration:underline;
+}
+	
+#leftcontent {
+float:left;
+width:190px;
+background:#DBDBDB;
+border:2px solid #000;
+margin-right:15px;
+padding-left:25px;
+padding-bottom:20px;
+}
+
+#rightcontent {
+margin-left:230px;
+padding: 20px 20px 20px 20px;
+border:2px solid #000;
+}
+
+.spacer{
+clear:both;
+margin: 0px;
+padding: 0px;
+}
+
+.game-right{
+margin-left: 250px;
+margin-right: 0px;
+}
+
+.game-right ul{
+list-style:none;
+}
+
+.game-left{
+float:left;
+width:250px;
+}
+
+.game-title{
+font-size:20px;
+font-weight:bold;
+color:#000;
+text-align:center;
+}
+
+.border-light{
+border: 1px solid #CCCCCC;
+padding: 5px 10px 5px 10px;
+}
+
+#gametable table{
+border-color: #AAAAAA;
+border-width: 0 0 1px 1px;
+border-style: solid;
+}
+
+#gametable td{
+border-color: #AAAAAA;
+border-width: 1px 1px 0 0;
+border-style: solid;
+margin: 0;
+padding: 4px;
+}
+
+.tablehead{
+font-weight:bold;
+background-color: #FFC;
+}
+
+.infobox{
+float:left;
+margin-right:20px;
+border: 1px solid #CCCCCC;
+}
+
+.infohead{
+border-bottom: 1px solid #CCCCCC;
+padding: 5px 10px 5px 10px;
+background: #D2D2FF;
+font-size:20px;
+font-weight:bold;
+text-align:center;
+}
+
+.error{
+color:red;
+font-weight:bold;
+}

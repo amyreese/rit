@@ -1,0 +1,72 @@
+Computer Science 4 -lab 1
+
+In-Lab Questionnaire             Name: __John Reese______________ 
+
+Please edit this form with any text editor like vi or emacs. Save it
+in your own account under the name expected for this lab.
+
+    1.Try to recompile the code, including the new code for the
+      NumberPair class. If you type gmake this will happen
+      automatically, because gmake notices that NumberPair.h has
+      changed and the Makefile specifies that certain other code files
+      depend on that file. You will notice that the C++ compiler gives
+      you an error message. Write down the error message, and explain
+      why you think you got it.
+
+In file included from NumberToGuess.h:29,
+                 from mastermind.cpp:17:
+NumberPair.h:29: error: redefinition of `class NumberPair'
+NumberPair.h:29: error: previous definition of `class NumberPair'
+*** Error code 1
+
+c++ expects the class to be defined in order to prevent multiple
+classes being defined with the same names
+
+    2.Try to recompile the code, including the new code for the
+      NumberPair class. What error message do you get? Why? What do
+      you think is happening?
+
+NumberPair.cpp:29: error: prototype for `int NumberPair::getFirst()' does not 
+   match any in class `NumberPair'
+NumberPair.h:49: error: candidate is: int NumberPair::getFirst() const
+*** Error code 1
+
+the function header differs from the definition in the header file
+
+    3.Recompile the code, including the new code for the NumberToGuess
+      class. What happens now? Explain.
+
+system compiles properly because the signatures for both the header
+and the definition file now match
+
+    4.Try to recompile the code, including the new code for the
+      NumberPair class. What error message do you get? Why? What do
+      you think is happening?
+
+mastermind.cpp: In function `int main(int, char**)':
+mastermind.cpp:88: error: passing `const NumberPair' as `this' argument of `int 
+   NumberPair::getFirst()' discards qualifiers
+mastermind.cpp:91: error: passing `const NumberPair' as `this' argument of `int 
+   NumberPair::getFirst()' discards qualifiers
+*** Error code 1
+
+the now-non-constant method is being utilized by another constant
+method, so it throws up...
+
+    5.Recompile the code, including the new code for the NumberPair
+      class. What goes wrong now? Think about the fact that each class
+      is compiled separately, and when a class is compiled, the only
+      information has on its collaborators is stored in the header
+      files included therein. There is a separate linking phase that
+      packages all the compiled code into a program. With this in
+      mind, try to explain the error message you see.
+
+Undefined                       first referenced
+ symbol                             in file
+NumberPair::getSecond() const       mastermind.o
+ld: fatal: Symbol referencing errors. No output written to mastermind
+collect2: ld returned 1 exit status
+*** Error code 1
+
+other classes are expecting to be able to use the method, but without 
+the method being defined, crashing occurs when it doesnt know what to do

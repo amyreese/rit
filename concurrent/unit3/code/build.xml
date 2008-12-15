@@ -1,0 +1,36 @@
+<project name="Factory" default="dist" basedir=".">
+	<property name="srcdir" location="src"/>
+	<property name="bindir" location="bin"/>
+	<property name="jarfile" location="Factory.jar"/>
+	<property name="timeout" value="5000"/>
+
+	<target name="prep">
+		<mkdir dir="${bindir}"/>
+	</target>
+
+	<target name="build" depends="prep">
+		<javac srcdir="${srcdir}" destdir="${bindir}"/>
+	</target>
+
+	<target name="dist" depends="prep,build">
+		<jar jarfile="${jarfile}" basedir="${bindir}">
+			<manifest>
+				<attribute name="Main-Class" value="Factory"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="dist">
+		<java jar="${jarfile}" fork="true" timeout="${timeout}"/>
+	</target>
+
+	<target name="test" depends="dist">
+		<java jar="${jarfile}" fork="true" timeout="${timeout}" output="test.txt"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${bindir}"/>
+		<delete file="${jarfile}"/>
+	</target>
+
+</project>

@@ -1,0 +1,24 @@
+Computer Science 4 -lab 8
+
+In-Lab Questionnaire 
+
+Name: JOhn Reese, Brian Flood
+
+
+
+Please edit this file and put the answers in the indicated spaces
+
+    1.How many bugs were you able to find in your ArrayedStack
+      implementation by using your test script from last week?
+
+      We did not find any bugs in the stack
+
+    2.How many bugs were you able to find in your LinkedStack
+      implementation by using your test script from last week?
+
+      We did not find any bugs in the stack
+
+    3.Did using the watcher help you find memory leaks? Please
+      explain.
+
+      No, we are uber gods and made no memory-related mistakes....

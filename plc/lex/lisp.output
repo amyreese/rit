@@ -1,0 +1,104 @@
+Terminals which are not used
+
+   PLUS
+   MINUS
+   TIMES
+   DIVIDE
+   LEFTPAREN
+   RIGHTPAREN
+   VARIABLE
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: program statement
+    2        | /* empty */
+
+    3 statement: expr NEWLINE
+
+    4 expr: NUMBER
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+PLUS (258)
+MINUS (259)
+TIMES (260)
+DIVIDE (261)
+LEFTPAREN (262)
+RIGHTPAREN (263)
+NEWLINE (264) 3
+VARIABLE (265)
+NUMBER (266) 4
+
+
+Nonterminals, with rules where they appear
+
+$accept (12)
+    on left: 0
+program (13)
+    on left: 1 2, on right: 0 1
+statement (14)
+    on left: 3, on right: 1
+expr (15)
+    on left: 4, on right: 3
+
+
+state 0
+
+    0 $accept: . program $end
+
+    $default  reduce using rule 2 (program)
+
+    program  go to state 1
+
+
+state 1
+
+    0 $accept: program . $end
+    1 program: program . statement
+
+    $end    shift, and go to state 2
+    NUMBER  shift, and go to state 3
+
+    statement  go to state 4
+    expr       go to state 5
+
+
+state 2
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 3
+
+    4 expr: NUMBER .
+
+    $default  reduce using rule 4 (expr)
+
+
+state 4
+
+    1 program: program statement .
+
+    $default  reduce using rule 1 (program)
+
+
+state 5
+
+    3 statement: expr . NEWLINE
+
+    NEWLINE  shift, and go to state 6
+
+
+state 6
+
+    3 statement: expr NEWLINE .
+
+    $default  reduce using rule 3 (statement)

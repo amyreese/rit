@@ -1,0 +1,21 @@
+/*
+ * LeetQueue.java
+ *
+ * Version:
+ *   $Id$
+ *
+ * Revisions:
+ *   $Log$
+ */
+
+/**
+ *  
+ *
+ *  @author	YOUR NAME
+ */
+public class LeetQueue   {
+    
+    public LeetQueue() {
+	
+    }
+}

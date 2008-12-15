@@ -1,0 +1,212 @@
+Cell AB requested part A.
+Cell YZ requested part Z.
+tick
+Cell AB requested part B.
+Cell YZ requested part Y.					All parts have been requested
+UAV 0 is in the storeroom transfering part A.			UAV enters the storeroom queue and starts getting a part
+tick
+UAV 0 has part A.						UAV gets a part from the storeroom
+tick
+UAV 0 is moving to ABCell.					UAV starts moving to a cell
+UAV 1 is in the storeroom transfering part Z.
+tick
+UAV 0 is delivering part A to ABCell.				UAV arrives at a cell with a part
+UAV 1 has part Z.
+tick
+UAV 1 is moving to YZCell.
+Part A delivery complete.					UAV delivers a part to a cell
+UAV 0 is now free.						UAV done with a task
+tick
+UAV 1 is delivering part Z to YZCell.
+UAV 0 is travelling from the ABCell to the storeroom.		UAV returns from a cell to the storeroom queue
+tick
+UAV 0 is moving to storeroom.
+Part Z delivery complete.
+UAV 1 is now free.
+tick
+UAV 1 started charging.						UAV pre-emptively recharges its battery
+UAV 0 is in the storeroom transfering part B.
+tick
+UAV 0 has part B.
+tick
+UAV 0 is moving to ABCell.
+UAV 0 shut-down and started charging.				UAV shuts down during a ask to recharge
+UAV 1 is fully charged.						UAV has finished recharging
+UAV 1 is travelling from the YZCell to the storeroom.
+tick
+UAV 1 is moving to storeroom.
+tick
+UAV 0 is fully charged.
+UAV 1 is in the storeroom transfering part Y.
+tick
+UAV 0 is delivering part B to ABCell.
+UAV 1 has part Y.
+tick
+UAV 1 is moving to YZCell.
+Part B delivery complete.
+UAV 0 is now free.
+tick
+UAV 1 is delivering part Y to YZCell.
+Cell AB beginning assembly.					First-level assembly begins
+tick
+Part Y delivery complete.
+UAV 1 is now free.
+tick
+Cell AB finished assembly.					First-level assembly completed
+Cell YZ beginning assembly.
+Final Cell requested part S1.					Final cell requests sub-assembly
+tick
+UAV 0 is picking up part S1.					UAV (already at cell) gets a sub-assembly
+UAV 1 started charging.
+Cell AB requested part A.					Cell re-requests parts
+tick
+Cell AB requested part B.
+tick
+UAV 0 has part S1.
+UAV 1 is fully charged.
+Cell YZ finished assembly.
+Final Cell requested part S2.
+UAV 1 is travelling from the YZCell to the storeroom.
+tick
+UAV 1 is moving to storeroom.
+UAV 0 is delivering part S1 to Final Cell.			UAV moves sub-assembly to final cell
+Cell YZ requested part Y.
+tick
+UAV 0 shut-down and started charging.
+Cell YZ requested part Z.
+UAV 1 is in the storeroom transfering part A.
+tick
+Part S1 delivery complete.					UAV delivers sub-assembly to final cell
+UAV 0 is now free.
+UAV 1 has part A.
+tick
+UAV 1 is moving to ABCell.
+UAV 0 is fully charged.
+UAV 0 is travelling from the FinalCell to the storeroom.
+tick
+UAV 0 is moving to storeroom.
+UAV 1 is delivering part A to ABCell.
+tick
+UAV 0 is moving to storeroom.
+Part A delivery complete.
+UAV 1 is now free.
+tick
+UAV 0 is in the storeroom transfering part B.
+UAV 1 is travelling from the ABCell to the YZCell.
+tick
+UAV 1 is picking up part S2.
+UAV 0 has part B.
+tick
+UAV 0 is moving to ABCell.
+tick
+UAV 0 is delivering part B to ABCell.
+UAV 1 has part S2.
+UAV 1 shut-down and started charging.
+tick
+Part B delivery complete.
+UAV 0 is now free.
+tick
+UAV 0 started charging.
+UAV 1 is fully charged.
+Cell AB beginning assembly.
+tick
+UAV 1 is delivering part S2 to Final Cell.
+tick
+UAV 0 is fully charged.
+Cell AB finished assembly.
+UAV 0 is travelling from the ABCell to the storeroom.
+tick
+UAV 0 is moving to storeroom.
+Part S2 delivery complete.					UAV delivers second sub-assembly to final cell
+UAV 1 is now free.
+Cell AB requested part A.
+tick
+Cell AB requested part B.
+Final Cell is beginning assembly.				Final cell begins final assembly
+UAV 0 is in the storeroom transfering part Y.
+UAV 1 is travelling from the FinalCell to the storeroom.
+tick
+UAV 1 is moving to storeroom.
+UAV 0 has part Y.
+tick
+UAV 0 is moving to YZCell.
+UAV 1 is moving to storeroom.
+Final Cell is finished assembly.				Final cell completes final assembly
+tick
+UAV 0 is delivering part Y to YZCell.
+Final Cell requested part S1.
+UAV 1 is in the storeroom transfering part Z.
+tick
+Part Y delivery complete.
+UAV 0 is now free.
+UAV 1 has part Z.
+tick
+UAV 1 is moving to YZCell.
+UAV 0 is travelling from the YZCell to the storeroom.
+tick
+UAV 0 is moving to storeroom.
+UAV 1 is delivering part Z to YZCell.
+UAV 1 shut-down and started charging.
+tick
+Part Z delivery complete.
+UAV 1 is now free.
+UAV 0 is in the storeroom transfering part A.
+tick
+UAV 0 shut-down and started charging.
+UAV 1 is fully charged.
+Cell YZ beginning assembly.
+UAV 0 has part A.
+UAV 1 is travelling from the YZCell to the storeroom.
+tick
+UAV 1 is moving to storeroom.
+tick
+UAV 0 is fully charged.
+UAV 1 is in the storeroom transfering part B.
+tick
+UAV 0 is moving to ABCell.
+Cell YZ finished assembly.
+Final Cell requested part S2.
+UAV 1 has part B.
+tick
+UAV 1 is moving to ABCell.
+UAV 0 is delivering part A to ABCell.
+Cell YZ requested part Y.
+tick
+Part A delivery complete.
+UAV 0 is now free.
+UAV 1 is delivering part B to ABCell.
+Cell YZ requested part Z.
+tick
+Part B delivery complete.
+UAV 1 is now free.
+UAV 0 is travelling from the ABCell to the Final Cell.		UAV travels to final cell for pick-up
+tick
+UAV 0 is picking up FINAL product.
+tick
+UAV 1 is picking up part S1.
+tick
+UAV 0 has FINAL product.					UAV gets final assembly from final cell
+tick
+UAV 0 is moving to storeroom.
+UAV 1 has part S1.
+UAV 1 shut-down and started charging.
+tick
+UAV 0 is moving to storeroom.
+Cell AB beginning assembly.
+tick
+UAV 0 shut-down and started charging.
+UAV 1 is fully charged.
+UAV 0 is in the storeroom transfering product.
+tick
+UAV 1 is delivering part S1 to Final Cell.
+Cell AB finished assembly.
+tick
+UAV 0 is fully charged.
+Cell AB requested part A.
+UAV 0 is now free.
+UAV 0 delivered product to storeroom.				UAV delivered final assembly to storeroom
+tick
+Part S1 delivery complete.
+UAV 1 is now free.
+Cell AB requested part B.
+UAV 0 is travelling from the storeroom to the YZCell.
