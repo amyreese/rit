@@ -1,13 +1,15 @@
+allocatedir=/usr/local/pub/wrc/courses/sp1/allocate
+
 cpp=gcc
 cflags=-Wall -ggdb -std=c99
 output=project1
 sources=project1.c
 
-allocatedir=/usr/local/pub/wrc/course/sp1/allocate
-libflags=#-L$(allocatedir) -lallocate
+libflags=-L$(allocatedir) -lallocate
+incflags=-I$(allocatedir)
 
 $(output): $(sources)
-	$(cpp) $(cflags) $(libflags) $(sources) -o $(output)
+	$(cpp) $(cflags) $(incflags) $(libflags) $(sources) -o $(output)
 
 .PHONY:run
 run: $(output)

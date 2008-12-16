@@ -12,10 +12,8 @@
  * GNU General Public License for more details.
  */
 
+#include <allocate.h>
 #include <stdio.h>
-
-#include "allocate.h"
-#include "project1.h"
 
 int main( void ) {
 	printf( "Hello world.\n" );
