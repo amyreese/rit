@@ -3,12 +3,14 @@ allocatedir=/usr/local/pub/wrc/courses/sp1/allocate
 cpp=gcc
 cflags=-Wall -ggdb -std=c99
 output=project1
-sources=project1.c
+
+headers=database.h input.h
+sources=database.c input.c project1.c
 
 libflags=-L$(allocatedir) -lallocate
 incflags=-I$(allocatedir)
 
-$(output): $(sources)
+$(output): $(sources) $(headers)
 	$(cpp) $(cflags) $(incflags) $(libflags) $(sources) -o $(output)
 
 .PHONY:run
