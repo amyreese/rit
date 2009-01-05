@@ -57,8 +57,8 @@ typedef struct db_enrollment {
 	struct db_course* course;
 	struct db_student* student;
 
-	struct db_course* next_course;
-	struct db_student* next_student;
+	struct db_enrollment* next_course;
+	struct db_enrollment* next_student;
 } db_enrollment;
 
 /**
