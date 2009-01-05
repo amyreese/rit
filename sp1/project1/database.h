@@ -111,6 +111,28 @@ int db_message( int message, ... );
  */
 int db_error( int error, ... );
 
+//// Private course API
+
+db_course* db_course_get( db_database* db, char* id );
+int db_course_exists( db_database* db, char* id );
+int db_course_insert( db_database* db, char* id, int size );
+int db_course_remove( db_database* db, char* id );
+
+int db_course_count( db_database* db, char* id );
+int db_course_free( db_database* db, char* id );
+
+int db_course_enroll( db_database* db, char* id, char* student_id );
+int db_course_withdraw( db_database* db, char* id, char* student_id );
+
+//// Private student API
+
+int db_student_exists( db_database* db, char* id );
+int db_student_insert( db_database* db, char* id, char* name );
+int db_student_remove( db_database* db, char* id );
+
+int db_student_count( db_database* db, char* id );
+int db_student_free( db_database* db, char* id );
+
 /**
  * Database messages.
  */
