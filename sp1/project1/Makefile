@@ -19,5 +19,5 @@ run: $(output)
 
 .PHONY:clean
 clean:
-	rm -f $(output)
+	rm -f $(output) core MAX_MEMORY_USED
 
