@@ -34,6 +34,9 @@ int db_course_is_valid( db_database* db, char* id, int size );
 int db_course_insert( db_database* db, char* id, int size );
 int db_course_remove( db_database* db, char* id );
 
+int db_student_insert( db_database* db, char* id, char* name );
+int db_student_remove( db_database* db, char* id );
+
 ////// Public Interface
 
 db_database* db_init() {
@@ -69,7 +72,45 @@ int db_new_course( db_database* db, char* tokens[] ) {
 }
 
 int db_new_student( db_database* db, char* tokens[] ) {
-	return db_message( DBMSG_STUDENT_NEW, "", "" );
+	char* id = tokens[0];
+	char name[120];
+	int index = 0;
+	char* token;
+	int token_length;
+
+#if DEBUG
+	printf( "Creating new student, id '%s'\n", id );
+#endif
+
+	for ( int i = 1; i <= 3; i++ ) {
+		if ( tokens[i] == NULL ) {
+			break;
+		}
+
+		token = tokens[i];
+		token_length = strlen( token );
+		token_length = token_length > 39 ? 39 : token_length;
+
+		strncpy( &(name[index]), tokens[i], token_length );
+		index += token_length;
+		if ( tokens[i+1] != NULL ) {
+			name[index++] = ' ';
+		} else {
+			name[index] = '\0';
+			break;
+		}
+	}
+
+#if DEBUG
+	printf( "Student name is '%s'\n", name );
+#endif
+
+	int error;
+	if ( ( error = db_student_insert( db, id, name ) ) ) {
+		return db_error( error );
+	}
+
+	return db_message( DBMSG_STUDENT_NEW, id, name );
 }
 
 int db_cancel_course( db_database* db, char* tokens[] ) {
@@ -92,6 +133,13 @@ int db_withdraw_student( db_database* db, char* tokens[] ) {
 }
 
 void db_dump( db_database* db ) {
+	// Per-student listing
+	db_student* student = db->students;
+	while ( student != NULL ) {
+		printf( "Student %s (%s) is taking no courses\n", student->id, student->name );
+		student = student->next;
+	}
+
 	// Per-course listing
 	db_course* course = db->courses;
 	while ( course != NULL ) {
@@ -227,6 +275,106 @@ int db_course_remove( db_database* db, char* id ) {
 	}
 
 	unallocate( course );
+	return 0;
+}
+
+int db_student_insert( db_database* db, char* id, char* name ) {
+	int cmp;
+
+	// Check for duplicate ID
+	db_student* last = NULL;
+	db_student* next = db->students;
+	while ( next != NULL ) {
+		cmp = strcmp( id, next->id );
+		if ( cmp == 0 ) {
+			return DBERR_STUDENT_EXISTS;
+		}
+
+		next = next->next;
+	}
+
+	// Find the appropriate spot in the list
+	last = NULL;
+	next = db->students;
+	while ( next != NULL ) {
+		cmp = strcmp( name, next->name );
+		if ( cmp == 0 ) {
+			cmp = strcmp( id, next->id );
+			if ( cmp == 0 ) {
+				return DBERR_STUDENT_EXISTS;
+			} else if ( cmp < 1 ) {
+				break;
+			} else {
+				last = next;
+				next = next->next;
+			}
+		} else if ( cmp < 1 ) {
+			break;
+		} else {
+			last = next;
+			next = next->next;
+		}
+	}
+
+	// Initialize new student
+	db_student* student = allocate( sizeof( db_student ) );
+	student->id = allocate( strlen( id ) );
+	student->name = allocate( strlen( name ) );
+	student->next = NULL;
+	student->last = NULL;
+	strcpy( student->id, id );
+	strcpy( student->name, name );
+
+	// Insert new student into the list as appropriate
+	if ( last == NULL ) {
+		if ( db->students != NULL ) {
+			student->next = db->students;
+			student->next->last = student;
+		}
+		db->students = student;
+	} else {
+		student->last = last;
+		student->next = last->next;
+		last->next = student;
+
+		if ( student->next != NULL ) {
+			student->next->last = student;
+		}
+	}
+
+	return 0;
+}
+
+int db_student_remove( db_database* db, char* id ) {
+	int cmp;
+
+	db_student* student = db->students;
+	while ( student != NULL ) {
+		cmp = strcmp( student->id, id );
+		if ( cmp == 0 ) {
+			break;
+		}
+
+		student = student->next;
+	}
+
+	if ( student == NULL ) {
+		return DBERR_STUDENT_NOT_EXISTS;
+	}
+
+	if ( student->last == NULL && student->next == NULL ) {
+		db->students = NULL;
+	} else if ( student->last == NULL ) {
+		db->students = student->next;
+		student->next->last = NULL;
+	} else if ( student->next == NULL ) {
+		student->last->next = NULL;
+	} else {
+		student->last->next = student->next;
+		student->next->last = student->last;
+	}
+
+	unallocate( student );
 	return 0;
 }
 

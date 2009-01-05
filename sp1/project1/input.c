@@ -62,8 +62,10 @@ int tokenize_input( char* input, char *args[] ) {
 		}
 	}
 
-	// Nullify next argument
-	args[count] = NULL;
+	// Nullify remaining argument pointers
+	for ( int i = count; i < ARGS_SIZE; i++ ) {
+		args[i] = NULL;
+	}
 
 #if DEBUG
 		printf( "\n" );
