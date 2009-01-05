@@ -32,6 +32,7 @@ typedef struct db_database {
 typedef struct db_course {
 	char* id;
 	int size;
+	struct db_enrollment* students;
 
 	struct db_course* last;
 	struct db_course* next;

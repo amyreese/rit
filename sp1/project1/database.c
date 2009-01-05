@@ -30,12 +30,23 @@
 
 ////// Private API specification
 
-int db_course_is_valid( db_database* db, char* id, int size );
+db_course* db_course_get( db_database* db, char* id );
+int db_course_exists( db_database* db, char* id );
 int db_course_insert( db_database* db, char* id, int size );
 int db_course_remove( db_database* db, char* id );
 
+int db_course_count( db_database* db, char* id );
+int db_course_free( db_database* db, char* id );
+
+int db_course_enroll( db_database* db, char* id, char* student_id );
+int db_course_withdraw( db_database* db, char* id, char* student_id );
+
+int db_student_exists( db_database* db, char* id );
 int db_student_insert( db_database* db, char* id, char* name );
 int db_student_remove( db_database* db, char* id );
+
+int db_student_count( db_database* db, char* id );
+int db_student_free( db_database* db, char* id );
 
 ////// Public Interface
 
@@ -59,10 +70,6 @@ int db_new_course( db_database* db, char* tokens[] ) {
 #if DEBUG
 	printf( "Creating course '%s' with limit %d\n", id, size );
 #endif
-
-	if ( ( error = db_course_is_valid( db, id, size ) ) ) {
-		return db_error( error );
-	}
 
 	// Insert course into the database
 	if ( ( error = db_course_insert( db, id, size ) ) ) {
@@ -131,6 +138,15 @@ int db_cancel_course( db_database* db, char* tokens[] ) {
 }
 
 int db_enroll_student( db_database* db, char* tokens[] ) {
+	char* student_id = tokens[0];
+	char* course_id = tokens[1];
+	int error;
+
+	// Enroll the student
+	//if ( ( error = db_course_enroll( db, course_id, student_id ) ) ) {
+	//	return db_error( error );
+	//}
+
 	return db_message( DBMSG_STUDENT_ENROLLED, "", "" );
 }
 
@@ -178,31 +194,25 @@ int db_error( int error, ... ) {
 
 /////// Private API
 
-int db_course_is_valid( db_database* db, char* id, int size ) {
-	return 0; // short circuit if we don't need to validate
-#if 0
-	if ( size < 0 || size > 99 ) {
-		return -1;
+db_course* db_course_get( db_database* db, char* id ) {
+	int cmp;
+	db_course* course = db->courses;
+	while ( course != NULL ) {
+		cmp = strcmp( course->id, id );
+		if ( cmp == 0 ) {
+			break;
+		}
+
+		course = course->next;
 	}
 
-	if ( strlen( id ) != 5 ) {
-		return -1;
-	}
+	return course;
+}
 
-	int i = 0;
-	for ( i; i < 2; i++ ) {
-		char c = id[i];
-		if ( c < 'A' || c > 'Z' ) {
-			return -1;
-		}
-	}
-	for ( i; i < 5; i++ ) {
-		char c = id[i];
-		if ( c < '0' || c > '9' ) {
-			return -1;
-		}
-	}
-#endif
+int db_course_exists( db_database* db, char* id ) {
+	db_course* course = db_course_get( db, id );
+
+	return ( course != NULL );
 }
 
 int db_course_insert( db_database* db, char* id, int size ) {
@@ -252,18 +262,8 @@ int db_course_insert( db_database* db, char* id, int size ) {
 }
 
 int db_course_remove( db_database* db, char* id ) {
-	int cmp;
-
 	// Find the course in the database
-	db_course* course = db->courses;
-	while ( course != NULL ) {
-		cmp = strcmp( course->id, id );
-		if ( cmp == 0 ) {
-			break;
-		}
-		
-		course = course->next;
-	}
+	db_course* course = db_course_get( db, id );
 
 	// Course not found
 	if ( course == NULL ) {
@@ -283,7 +283,41 @@ int db_course_remove( db_database* db, char* id ) {
 		course->next->last = course->last;
 	}
 
+	unallocate( course->id );
 	unallocate( course );
+	return 0;
+}
+
+int db_course_count( db_database* db, char* id ) {
+	int count = 0;
+	db_course* course = db_course_get( db, id );
+	db_enrollment* student = course->students;
+}
+
+int db_course_enroll( db_database* db, char* id, char* student_id ) {
+	int error;
+
+	if ( ! db_student_exists( db, student_id ) ) {
+		return DBERR_STUDENT_NOT_EXISTS;
+	}
+
+	if ( ! db_course_exists( db, id ) ) {
+		return DBERR_COURSE_NOT_EXISTS;
+	}
+}
+
+int db_student_exists( db_database* db, char* id ) {
+	int cmp;
+	db_student* next = db->students;
+	while ( next != NULL ) {
+		cmp = strcmp( id, next->id );
+		if ( cmp == 0 ) {
+			return 1;
+		}
+
+		next = next->next;
+	}
+
 	return 0;
 }
 
