@@ -12,6 +12,8 @@
  * GNU General Public License for more details.
  */
 
+#include "project1.h"
+
 #include <allocate.h>
 
 #include <errno.h>
@@ -22,11 +24,6 @@
 #include "database.h"
 #include "input.h"
 
-#define DEBUG 1
-
-/**
- * Global values
- */
 int verbose = 0;
 char* commands[] = {
 	"student",
@@ -63,7 +60,10 @@ int main( int argc, char** argv ) {
 	char* tokens[ ARGS_SIZE ]; // array of pointers into input buffer
 	int count;                 // count of input tokens
 	int command;               // the command number
+	int error;                 // error code
 	while ( ( count = tokenize_input( input, tokens ) ) >= 0 ) {
+
+		// Check against a set of valid commands
 		command = -1;
 		for ( int i = 0; commands[i] != NULL; i++ ) {
 			if ( strcmp( commands[i], tokens[0] ) == 0 ) {
@@ -75,20 +75,26 @@ int main( int argc, char** argv ) {
 		printf( "Command number: %d\n", command );
 #endif
 
+		// Dispatch processing based on the inputted command
 		switch ( command ) {
 			case 0: // student
+				error = db_new_student( tokens + 1 );
 				break;
 
 			case 1: // open
+				error = db_new_course( tokens );
 				break;
 
 			case 2: // cancel
+				error = db_cancel_course( tokens );
 				break;
 
-			case 3: //enroll
+			case 3: // enroll
+				error = db_enroll_student( tokens );
 				break;
 
-			case 4: //withdraw
+			case 4: // withdraw
+				error = db_withdraw_student( tokens );
 				break;
 
 			default: // error?

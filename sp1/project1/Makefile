@@ -4,7 +4,7 @@ cpp=gcc
 cflags=-Wall -ggdb -std=c99
 output=project1
 
-headers=database.h input.h
+headers=database.h input.h project1.h
 sources=database.c input.c project1.c
 
 libflags=-L$(allocatedir) -lallocate
