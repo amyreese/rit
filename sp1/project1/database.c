@@ -65,9 +65,6 @@ int db_error( int error, ... ) {
 	return error;
 }
 
-/**
- * Database error messages.
- */
 char* db_errors[] = {
 	"", 
 	"%s already exists\n",

@@ -82,19 +82,19 @@ int main( int argc, char** argv ) {
 				break;
 
 			case 1: // open
-				error = db_new_course( tokens );
+				error = db_new_course( tokens + 1 );
 				break;
 
 			case 2: // cancel
-				error = db_cancel_course( tokens );
+				error = db_cancel_course( tokens + 1 );
 				break;
 
 			case 3: // enroll
-				error = db_enroll_student( tokens );
+				error = db_enroll_student( tokens + 1 );
 				break;
 
 			case 4: // withdraw
-				error = db_withdraw_student( tokens );
+				error = db_withdraw_student( tokens + 1 );
 				break;
 
 			default: // error?

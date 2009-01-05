@@ -46,6 +46,7 @@ typedef struct db_student {
 	char* last_name;
 	char* first_name;
 	char* middle_name;
+	char* formatted_name;
 
 	struct db_enrollment* courses;
 
