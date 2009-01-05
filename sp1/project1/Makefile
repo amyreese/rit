@@ -15,7 +15,7 @@ $(output): $(sources) $(headers)
 
 .PHONY:run
 run: $(output)
-	./$(output)
+	./$(output) -v
 
 .PHONY:clean
 clean:

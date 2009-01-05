@@ -18,6 +18,7 @@
 
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -55,6 +56,8 @@ int main( int argc, char** argv ) {
 		}
 	}
 
+	db_database* db = db_init();
+
 	// Main loop, get input and process it line by line
 	char input[ LINE_SIZE ];   // input buffer
 	char* tokens[ ARGS_SIZE ]; // array of pointers into input buffer
@@ -78,23 +81,23 @@ int main( int argc, char** argv ) {
 		// Dispatch processing based on the inputted command
 		switch ( command ) {
 			case 0: // student
-				error = db_new_student( tokens + 1 );
+				error = db_new_student( db, tokens + 1 );
 				break;
 
 			case 1: // open
-				error = db_new_course( tokens + 1 );
+				error = db_new_course( db, tokens + 1 );
 				break;
 
 			case 2: // cancel
-				error = db_cancel_course( tokens + 1 );
+				error = db_cancel_course( db, tokens + 1 );
 				break;
 
 			case 3: // enroll
-				error = db_enroll_student( tokens + 1 );
+				error = db_enroll_student( db, tokens + 1 );
 				break;
 
 			case 4: // withdraw
-				error = db_withdraw_student( tokens + 1 );
+				error = db_withdraw_student( db, tokens + 1 );
 				break;
 
 			default: // error?
@@ -106,6 +109,9 @@ int main( int argc, char** argv ) {
 #if DEBUG
 	printf( "Goodbye!\n" );
 #endif
+
+	db_dump( db );
+	db_destroy( db );
 
 	return 0;
 }

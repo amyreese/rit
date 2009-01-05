@@ -15,8 +15,8 @@
 #ifndef __PROJECT1_DATABASE__
 #define __PROJECT1_DATABASE__
 
-#include <stdio.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
  * General database, set of courses and students.
@@ -31,9 +31,9 @@ typedef struct db_database {
  */
 typedef struct db_course {
 	char* id;
-
 	int size;
 
+	struct db_course* last;
 	struct db_course* next;
 } db_course;
 
@@ -42,14 +42,10 @@ typedef struct db_course {
  */
 typedef struct db_student {
 	char* id;
-
-	char* last_name;
-	char* first_name;
-	char* middle_name;
-	char* formatted_name;
-
+	char* name;
 	struct db_enrollment* courses;
 
+	struct db_student* last;
 	struct db_student* next;
 } db_student;
 
@@ -65,34 +61,64 @@ typedef struct db_enrollment {
 } db_enrollment;
 
 /**
+ * Create a new database.
+ */
+db_database* db_init();
+
+/**
+ * Destroy an existing database.
+ */
+void db_destroy( db_database* db );
+
+/**
  * Create a new course.
  */
-int db_new_course( char* tokens[] );
+int db_new_course( db_database* db, char* tokens[] );
 
 /**
  * Create a new student.
  */
-int db_new_student( char* tokens[] );
+int db_new_student( db_database* db, char* tokens[] );
 
 /**
  * Cancel an existing course.
  */
-int db_cancel_course( char* tokens[] );
+int db_cancel_course( db_database* db, char* tokens[] );
 
 /**
  * Enroll an existing student in an existing course.
  */
-int db_enroll_student( char* tokens[] );
+int db_enroll_student( db_database* db, char* tokens[] );
 
 /**
  * Withdraw an enrolled student from a course.
  */
-int db_withdraw_student( char* tokens[] );
+int db_withdraw_student( db_database* db, char* tokens[] );
+
+/**
+ * Dump the database contents to output.
+ */
+void db_dump( db_database* db );
+
+/**
+ * Message handling for database functions.
+ */
+int db_message( int message, ... );
 
 /**
  * Error handling for database functions.
  */
 int db_error( int error, ... );
+
+/**
+ * Database messages.
+ */
+char* db_messages[6];
+#define DBMSG_STUDENT_NEW 0
+#define DBMSG_COURSE_NEW 1
+#define DBMSG_COURSE_CANCELLED 2
+#define DBMSG_STUDENT_ENROLLED 3
+#define DBMSG_STUDENT_WITHDRAWN 4
 
 /**
  * Database error messages.

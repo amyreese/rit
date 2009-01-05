@@ -15,42 +15,87 @@
 #include "project1.h"
 #include "database.h"
 
-#include <stdio.h>
+#include <allocate.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#if 1
+#  undef malloc
+#  undef free
+#  define allocate malloc
+#  define unallocate free
+#endif
+
+////// Private API specification
+
+int db_course_is_valid( db_database* db, char* id, int size );
+int db_course_insert( db_database* db, char* id, int size );
 
 ////// Public Interface
 
-int db_new_course( char* tokens[] ) {
-	if ( verbose ) {
-		printf( "%s created with limit %d\n", "", 0 );
-	}
-	return 0;
+db_database* db_init() {
+	db_database* db = allocate( sizeof( db_database ) );
+	db->courses = NULL;
+	db->students = NULL;
+
+	return db;
 }
 
-int db_new_student( char* tokens[] ) {
-	if ( verbose ) {
-		printf( "new student %s (%s)\n", "", "" );
-	}
-	return 0;
+void db_destroy( db_database* db ) {
+	unallocate( db );
 }
 
-int db_cancel_course( char* tokens[] ) {
-	if ( verbose ) {
-		printf( "%s cancelled\n", "" );
+int db_new_course( db_database* db, char* tokens[] ) {
+	char* id = tokens[0];
+	int size = atoi( tokens[1] );
+	int error;
+
+	if ( ( error = db_course_is_valid( db, id, size ) ) ) {
+		return db_error( error );
 	}
-	return 0;
+
+	if ( ( error = db_course_insert( db, id, size ) ) ) {
+		return db_error( error );
+	}
+
+	return db_message( DBMSG_COURSE_NEW, id, size );
 }
 
-int db_enroll_student( char* tokens[] ) {
-	if ( verbose ) {
-		printf( "%s enrolled in %s", "", "" );
-	}
-	return 0;
+int db_new_student( db_database* db, char* tokens[] ) {
+	return db_message( DBMSG_STUDENT_NEW, "", "" );
 }
 
-int db_withdraw_student( char* tokens[] ) {
+int db_cancel_course( db_database* db, char* tokens[] ) {
+	return db_message( DBMSG_COURSE_CANCELLED, "" );
+}
+
+int db_enroll_student( db_database* db, char* tokens[] ) {
+	return db_message( DBMSG_STUDENT_ENROLLED, "", "" );
+}
+
+int db_withdraw_student( db_database* db, char* tokens[] ) {
+	return db_message( DBMSG_STUDENT_WITHDRAWN, "", "" );
+}
+
+void db_dump( db_database* db ) {
+	// Per-course listing
+	db_course* course = db->courses;
+	while ( course != NULL ) {
+		printf( "Course %s (limit %d) is empty\n", course->id, course->size );
+		course = course->next;
+	}
+}
+
+int db_message( int message, ... ) {
 	if ( verbose ) {
-		printf( "%s withdrawn from %s", "", "" );
+		va_list args;
+		va_start( args, message );
+
+		vfprintf( stdout, db_messages[ message ], args );
+
+		va_end( args );
 	}
 	return 0;
 }
@@ -64,6 +109,90 @@ int db_error( int error, ... ) {
 	va_end( args );
 	return error;
 }
+
+/////// Private API
+
+int db_course_is_valid( db_database* db, char* id, int size ) {
+	return 0; // short circuit if we don't need to validate
+#if 0
+	if ( size < 0 || size > 99 ) {
+		return -1;
+	}
+
+	if ( strlen( id ) != 5 ) {
+		return -1;
+	}
+
+	int i = 0;
+	for ( i; i < 2; i++ ) {
+		char c = id[i];
+		if ( c < 'A' || c > 'Z' ) {
+			return -1;
+		}
+	}
+	for ( i; i < 5; i++ ) {
+		char c = id[i];
+		if ( c < '0' || c > '9' ) {
+			return -1;
+		}
+	}
+#endif
+}
+
+int db_course_insert( db_database* db, char* id, int size ) {
+	int cmp;
+
+	// Find the appropriate spot in the list, and check for duplicate ID
+	db_course* last = NULL;
+	db_course* next = db->courses;
+	while ( next != NULL ) {
+		cmp = strcmp( id, next->id );
+		if ( cmp == 0 ) {
+			return DBERR_COURSE_EXISTS;
+		} else if ( cmp < 1 ) {
+			break;
+		} else {
+			last = next;
+			next = next->next;
+		}
+	}
+
+	// Initialize new course
+	db_course* course = allocate( sizeof( db_course ) );
+	course->id = allocate( strlen( id ) );
+	course->size = size;
+	course->next = NULL;
+	course->last = NULL;
+	strcpy( course->id, id );
+
+	// Insert new course into the list as appropriate
+	if ( last == NULL ) {
+		if ( db->courses != NULL ) {
+			course->next = db->courses;
+			course->next->last = course;
+		}
+		db->courses = course;
+	} else {
+		course->last = last;
+		course->next = last->next;
+		last->next = course;
+
+		if ( course->next != NULL ) {
+			course->next->last = course;
+		}
+	}
+
+	return 0;
+}
+
+char* db_messages[] = {
+	"new student %s (%s)\n",
+	"%s created with limit %d\n",
+	"%s cancelled\n",
+	"%s enrolled in %s",
+	"%s withdrawn from %s",
+	NULL
+};
 
 char* db_errors[] = {
 	"", 
