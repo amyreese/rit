@@ -32,6 +32,7 @@
 
 int db_course_is_valid( db_database* db, char* id, int size );
 int db_course_insert( db_database* db, char* id, int size );
+int db_course_remove( db_database* db, char* id );
 
 ////// Public Interface
 
@@ -52,6 +53,10 @@ int db_new_course( db_database* db, char* tokens[] ) {
 	int size = atoi( tokens[1] );
 	int error;
 
+#if DEBUG
+	printf( "Creating course '%s' with limit %d\n", id, size );
+#endif
+
 	if ( ( error = db_course_is_valid( db, id, size ) ) ) {
 		return db_error( error );
 	}
@@ -68,7 +73,14 @@ int db_new_student( db_database* db, char* tokens[] ) {
 }
 
 int db_cancel_course( db_database* db, char* tokens[] ) {
-	return db_message( DBMSG_COURSE_CANCELLED, "" );
+	char* id = tokens[0];
+	int error;
+
+	if ( ( error = db_course_remove( db, id ) ) ) {
+		return db_error( error );
+	}
+
+	return db_message( DBMSG_COURSE_CANCELLED, id );
 }
 
 int db_enroll_student( db_database* db, char* tokens[] ) {
@@ -185,12 +197,45 @@ int db_course_insert( db_database* db, char* id, int size ) {
 	return 0;
 }
 
+int db_course_remove( db_database* db, char* id ) {
+	int cmp;
+
+	db_course* course = db->courses;
+	while ( course != NULL ) {
+		cmp = strcmp( course->id, id );
+		if ( cmp == 0 ) {
+			break;
+		}
+		
+		course = course->next;
+	}
+
+	if ( course == NULL ) {
+		return DBERR_COURSE_NOT_EXISTS;
+	}
+
+	if ( course->last == NULL && course->next == NULL ) {
+		db->courses = NULL;
+	} else if ( course->last == NULL ) {
+		db->courses = course->next;
+		course->next->last = NULL;
+	} else if ( course->next == NULL ) {
+		course->last->next = NULL;
+	} else {
+		course->last->next = course->next;
+		course->next->last = course->last;
+	}
+
+	unallocate( course );
+	return 0;
+}
+
 char* db_messages[] = {
 	"new student %s (%s)\n",
 	"%s created with limit %d\n",
 	"%s cancelled\n",
-	"%s enrolled in %s",
-	"%s withdrawn from %s",
+	"%s enrolled in %s\n",
+	"%s withdrawn from %s\n",
 	NULL
 };
 

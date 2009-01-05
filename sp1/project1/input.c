@@ -12,12 +12,13 @@
  * GNU General Public License for more details.
  */
 
+#include "project1.h"
 #include "input.h"
 
 #include <allocate.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <string.h>
 
 /**
  * Tokenize an input line into a list of arguments.
@@ -28,13 +29,12 @@ int tokenize_input( char* input, char *args[] ) {
 	int i = 0;      // current position of parsing
 	int space = 1;  // are we parsing whitespace
 
-	// Gather input from user
-	length = read( STDIN_FILENO, input, LINE_SIZE );
-
-	// EOF sent by user
-	if( length < 1 ) {
+	// Gather input from user, checking for EOF
+	if ( fgets( input, LINE_SIZE, stdin ) == NULL ) {
 		return -1;
 	}
+
+	length = strlen( input );
 
 	// Start parsing argument tokens
 	for ( i = 0; i < length; i++ ) {
@@ -70,7 +70,7 @@ int tokenize_input( char* input, char *args[] ) {
 		for ( i = 0; i < count; i++ ) {
 			printf( "%d: '%s'\n", i, args[i] );
 		}
-		printf( "Total: %d\n", count );
+		printf( "Total: %d, Length: %d\n", count, length );
 #endif
 
 	return count;
