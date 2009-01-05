@@ -11,7 +11,7 @@ libflags=-L$(allocatedir) -lallocate
 incflags=-I$(allocatedir)
 
 $(output): $(sources) $(headers)
-	$(cpp) $(cflags) $(incflags) $(libflags) $(sources) -o $(output)
+	$(cpp) $(cflags) $(incflags) $(sources) -o $(output) $(libflags)
 
 .PHONY:run
 run: $(output)

@@ -1,7 +1,7 @@
 Print errors to STDOUT or STDERR?
+  stderr
 
 How to handle bad commands, upper/mixed case commands, or invalid command parameters?
-
-How much error checking do we need to do on format of command parameters?
+  assume all params are syntactically correct
 
 Why a discrepency between `ls -lh` GNU `size` (17k vs 6010) ?

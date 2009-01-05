@@ -21,7 +21,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if 1
+#if 0
 #  undef malloc
 #  undef free
 #  define allocate malloc
@@ -64,6 +64,7 @@ int db_new_course( db_database* db, char* tokens[] ) {
 		return db_error( error );
 	}
 
+	// Insert course into the database
 	if ( ( error = db_course_insert( db, id, size ) ) ) {
 		return db_error( error );
 	}
@@ -82,6 +83,7 @@ int db_new_student( db_database* db, char* tokens[] ) {
 	printf( "Creating new student, id '%s'\n", id );
 #endif
 
+	// Truncate and concatenate name tokens
 	for ( int i = 1; i <= 3; i++ ) {
 		if ( tokens[i] == NULL ) {
 			break;
@@ -105,6 +107,7 @@ int db_new_student( db_database* db, char* tokens[] ) {
 	printf( "Student name is '%s'\n", name );
 #endif
 
+	// Insert student into database
 	int error;
 	if ( ( error = db_student_insert( db, id, name ) ) ) {
 		return db_error( error );
@@ -117,6 +120,9 @@ int db_cancel_course( db_database* db, char* tokens[] ) {
 	char* id = tokens[0];
 	int error;
 
+	// TODO: unenroll students from the course
+
+	// Remove the course from the database
 	if ( ( error = db_course_remove( db, id ) ) ) {
 		return db_error( error );
 	}
@@ -248,6 +254,7 @@ int db_course_insert( db_database* db, char* id, int size ) {
 int db_course_remove( db_database* db, char* id ) {
 	int cmp;
 
+	// Find the course in the database
 	db_course* course = db->courses;
 	while ( course != NULL ) {
 		cmp = strcmp( course->id, id );
@@ -258,10 +265,12 @@ int db_course_remove( db_database* db, char* id ) {
 		course = course->next;
 	}
 
+	// Course not found
 	if ( course == NULL ) {
 		return DBERR_COURSE_NOT_EXISTS;
 	}
 
+	// Remove course from the list
 	if ( course->last == NULL && course->next == NULL ) {
 		db->courses = NULL;
 	} else if ( course->last == NULL ) {
@@ -348,6 +357,7 @@ int db_student_insert( db_database* db, char* id, char* name ) {
 int db_student_remove( db_database* db, char* id ) {
 	int cmp;
 
+	// Find student in the database
 	db_student* student = db->students;
 	while ( student != NULL ) {
 		cmp = strcmp( student->id, id );
@@ -358,10 +368,12 @@ int db_student_remove( db_database* db, char* id ) {
 		student = student->next;
 	}
 
+	// Student not found
 	if ( student == NULL ) {
 		return DBERR_STUDENT_NOT_EXISTS;
 	}
 
+	// Remove student from the list
 	if ( student->last == NULL && student->next == NULL ) {
 		db->students = NULL;
 	} else if ( student->last == NULL ) {
