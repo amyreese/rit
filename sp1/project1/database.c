@@ -151,17 +151,49 @@ int db_withdraw_student( db_database* db, char* tokens[] ) {
 }
 
 void db_dump( db_database* db ) {
+	int count;
+	db_course* course;
+	db_student* student;
+	db_enrollment* enrollment;
+
 	// Per-student listing
-	db_student* student = db->students;
+	student = db->students;
 	while ( student != NULL ) {
-		printf( "Student %s (%s) is taking no courses\n", student->id, student->name );
+		count = db_student_count( db, student->id );
+
+		if ( count > 0 ) {
+			printf( "\nStudent %s (%s) is taking %d courses:\n  ", student->id, student->name, count );
+			enrollment = student->courses;
+			while ( enrollment != NULL ) {
+				printf( " %s", enrollment->course->id );
+				enrollment = enrollment->next_course;
+			}
+			printf( "\n" );
+
+		} else {
+			printf( "\nStudent %s (%s) is taking no courses\n", student->id, student->name );
+		}
+
 		student = student->next;
 	}
 
 	// Per-course listing
-	db_course* course = db->courses;
+	course = db->courses;
 	while ( course != NULL ) {
-		printf( "Course %s (limit %d) is empty\n", course->id, course->size );
+		count = db_course_count( db, course->id );
+
+		if ( count > 0 ) {
+			printf( "\nCourse %s (limit %d) contains %d students:\n", course->id, course->size, count );
+			enrollment = course->students;
+			while ( enrollment != NULL ) {
+				printf( "   %s (%s)\n", enrollment->student->id, enrollment->student->name );
+				enrollment = enrollment->next_student;
+			}
+
+		} else {
+			printf( "\nCourse %s (limit %d) is empty\n", course->id, course->size );
+		}
+
 		course = course->next;
 	}
 }
