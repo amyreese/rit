@@ -33,6 +33,18 @@ char* commands[] = {
 	NULL
 };
 
+// Pointer to the database to be used by cleanun_db()
+db_database* database = NULL;
+
+/**
+ * Function to be executed before at exit, to cleanup the database if needed.
+ */
+void cleanup_db( void ) {
+	if ( database != NULL ) {
+		db_destroy( database );
+	}
+}
+
 /**
  * Program dispatch; get a line of input, and call the appropriate
  * command function.
@@ -54,7 +66,10 @@ int main( int argc, char** argv ) {
 		}
 	}
 
+	// Initialize database and setup error function
 	db_database* db = db_init();
+	database = db;
+	atexit( cleanup_db );
 
 	// Main loop, get input and process it line by line
 	char input[ LINE_SIZE ];   // input buffer
@@ -110,6 +125,7 @@ int main( int argc, char** argv ) {
 
 	db_dump( db );
 	db_destroy( db );
+	database = NULL;
 
 	return 0;
 }
