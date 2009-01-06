@@ -1,0 +1,2001 @@
+CS231 created with limit 23
+MA802 created with limit 37
+AN232 created with limit 35
+CS370 created with limit 34
+CS975 created with limit 33
+PH765 created with limit 21
+EN618 created with limit 33
+ST584 created with limit 11
+EE145 created with limit 38
+EE648 created with limit 13
+BU532 created with limit 12
+CH410 created with limit 20
+CE898 created with limit 17
+SE042 created with limit 24
+IT936 created with limit 12
+MA589 created with limit 3
+AE514 created with limit 1
+ME951 created with limit 2
+AC386 created with limit 37
+CJ945 created with limit 31
+NS056 created with limit 33
+NS721 created with limit 37
+PS319 created with limit 7
+PE188 created with limit 38
+EE191 created with limit 27
+new student 00571 (Dermott Lynn A)
+new student 01013 (Neff Brenda L)
+new student 01158 (Lodico Marc R)
+new student 01160 (Theisen Mark L)
+new student 01385 (Young Karin L)
+new student 01423 (Butler Lee A)
+new student 01576 (Kehoe Kathleen A)
+new student 01948 (Shugars Terry A)
+new student 01973 (Mancuso Carl M)
+new student 02116 (Flavin Paul W)
+new student 02578 (Kallfelz Karen G)
+new student 02748 (Spaziani Joseph H)
+new student 03063 (Wegner Ralph E)
+new student 03520 (Bonnette Michael D)
+new student 04358 (Williams Annette M)
+new student 04907 (Dimopoulos George D)
+new student 04917 (Downey Evan T)
+new student 05691 (Jahn Gregory W)
+new student 05822 (Isaac Deborah J)
+new student 06083 (Palmer Michael S)
+new student 06391 (Daly Mark S)
+new student 06450 (Digaletos John G)
+new student 06566 (Levin Karen M)
+new student 06705 (Benz Kenneth J)
+new student 06791 (Wiley Cheryl A)
+new student 06839 (Snyder Scott P)
+new student 07491 (Elling Scott L)
+new student 07829 (Ruff Barry C)
+new student 08215 (Maloney Eileen T)
+new student 08327 (Jones Tom D)
+new student 08444 (Nichols David E)
+new student 08675 (Bradley John C)
+new student 08817 (Domurat Meredith L)
+new student 08847 (Kogler Keith P)
+new student 09225 (Bennett James M)
+new student 09360 (Savage Gary R)
+new student 09640 (Mullen Jeffrey D)
+new student 09665 (Morgese John A)
+new student 09830 (OBrien Eric D)
+new student 09959 (Cohen David N)
+new student 10232 (Seyler Annette C)
+new student 10322 (Rodgers Richard J)
+new student 10541 (Eggert Frederick P)
+new student 10565 (Myles Richard D)
+new student 10951 (Keye Michele N)
+new student 10989 (Porcellio Rocco J)
+new student 11803 (Cobb Jean L)
+new student 12363 (Bresnowitz Paul J)
+new student 12501 (Lane Brett L)
+new student 12848 (Bielenberg Kenneth R)
+new student 13358 (Wyckoff Brook J)
+new student 13521 (Daum Frank R)
+new student 13922 (Tremblay Mark S)
+new student 13942 (Harrigan Colleen R)
+new student 14148 (Lutter Steve H)
+new student 14281 (Dalessio Joseph A)
+new student 15100 (VanVliet Todd T)
+new student 15338 (McAlpine Jeffrey R)
+new student 15745 (Keesan Barry M)
+new student 15907 (Urban John J)
+new student 16264 (Wolf David A)
+new student 16617 (Sacheli Robert J)
+new student 16635 (Carulli AnnMarie N)
+new student 16769 (Rutland Henry M)
+new student 17154 (Gupta Surendra K)
+new student 17539 (Hartley Brent G)
+new student 17944 (White Mark A)
+new student 17991 (Wasmer Geoffrey S)
+new student 18027 (Heitz Dan M)
+new student 18171 (Kowalik Cheryl A)
+new student 18770 (Beck Ralph L)
+new student 18943 (Terranova Nancy J)
+new student 19540 (Dwier Robert H)
+new student 19883 (Barkman Larry T)
+new student 20200 (Leibson David A)
+new student 20668 (Kastory Janice L)
+new student 21031 (Bloss Donald T)
+new student 21076 (Cochrane Joseph J)
+new student 21168 (Leonardo Maria C)
+new student 21336 (Schaner Andrew J)
+new student 21450 (Howarth Larry R)
+new student 21574 (Barrett Steven P)
+new student 21661 (Coyne Ann M)
+new student 21687 (Schopf Joan N)
+new student 22476 (Giaccone Anthony J)
+new student 22521 (Taylor Edward W)
+new student 22585 (Best Theresa A)
+new student 22955 (Breckenridge Mary B)
+new student 23455 (Speer John W)
+new student 23944 (Travis Jeffery F)
+new student 24334 (Schaefer Jay A)
+new student 24617 (Hilimire Ronald F)
+new student 25055 (Hartley Bruce C)
+new student 25129 (Aronson Ross A)
+new student 25245 (Clare John J)
+new student 25334 (Celecki David M)
+new student 25919 (Hahne David A)
+new student 26316 (Clayback Michael J)
+new student 26552 (Brigito Mary D)
+new student 26595 (Griffeth Jon L)
+new student 27164 (Warasila Peter D)
+new student 27324 (Markoff Lorraine B)
+new student 27976 (Andrews Melanie J)
+new student 28394 (Pape Colin A)
+new student 28668 (Tobin Robin L)
+new student 29575 (Lopes Manuel C)
+new student 29668 (Tweedie Janet M)
+new student 30232 (Filmer John S)
+new student 30351 (Nobis Steven W)
+new student 30357 (Payne Matthew D)
+new student 30410 (Brogan Jeffrey P)
+new student 30626 (Hatch Douglas V)
+new student 30748 (Buttner Thomas C)
+new student 31207 (Rock Jean A)
+new student 31222 (Hill Harvil J)
+new student 31537 (Wein Myra S)
+new student 31574 (Bulau Linda J)
+new student 32066 (Campanaro Gary R)
+new student 32161 (Baxter Brenda L)
+new student 32176 (Romano Donna M)
+new student 33071 (Christiana Michelle M)
+new student 33117 (Wagner David L)
+new student 33195 (Bhinder Ranjit S)
+new student 33296 (Bakker Kenneth T)
+new student 33358 (Pappas Tony J)
+new student 33380 (Flemming Erich D)
+new student 33590 (Stewart Paul P)
+new student 34065 (Chard George M)
+new student 34410 (Gibbard Donald W)
+new student 34682 (Sundberg Andrew T)
+new student 34742 (Bundschuh William D)
+new student 34777 (Lapiczak Igar J)
+new student 35165 (Aldrich Michael W)
+new student 35287 (Solowsky Ellen L)
+new student 35599 (Casper James E)
+new student 35966 (Nielson Stephen A)
+new student 36408 (Krol Anna T)
+new student 36437 (Drummond Thomas F)
+new student 36678 (Azurin Philip M)
+new student 36854 (Schubert Lisa K)
+new student 37054 (Dinoff Robert K)
+new student 37969 (Slater Wendi L)
+new student 40163 (Miers David B)
+new student 40386 (Williams John P)
+new student 40999 (Methe Edward G)
+new student 41078 (Mosher Todd W)
+new student 42804 (Gabarron Rolando J)
+new student 42806 (Alessi Denise A)
+new student 42890 (Miller James J)
+new student 43185 (Thomas Ed T)
+new student 43480 (Celecki Dave M)
+new student 43528 (Riolo Joseph P)
+new student 43994 (Halasinski Michael T)
+new student 44192 (Berson Keith D)
+new student 44472 (Keehnle Peter J)
+new student 44599 (Beaty Joseph P)
+new student 44766 (Prescott James G)
+new student 44768 (Mark Richard J)
+new student 45041 (Brothers William J)
+new student 45175 (Zahniser Albert W)
+new student 46455 (Vergara Dana M)
+new student 46655 (Hobson Kenneth W)
+new student 46841 (Anderson Holly J)
+new student 46910 (StPierre Jeffrey A)
+new student 47131 (Hagan Lynne M)
+new student 47158 (Gawron David G)
+new student 47342 (OConnor Claire M)
+new student 47576 (Schreiber Richard C)
+new student 48137 (Beal Peter D)
+new student 48294 (Thomas Charles K)
+new student 48487 (Brisbane Linda L)
+new student 48641 (Balcom Lori N)
+new student 48868 (Geromel Laurie A)
+new student 49267 (Grapek Howard I)
+new student 49504 (Newman Joseph P)
+new student 49649 (Smith Sharon L)
+new student 49690 (Johnstone Joseph H)
+new student 49719 (Taylor Charles A)
+new student 49958 (Sonner Wendy L)
+new student 50831 (Easton Robin R)
+new student 51610 (Poppoon Amy E)
+new student 51669 (Sweet Vicki A)
+new student 52148 (Perry Susan A)
+new student 52236 (Drake Ellery J)
+new student 52746 (Kurtz Steven H)
+new student 52976 (Coene Paul J)
+new student 53028 (Ciccariello Sebastian N)
+new student 53407 (OConner Thomas J)
+new student 54016 (Ryan Michael E)
+new student 54083 (Kagan Philip E)
+new student 54640 (Jones Jeffrey S)
+new student 55076 (Reggio Anthony J)
+new student 55686 (Deppa Larry M)
+new student 56653 (Perley Gregory D)
+new student 57273 (Cummings Leslie J)
+new student 57597 (Vanderstouw Richard W)
+new student 57677 (Bushman Thomas G)
+new student 57712 (Snyder Marcia L)
+new student 58151 (Bridgman Thomas E)
+new student 58235 (DePalma Lanay A)
+new student 58573 (Hui Steve C)
+new student 59568 (Nguyen Thanh D)
+new student 59819 (Wilcocks Ronald L)
+new student 59882 (Fletcher Brian A)
+new student 60041 (Gayler Tom C)
+new student 61263 (DiStaso Patrick S)
+new student 62022 (Wiles Edwin L)
+new student 62235 (Zywiczynski Douglas R)
+new student 62305 (Kelsey Laurence R)
+new student 62438 (Bodurtha Craig A)
+new student 62856 (Williams Jeffrey W)
+new student 62877 (Selinsky Brian M)
+new student 63116 (Cora Kathleen E)
+new student 63651 (Bartucca Paul M)
+new student 63846 (Woodward Thomas P)
+new student 65004 (Brunngraber Robert M)
+new student 65114 (Blake Barbara C)
+new student 65206 (Boyce Laurie J)
+new student 65225 (Avilez Michael J)
+new student 66000 (Wasnock Lisa A)
+new student 66078 (Thorne Randall J)
+new student 66344 (Brill Lyssa E)
+new student 66997 (Maser Linda J)
+new student 67041 (Trapani Michael D)
+new student 67051 (Dikeman Samson M)
+new student 67731 (Sheppard Karen A)
+new student 67877 (Hadrosek Paul J)
+new student 67940 (Brown Timothy P)
+new student 68055 (Burns Luanne M)
+new student 68146 (Earnest Debra A)
+new student 68496 (Vener Avram R)
+new student 68752 (Taylor Pauline E)
+new student 68945 (Franklin Wayne A)
+new student 68952 (Adams Mary E)
+new student 69042 (Falby Daniel C)
+new student 69081 (Tabasco Mark D)
+new student 69370 (DeVita Alfred J)
+new student 69548 (Fahrer Thomas P)
+new student 70405 (Spencer Lillian B)
+new student 71255 (Gale Robert A)
+new student 71269 (Hott Daniel E)
+new student 71686 (Forer Edward J)
+new student 72090 (VanEpps Jeffrey J)
+new student 72287 (Brown Ann B)
+new student 72408 (Charney Elizabeth A)
+new student 72500 (Duong Kim T)
+new student 72509 (Zimmerman Mark W)
+new student 73413 (Zibbon Barbara A)
+new student 74295 (Guzman Juan A)
+new student 74485 (Parasiliti Ross C)
+new student 74521 (Rattinger John E)
+new student 74544 (Demetriades Athena E)
+new student 75970 (Kushall Edward L)
+new student 75973 (Gardner Kent T)
+new student 76292 (Rutiba Eva D)
+new student 76715 (Schummer Jeffrey L)
+new student 76795 (Ford Elizabeth A)
+new student 76885 (Chung Edward F)
+new student 76939 (Hargrave Kenneth R)
+new student 76959 (Keisling Kurt F)
+new student 77010 (Bradley Susan B)
+new student 78105 (Kessler Mark E)
+new student 78462 (Haag Lawrence E)
+new student 78854 (Muthig Mark J)
+new student 78979 (Conoway Douglas R)
+new student 78999 (Rosholt Dirk A)
+new student 79375 (Kelly Geoffrey O)
+new student 79966 (Rizzo Robert G)
+new student 79974 (West Suzanne L)
+new student 80064 (McCabe Shirley J)
+new student 80563 (Pence Richard C)
+new student 80808 (Heywood William B)
+new student 81111 (Toombs Michael L)
+new student 82071 (Leibson Dayv A)
+new student 82525 (Jones Thomas D)
+new student 83549 (McMaster Maureen A)
+new student 83615 (Contino Thomas N)
+new student 84524 (Mallott Brenda L)
+new student 84554 (Long Daniel P)
+new student 84936 (Walker Jeffrey S)
+new student 85307 (Woolery Jill T)
+new student 85711 (Lau Mariano R)
+new student 86054 (Bayline Michael S)
+new student 86450 (Sterzin Kevin M)
+new student 87223 (Buchanan Elizabeth A)
+new student 87556 (Moss Ann L)
+new student 87954 (Werner Bradford S)
+new student 88340 (Morss Charles H)
+new student 88667 (Wehner Michael D)
+new student 88702 (Lane Mary T)
+new student 89680 (Fadden Francis D)
+new student 90445 (Chabowski Lee C)
+new student 90528 (Adams Steve E)
+new student 91453 (Bennion Pamela A)
+new student 91543 (Gellai Andrew P)
+new student 91592 (Petrucci John L)
+new student 91691 (Babbi Anna N)
+new student 91773 (Goodman Gordon I)
+new student 92606 (Muench David L)
+new student 92917 (Eckhaus Neal J)
+new student 93969 (Wooton Rex J)
+new student 94779 (Duffy James E)
+new student 94888 (Fleming Patricia L)
+new student 95124 (Bolduc Mark E)
+new student 95328 (Burke Charles J)
+new student 95465 (Nelson David J)
+new student 95573 (Bawden Linda J)
+new student 95577 (Denzel Michael D)
+new student 95638 (Sanders Joseph J)
+new student 95698 (Olis Arnold B)
+new student 95807 (Wasmer Geoff S)
+new student 97107 (Wells Sharon A)
+new student 97109 (Kroot Larry H)
+new student 97523 (Taylor Chuck A)
+new student 97791 (Maisel Timothy A)
+new student 97860 (Williams Kevin L)
+new student 98124 (Ylitalo Terri E)
+new student 99394 (Fluharty Karen L)
+new student 99424 (Dnistrian Helen B)
+new student 99425 (Gottesman Eric E)
+new student 99653 (Gentile Linda C)
+00571 enrolled in CH410
+01013 enrolled in EN618
+01158 enrolled in NS721
+01160 enrolled in PS319
+01385 enrolled in EE648
+01423 enrolled in CS975
+01576 enrolled in EE145
+01948 enrolled in EE191
+01973 enrolled in NS721
+02116 enrolled in IT936
+02578 enrolled in EE145
+02748 enrolled in NS056
+03063 enrolled in BU532
+03520 enrolled in CS231
+04358 enrolled in AN232
+04907 enrolled in CH410
+04917 enrolled in CH410
+05691 enrolled in AC386
+05822 enrolled in AC386
+06083 enrolled in EN618
+06391 enrolled in CH410
+06450 enrolled in CH410
+06566 enrolled in NS721
+06705 enrolled in CS231
+06791 enrolled in AN232
+06839 enrolled in NS056
+07491 enrolled in IT936
+07829 enrolled in EE191
+08215 enrolled in NS721
+08327 enrolled in EE145
+08444 enrolled in EN618
+08675 enrolled in CS231
+08817 enrolled in CH410
+08847 enrolled in EE145
+09225 enrolled in CS231
+09360 enrolled in EE191
+09640 enrolled in SE042
+09665 enrolled in CJ945
+09830 enrolled in EN618
+09959 enrolled in CS975
+10232 enrolled in EE191
+10322 enrolled in EE191
+10541 enrolled in IT936
+10565 enrolled in SE042
+10951 enrolled in EE145
+10989 enrolled in EN618
+11803 enrolled in CS975
+12363 enrolled in CS231
+12501 enrolled in ME951
+12848 enrolled in CS231
+13358 enrolled in EE648
+13521 enrolled in CH410
+13922 enrolled in ST584
+13942 enrolled in PE188
+14148 enrolled in NS721
+14281 enrolled in CH410
+15100 enrolled in ST584
+15338 enrolled in CJ945
+15745 enrolled in EE145
+15907 enrolled in ST584
+16264 enrolled in EE648
+16617 enrolled in EE191
+16635 enrolled in CS975
+16769 enrolled in EE191
+17154 enrolled in PE188
+17539 enrolled in PE188
+17944 enrolled in BU532
+17991 enrolled in BU532
+18027 enrolled in PE188
+18171 enrolled in EE145
+18770 enrolled in PH765
+18943 enrolled in PS319
+19540 enrolled in IT936
+19883 enrolled in PH765
+20200 enrolled in NS721
+20668 enrolled in EE145
+21031 enrolled in CS231
+21076 enrolled in CS975
+21168 enrolled in NS721
+21336 enrolled in EE191
+21450 enrolled in AC386
+21574 enrolled in PH765
+21661 enrolled in CS975
+21687 enrolled in EE191
+22476 enrolled in MA802
+22521 enrolled in PS319
+22585 enrolled in CS231
+22955 enrolled in CS231
+23455 enrolled in NS056
+23944 enrolled in ST584
+24334 enrolled in EE191
+24617 enrolled in PE188
+25055 enrolled in PE188
+25129 enrolled in PH765
+25245 enrolled in CS975
+25334 enrolled in CS975
+25919 enrolled in PE188
+26316 enrolled in CS975
+26552 enrolled in CS231
+26595 enrolled in PE188
+27164 enrolled in BU532
+27324 enrolled in NS721
+27976 enrolled in PH765
+28394 enrolled in EN618
+28668 enrolled in CS370
+29575 enrolled in NS721
+29668 enrolled in ST584
+30232 enrolled in IT936
+30351 enrolled in EN618
+30357 enrolled in EN618
+30410 enrolled in CS231
+30626 enrolled in PE188
+30748 enrolled in CS975
+31207 enrolled in EE191
+31222 enrolled in PE188
+31537 enrolled in BU532
+31574 enrolled in CS975
+32066 enrolled in CS975
+32161 enrolled in PH765
+32176 enrolled in EE191
+33071 enrolled in CS975
+33117 enrolled in ST584
+33195 enrolled in CS231
+33296 enrolled in PH765
+33358 enrolled in EN618
+33380 enrolled in MA802
+33590 enrolled in NS056
+34065 enrolled in CS975
+34410 enrolled in MA802
+34682 enrolled in NS056
+34742 enrolled in CS975
+34777 enrolled in NS721
+35165 enrolled in PH765
+35287 enrolled in NS056
+35599 enrolled in CS975
+35966 enrolled in EN618
+36408 enrolled in EE145
+36437 enrolled in CH410
+36678 enrolled in PH765
+36854 enrolled in EE191
+37054 enrolled in CH410
+37969 enrolled in EE191
+40163 enrolled in CJ945
+40386 enrolled in EE648
+40999 enrolled in CJ945
+41078 enrolled in CJ945
+42804 enrolled in MA802
+42806 enrolled in PH765
+42890 enrolled in CJ945
+43185 enrolled in CS370
+43480 enrolled in CS975
+43528 enrolled in EE191
+43994 enrolled in PE188
+44192 enrolled in CS231
+44472 enrolled in EE145
+44599 enrolled in PH765
+44766 enrolled in EN618
+44768 enrolled in NS721
+45041 enrolled in CS231
+45175 enrolled in EE648
+46455 enrolled in ST584
+46655 enrolled in PE188
+46841 enrolled in PH765
+46910 enrolled in NS056
+47131 enrolled in PE188
+47158 enrolled in MA802
+47342 enrolled in EN618
+47576 enrolled in EE191
+48137 enrolled in PH765
+48294 enrolled in PS319
+48487 enrolled in CS231
+48641 enrolled in PH765
+48868 enrolled in MA802
+49267 enrolled in MA589
+49504 enrolled in EN618
+49649 enrolled in EE191
+49690 enrolled in AC386
+49719 enrolled in PS319
+49958 enrolled in NS056
+50831 enrolled in IT936
+51610 enrolled in EN618
+51669 enrolled in NS056
+52148 enrolled in EN618
+52236 enrolled in CH410
+52746 enrolled in EE145
+52976 enrolled in CS975
+53028 enrolled in CS975
+53407 enrolled in EN618
+54016 enrolled in EE191
+54083 enrolled in EE145
+54640 enrolled in AC386
+55076 enrolled in EE191
+55686 enrolled in CH410
+56653 enrolled in EN618
+57273 enrolled in CS975
+57597 enrolled in ST584
+57677 enrolled in CS975
+57712 enrolled in NS056
+58151 enrolled in CS231
+58235 enrolled in CH410
+58573 enrolled in AC386
+59568 enrolled in EN618
+59819 enrolled in AN232
+59882 enrolled in MA802
+60041 enrolled in MA802
+61263 enrolled in CH410
+62022 enrolled in AN232
+62235 enrolled in EE648
+62305 enrolled in EE145
+62438 enrolled in CS231
+62856 enrolled in AN232
+62877 enrolled in EE191
+63116 enrolled in CS975
+63651 enrolled in PH765
+63846 enrolled in EE648
+65004 enrolled in CS975
+65114 enrolled in CS231
+65206 enrolled in CS231
+65225 enrolled in PH765
+66000 enrolled in BU532
+66078 enrolled in CS370
+66344 enrolled in CS231
+66997 enrolled in CJ945
+67041 enrolled in ST584
+67051 enrolled in CH410
+67731 enrolled in EE191
+67877 enrolled in PE188
+67940 enrolled in CS975
+68055 enrolled in CS975
+68146 enrolled in IT936
+68496 enrolled in ST584
+68752 enrolled in PS319
+68945 enrolled in MA802
+68952 enrolled in PH765
+69042 enrolled in IT936
+69081 enrolled in NS056
+69370 enrolled in CH410
+69548 enrolled in IT936
+70405 enrolled in NS056
+71255 enrolled in MA802
+71269 enrolled in AC386
+71686 enrolled in MA802
+72090 enrolled in ST584
+72287 enrolled in CS975
+72408 enrolled in CS975
+72500 enrolled in IT936
+72509 enrolled in EE648
+73413 enrolled in EE648
+74295 enrolled in PE188
+74485 enrolled in EN618
+74521 enrolled in EE191
+74544 enrolled in CH410
+75970 enrolled in ME951
+75973 enrolled in MA802
+76292 enrolled in EE191
+76715 enrolled in EE191
+76795 enrolled in MA802
+76885 enrolled in CS975
+76939 enrolled in PE188
+76959 enrolled in EE145
+77010 enrolled in CS231
+78105 enrolled in EE145
+78462 enrolled in PE188
+78854 enrolled in SE042
+78979 enrolled in CS975
+78999 enrolled in EE191
+79375 enrolled in EE145
+79966 enrolled in EE191
+79974 enrolled in BU532
+80064 enrolled in CJ945
+80563 enrolled in EN618
+80808 enrolled in PE188
+81111 enrolled in CS370
+82071 enrolled in NS721
+82525 enrolled in EE145
+83549 enrolled in CJ945
+83615 enrolled in CS975
+84524 enrolled in NS721
+84554 enrolled in NS721
+84936 enrolled in BU532
+85307 enrolled in EE648
+85711 enrolled in NS721
+86054 enrolled in PH765
+86450 enrolled in NS056
+87223 enrolled in CS975
+87556 enrolled in CJ945
+87954 enrolled in BU532
+88340 enrolled in CJ945
+88667 enrolled in BU532
+88702 enrolled in NS721
+89680 enrolled in IT936
+90445 enrolled in CS975
+90528 enrolled in PH765
+91453 enrolled in CS231
+91543 enrolled in MA802
+91592 enrolled in EN618
+91691 enrolled in PH765
+91773 enrolled in MA589
+92606 enrolled in SE042
+92917 enrolled in IT936
+93969 enrolled in EE648
+94779 enrolled in CH410
+94888 enrolled in MA802
+95124 enrolled in CS231
+95328 enrolled in CS975
+95465 enrolled in EN618
+95573 enrolled in PH765
+95577 enrolled in CH410
+95638 enrolled in EE191
+95698 enrolled in EN618
+95807 enrolled in BU532
+97107 enrolled in BU532
+97109 enrolled in EE145
+97523 enrolled in PS319
+97791 enrolled in NS721
+97860 enrolled in EE648
+98124 enrolled in EE648
+99394 enrolled in MA802
+99424 enrolled in CH410
+99425 enrolled in MA589
+99653 enrolled in MA802
+
+Student 68952 (Adams Mary E) is taking 1 courses:
+   PH765
+
+Student 90528 (Adams Steve E) is taking 1 courses:
+   PH765
+
+Student 35165 (Aldrich Michael W) is taking 1 courses:
+   PH765
+
+Student 42806 (Alessi Denise A) is taking 1 courses:
+   PH765
+
+Student 46841 (Anderson Holly J) is taking 1 courses:
+   PH765
+
+Student 27976 (Andrews Melanie J) is taking 1 courses:
+   PH765
+
+Student 25129 (Aronson Ross A) is taking 1 courses:
+   PH765
+
+Student 65225 (Avilez Michael J) is taking 1 courses:
+   PH765
+
+Student 36678 (Azurin Philip M) is taking 1 courses:
+   PH765
+
+Student 91691 (Babbi Anna N) is taking 1 courses:
+   PH765
+
+Student 33296 (Bakker Kenneth T) is taking 1 courses:
+   PH765
+
+Student 48641 (Balcom Lori N) is taking 1 courses:
+   PH765
+
+Student 19883 (Barkman Larry T) is taking 1 courses:
+   PH765
+
+Student 21574 (Barrett Steven P) is taking 1 courses:
+   PH765
+
+Student 63651 (Bartucca Paul M) is taking 1 courses:
+   PH765
+
+Student 95573 (Bawden Linda J) is taking 1 courses:
+   PH765
+
+Student 32161 (Baxter Brenda L) is taking 1 courses:
+   PH765
+
+Student 86054 (Bayline Michael S) is taking 1 courses:
+   PH765
+
+Student 48137 (Beal Peter D) is taking 1 courses:
+   PH765
+
+Student 44599 (Beaty Joseph P) is taking 1 courses:
+   PH765
+
+Student 18770 (Beck Ralph L) is taking 1 courses:
+   PH765
+
+Student 09225 (Bennett James M) is taking 1 courses:
+   CS231
+
+Student 91453 (Bennion Pamela A) is taking 1 courses:
+   CS231
+
+Student 06705 (Benz Kenneth J) is taking 1 courses:
+   CS231
+
+Student 44192 (Berson Keith D) is taking 1 courses:
+   CS231
+
+Student 22585 (Best Theresa A) is taking 1 courses:
+   CS231
+
+Student 33195 (Bhinder Ranjit S) is taking 1 courses:
+   CS231
+
+Student 12848 (Bielenberg Kenneth R) is taking 1 courses:
+   CS231
+
+Student 65114 (Blake Barbara C) is taking 1 courses:
+   CS231
+
+Student 21031 (Bloss Donald T) is taking 1 courses:
+   CS231
+
+Student 62438 (Bodurtha Craig A) is taking 1 courses:
+   CS231
+
+Student 95124 (Bolduc Mark E) is taking 1 courses:
+   CS231
+
+Student 03520 (Bonnette Michael D) is taking 1 courses:
+   CS231
+
+Student 65206 (Boyce Laurie J) is taking 1 courses:
+   CS231
+
+Student 08675 (Bradley John C) is taking 1 courses:
+   CS231
+
+Student 77010 (Bradley Susan B) is taking 1 courses:
+   CS231
+
+Student 22955 (Breckenridge Mary B) is taking 1 courses:
+   CS231
+
+Student 12363 (Bresnowitz Paul J) is taking 1 courses:
+   CS231
+
+Student 58151 (Bridgman Thomas E) is taking 1 courses:
+   CS231
+
+Student 26552 (Brigito Mary D) is taking 1 courses:
+   CS231
+
+Student 66344 (Brill Lyssa E) is taking 1 courses:
+   CS231
+
+Student 48487 (Brisbane Linda L) is taking 1 courses:
+   CS231
+
+Student 30410 (Brogan Jeffrey P) is taking 1 courses:
+   CS231
+
+Student 45041 (Brothers William J) is taking 1 courses:
+   CS231
+
+Student 72287 (Brown Ann B) is taking 1 courses:
+   CS975
+
+Student 67940 (Brown Timothy P) is taking 1 courses:
+   CS975
+
+Student 65004 (Brunngraber Robert M) is taking 1 courses:
+   CS975
+
+Student 87223 (Buchanan Elizabeth A) is taking 1 courses:
+   CS975
+
+Student 31574 (Bulau Linda J) is taking 1 courses:
+   CS975
+
+Student 34742 (Bundschuh William D) is taking 1 courses:
+   CS975
+
+Student 95328 (Burke Charles J) is taking 1 courses:
+   CS975
+
+Student 68055 (Burns Luanne M) is taking 1 courses:
+   CS975
+
+Student 57677 (Bushman Thomas G) is taking 1 courses:
+   CS975
+
+Student 01423 (Butler Lee A) is taking 1 courses:
+   CS975
+
+Student 30748 (Buttner Thomas C) is taking 1 courses:
+   CS975
+
+Student 32066 (Campanaro Gary R) is taking 1 courses:
+   CS975
+
+Student 16635 (Carulli AnnMarie N) is taking 1 courses:
+   CS975
+
+Student 35599 (Casper James E) is taking 1 courses:
+   CS975
+
+Student 43480 (Celecki Dave M) is taking 1 courses:
+   CS975
+
+Student 25334 (Celecki David M) is taking 1 courses:
+   CS975
+
+Student 90445 (Chabowski Lee C) is taking 1 courses:
+   CS975
+
+Student 34065 (Chard George M) is taking 1 courses:
+   CS975
+
+Student 72408 (Charney Elizabeth A) is taking 1 courses:
+   CS975
+
+Student 33071 (Christiana Michelle M) is taking 1 courses:
+   CS975
+
+Student 76885 (Chung Edward F) is taking 1 courses:
+   CS975
+
+Student 53028 (Ciccariello Sebastian N) is taking 1 courses:
+   CS975
+
+Student 25245 (Clare John J) is taking 1 courses:
+   CS975
+
+Student 26316 (Clayback Michael J) is taking 1 courses:
+   CS975
+
+Student 11803 (Cobb Jean L) is taking 1 courses:
+   CS975
+
+Student 21076 (Cochrane Joseph J) is taking 1 courses:
+   CS975
+
+Student 52976 (Coene Paul J) is taking 1 courses:
+   CS975
+
+Student 09959 (Cohen David N) is taking 1 courses:
+   CS975
+
+Student 78979 (Conoway Douglas R) is taking 1 courses:
+   CS975
+
+Student 83615 (Contino Thomas N) is taking 1 courses:
+   CS975
+
+Student 63116 (Cora Kathleen E) is taking 1 courses:
+   CS975
+
+Student 21661 (Coyne Ann M) is taking 1 courses:
+   CS975
+
+Student 57273 (Cummings Leslie J) is taking 1 courses:
+   CS975
+
+Student 14281 (Dalessio Joseph A) is taking 1 courses:
+   CH410
+
+Student 06391 (Daly Mark S) is taking 1 courses:
+   CH410
+
+Student 13521 (Daum Frank R) is taking 1 courses:
+   CH410
+
+Student 58235 (DePalma Lanay A) is taking 1 courses:
+   CH410
+
+Student 69370 (DeVita Alfred J) is taking 1 courses:
+   CH410
+
+Student 74544 (Demetriades Athena E) is taking 1 courses:
+   CH410
+
+Student 95577 (Denzel Michael D) is taking 1 courses:
+   CH410
+
+Student 55686 (Deppa Larry M) is taking 1 courses:
+   CH410
+
+Student 00571 (Dermott Lynn A) is taking 1 courses:
+   CH410
+
+Student 61263 (DiStaso Patrick S) is taking 1 courses:
+   CH410
+
+Student 06450 (Digaletos John G) is taking 1 courses:
+   CH410
+
+Student 67051 (Dikeman Samson M) is taking 1 courses:
+   CH410
+
+Student 04907 (Dimopoulos George D) is taking 1 courses:
+   CH410
+
+Student 37054 (Dinoff Robert K) is taking 1 courses:
+   CH410
+
+Student 99424 (Dnistrian Helen B) is taking 1 courses:
+   CH410
+
+Student 08817 (Domurat Meredith L) is taking 1 courses:
+   CH410
+
+Student 04917 (Downey Evan T) is taking 1 courses:
+   CH410
+
+Student 52236 (Drake Ellery J) is taking 1 courses:
+   CH410
+
+Student 36437 (Drummond Thomas F) is taking 1 courses:
+   CH410
+
+Student 94779 (Duffy James E) is taking 1 courses:
+   CH410
+
+Student 72500 (Duong Kim T) is taking 1 courses:
+   IT936
+
+Student 19540 (Dwier Robert H) is taking 1 courses:
+   IT936
+
+Student 68146 (Earnest Debra A) is taking 1 courses:
+   IT936
+
+Student 50831 (Easton Robin R) is taking 1 courses:
+   IT936
+
+Student 92917 (Eckhaus Neal J) is taking 1 courses:
+   IT936
+
+Student 10541 (Eggert Frederick P) is taking 1 courses:
+   IT936
+
+Student 07491 (Elling Scott L) is taking 1 courses:
+   IT936
+
+Student 89680 (Fadden Francis D) is taking 1 courses:
+   IT936
+
+Student 69548 (Fahrer Thomas P) is taking 1 courses:
+   IT936
+
+Student 69042 (Falby Daniel C) is taking 1 courses:
+   IT936
+
+Student 30232 (Filmer John S) is taking 1 courses:
+   IT936
+
+Student 02116 (Flavin Paul W) is taking 1 courses:
+   IT936
+
+Student 94888 (Fleming Patricia L) is taking 1 courses:
+   MA802
+
+Student 33380 (Flemming Erich D) is taking 1 courses:
+   MA802
+
+Student 59882 (Fletcher Brian A) is taking 1 courses:
+   MA802
+
+Student 99394 (Fluharty Karen L) is taking 1 courses:
+   MA802
+
+Student 76795 (Ford Elizabeth A) is taking 1 courses:
+   MA802
+
+Student 71686 (Forer Edward J) is taking 1 courses:
+   MA802
+
+Student 68945 (Franklin Wayne A) is taking 1 courses:
+   MA802
+
+Student 42804 (Gabarron Rolando J) is taking 1 courses:
+   MA802
+
+Student 71255 (Gale Robert A) is taking 1 courses:
+   MA802
+
+Student 75973 (Gardner Kent T) is taking 1 courses:
+   MA802
+
+Student 47158 (Gawron David G) is taking 1 courses:
+   MA802
+
+Student 60041 (Gayler Tom C) is taking 1 courses:
+   MA802
+
+Student 91543 (Gellai Andrew P) is taking 1 courses:
+   MA802
+
+Student 99653 (Gentile Linda C) is taking 1 courses:
+   MA802
+
+Student 48868 (Geromel Laurie A) is taking 1 courses:
+   MA802
+
+Student 22476 (Giaccone Anthony J) is taking 1 courses:
+   MA802
+
+Student 34410 (Gibbard Donald W) is taking 1 courses:
+   MA802
+
+Student 91773 (Goodman Gordon I) is taking 1 courses:
+   MA589
+
+Student 99425 (Gottesman Eric E) is taking 1 courses:
+   MA589
+
+Student 49267 (Grapek Howard I) is taking 1 courses:
+   MA589
+
+Student 26595 (Griffeth Jon L) is taking 1 courses:
+   PE188
+
+Student 17154 (Gupta Surendra K) is taking 1 courses:
+   PE188
+
+Student 74295 (Guzman Juan A) is taking 1 courses:
+   PE188
+
+Student 78462 (Haag Lawrence E) is taking 1 courses:
+   PE188
+
+Student 67877 (Hadrosek Paul J) is taking 1 courses:
+   PE188
+
+Student 47131 (Hagan Lynne M) is taking 1 courses:
+   PE188
+
+Student 25919 (Hahne David A) is taking 1 courses:
+   PE188
+
+Student 43994 (Halasinski Michael T) is taking 1 courses:
+   PE188
+
+Student 76939 (Hargrave Kenneth R) is taking 1 courses:
+   PE188
+
+Student 13942 (Harrigan Colleen R) is taking 1 courses:
+   PE188
+
+Student 17539 (Hartley Brent G) is taking 1 courses:
+   PE188
+
+Student 25055 (Hartley Bruce C) is taking 1 courses:
+   PE188
+
+Student 30626 (Hatch Douglas V) is taking 1 courses:
+   PE188
+
+Student 18027 (Heitz Dan M) is taking 1 courses:
+   PE188
+
+Student 80808 (Heywood William B) is taking 1 courses:
+   PE188
+
+Student 24617 (Hilimire Ronald F) is taking 1 courses:
+   PE188
+
+Student 31222 (Hill Harvil J) is taking 1 courses:
+   PE188
+
+Student 46655 (Hobson Kenneth W) is taking 1 courses:
+   PE188
+
+Student 71269 (Hott Daniel E) is taking 1 courses:
+   AC386
+
+Student 21450 (Howarth Larry R) is taking 1 courses:
+   AC386
+
+Student 58573 (Hui Steve C) is taking 1 courses:
+   AC386
+
+Student 05822 (Isaac Deborah J) is taking 1 courses:
+   AC386
+
+Student 05691 (Jahn Gregory W) is taking 1 courses:
+   AC386
+
+Student 49690 (Johnstone Joseph H) is taking 1 courses:
+   AC386
+
+Student 54640 (Jones Jeffrey S) is taking 1 courses:
+   AC386
+
+Student 82525 (Jones Thomas D) is taking 1 courses:
+   EE145
+
+Student 08327 (Jones Tom D) is taking 1 courses:
+   EE145
+
+Student 54083 (Kagan Philip E) is taking 1 courses:
+   EE145
+
+Student 02578 (Kallfelz Karen G) is taking 1 courses:
+   EE145
+
+Student 20668 (Kastory Janice L) is taking 1 courses:
+   EE145
+
+Student 44472 (Keehnle Peter J) is taking 1 courses:
+   EE145
+
+Student 15745 (Keesan Barry M) is taking 1 courses:
+   EE145
+
+Student 01576 (Kehoe Kathleen A) is taking 1 courses:
+   EE145
+
+Student 76959 (Keisling Kurt F) is taking 1 courses:
+   EE145
+
+Student 79375 (Kelly Geoffrey O) is taking 1 courses:
+   EE145
+
+Student 62305 (Kelsey Laurence R) is taking 1 courses:
+   EE145
+
+Student 78105 (Kessler Mark E) is taking 1 courses:
+   EE145
+
+Student 10951 (Keye Michele N) is taking 1 courses:
+   EE145
+
+Student 08847 (Kogler Keith P) is taking 1 courses:
+   EE145
+
+Student 18171 (Kowalik Cheryl A) is taking 1 courses:
+   EE145
+
+Student 36408 (Krol Anna T) is taking 1 courses:
+   EE145
+
+Student 97109 (Kroot Larry H) is taking 1 courses:
+   EE145
+
+Student 52746 (Kurtz Steven H) is taking 1 courses:
+   EE145
+
+Student 75970 (Kushall Edward L) is taking 1 courses:
+   ME951
+
+Student 12501 (Lane Brett L) is taking 1 courses:
+   ME951
+
+Student 88702 (Lane Mary T) is taking 1 courses:
+   NS721
+
+Student 34777 (Lapiczak Igar J) is taking 1 courses:
+   NS721
+
+Student 85711 (Lau Mariano R) is taking 1 courses:
+   NS721
+
+Student 20200 (Leibson David A) is taking 1 courses:
+   NS721
+
+Student 82071 (Leibson Dayv A) is taking 1 courses:
+   NS721
+
+Student 21168 (Leonardo Maria C) is taking 1 courses:
+   NS721
+
+Student 06566 (Levin Karen M) is taking 1 courses:
+   NS721
+
+Student 01158 (Lodico Marc R) is taking 1 courses:
+   NS721
+
+Student 84554 (Long Daniel P) is taking 1 courses:
+   NS721
+
+Student 29575 (Lopes Manuel C) is taking 1 courses:
+   NS721
+
+Student 14148 (Lutter Steve H) is taking 1 courses:
+   NS721
+
+Student 97791 (Maisel Timothy A) is taking 1 courses:
+   NS721
+
+Student 84524 (Mallott Brenda L) is taking 1 courses:
+   NS721
+
+Student 08215 (Maloney Eileen T) is taking 1 courses:
+   NS721
+
+Student 01973 (Mancuso Carl M) is taking 1 courses:
+   NS721
+
+Student 44768 (Mark Richard J) is taking 1 courses:
+   NS721
+
+Student 27324 (Markoff Lorraine B) is taking 1 courses:
+   NS721
+
+Student 66997 (Maser Linda J) is taking 1 courses:
+   CJ945
+
+Student 15338 (McAlpine Jeffrey R) is taking 1 courses:
+   CJ945
+
+Student 80064 (McCabe Shirley J) is taking 1 courses:
+   CJ945
+
+Student 83549 (McMaster Maureen A) is taking 1 courses:
+   CJ945
+
+Student 40999 (Methe Edward G) is taking 1 courses:
+   CJ945
+
+Student 40163 (Miers David B) is taking 1 courses:
+   CJ945
+
+Student 42890 (Miller James J) is taking 1 courses:
+   CJ945
+
+Student 09665 (Morgese John A) is taking 1 courses:
+   CJ945
+
+Student 88340 (Morss Charles H) is taking 1 courses:
+   CJ945
+
+Student 41078 (Mosher Todd W) is taking 1 courses:
+   CJ945
+
+Student 87556 (Moss Ann L) is taking 1 courses:
+   CJ945
+
+Student 92606 (Muench David L) is taking 1 courses:
+   SE042
+
+Student 09640 (Mullen Jeffrey D) is taking 1 courses:
+   SE042
+
+Student 78854 (Muthig Mark J) is taking 1 courses:
+   SE042
+
+Student 10565 (Myles Richard D) is taking 1 courses:
+   SE042
+
+Student 01013 (Neff Brenda L) is taking 1 courses:
+   EN618
+
+Student 95465 (Nelson David J) is taking 1 courses:
+   EN618
+
+Student 49504 (Newman Joseph P) is taking 1 courses:
+   EN618
+
+Student 59568 (Nguyen Thanh D) is taking 1 courses:
+   EN618
+
+Student 08444 (Nichols David E) is taking 1 courses:
+   EN618
+
+Student 35966 (Nielson Stephen A) is taking 1 courses:
+   EN618
+
+Student 30351 (Nobis Steven W) is taking 1 courses:
+   EN618
+
+Student 09830 (OBrien Eric D) is taking 1 courses:
+   EN618
+
+Student 53407 (OConner Thomas J) is taking 1 courses:
+   EN618
+
+Student 47342 (OConnor Claire M) is taking 1 courses:
+   EN618
+
+Student 95698 (Olis Arnold B) is taking 1 courses:
+   EN618
+
+Student 06083 (Palmer Michael S) is taking 1 courses:
+   EN618
+
+Student 28394 (Pape Colin A) is taking 1 courses:
+   EN618
+
+Student 33358 (Pappas Tony J) is taking 1 courses:
+   EN618
+
+Student 74485 (Parasiliti Ross C) is taking 1 courses:
+   EN618
+
+Student 30357 (Payne Matthew D) is taking 1 courses:
+   EN618
+
+Student 80563 (Pence Richard C) is taking 1 courses:
+   EN618
+
+Student 56653 (Perley Gregory D) is taking 1 courses:
+   EN618
+
+Student 52148 (Perry Susan A) is taking 1 courses:
+   EN618
+
+Student 91592 (Petrucci John L) is taking 1 courses:
+   EN618
+
+Student 51610 (Poppoon Amy E) is taking 1 courses:
+   EN618
+
+Student 10989 (Porcellio Rocco J) is taking 1 courses:
+   EN618
+
+Student 44766 (Prescott James G) is taking 1 courses:
+   EN618
+
+Student 74521 (Rattinger John E) is taking 1 courses:
+   EE191
+
+Student 55076 (Reggio Anthony J) is taking 1 courses:
+   EE191
+
+Student 43528 (Riolo Joseph P) is taking 1 courses:
+   EE191
+
+Student 79966 (Rizzo Robert G) is taking 1 courses:
+   EE191
+
+Student 31207 (Rock Jean A) is taking 1 courses:
+   EE191
+
+Student 10322 (Rodgers Richard J) is taking 1 courses:
+   EE191
+
+Student 32176 (Romano Donna M) is taking 1 courses:
+   EE191
+
+Student 78999 (Rosholt Dirk A) is taking 1 courses:
+   EE191
+
+Student 07829 (Ruff Barry C) is taking 1 courses:
+   EE191
+
+Student 76292 (Rutiba Eva D) is taking 1 courses:
+   EE191
+
+Student 16769 (Rutland Henry M) is taking 1 courses:
+   EE191
+
+Student 54016 (Ryan Michael E) is taking 1 courses:
+   EE191
+
+Student 16617 (Sacheli Robert J) is taking 1 courses:
+   EE191
+
+Student 95638 (Sanders Joseph J) is taking 1 courses:
+   EE191
+
+Student 09360 (Savage Gary R) is taking 1 courses:
+   EE191
+
+Student 24334 (Schaefer Jay A) is taking 1 courses:
+   EE191
+
+Student 21336 (Schaner Andrew J) is taking 1 courses:
+   EE191
+
+Student 21687 (Schopf Joan N) is taking 1 courses:
+   EE191
+
+Student 47576 (Schreiber Richard C) is taking 1 courses:
+   EE191
+
+Student 36854 (Schubert Lisa K) is taking 1 courses:
+   EE191
+
+Student 76715 (Schummer Jeffrey L) is taking 1 courses:
+   EE191
+
+Student 62877 (Selinsky Brian M) is taking 1 courses:
+   EE191
+
+Student 10232 (Seyler Annette C) is taking 1 courses:
+   EE191
+
+Student 67731 (Sheppard Karen A) is taking 1 courses:
+   EE191
+
+Student 01948 (Shugars Terry A) is taking 1 courses:
+   EE191
+
+Student 37969 (Slater Wendi L) is taking 1 courses:
+   EE191
+
+Student 49649 (Smith Sharon L) is taking 1 courses:
+   EE191
+
+Student 57712 (Snyder Marcia L) is taking 1 courses:
+   NS056
+
+Student 06839 (Snyder Scott P) is taking 1 courses:
+   NS056
+
+Student 35287 (Solowsky Ellen L) is taking 1 courses:
+   NS056
+
+Student 49958 (Sonner Wendy L) is taking 1 courses:
+   NS056
+
+Student 02748 (Spaziani Joseph H) is taking 1 courses:
+   NS056
+
+Student 23455 (Speer John W) is taking 1 courses:
+   NS056
+
+Student 70405 (Spencer Lillian B) is taking 1 courses:
+   NS056
+
+Student 46910 (StPierre Jeffrey A) is taking 1 courses:
+   NS056
+
+Student 86450 (Sterzin Kevin M) is taking 1 courses:
+   NS056
+
+Student 33590 (Stewart Paul P) is taking 1 courses:
+   NS056
+
+Student 34682 (Sundberg Andrew T) is taking 1 courses:
+   NS056
+
+Student 51669 (Sweet Vicki A) is taking 1 courses:
+   NS056
+
+Student 69081 (Tabasco Mark D) is taking 1 courses:
+   NS056
+
+Student 49719 (Taylor Charles A) is taking 1 courses:
+   PS319
+
+Student 97523 (Taylor Chuck A) is taking 1 courses:
+   PS319
+
+Student 22521 (Taylor Edward W) is taking 1 courses:
+   PS319
+
+Student 68752 (Taylor Pauline E) is taking 1 courses:
+   PS319
+
+Student 18943 (Terranova Nancy J) is taking 1 courses:
+   PS319
+
+Student 01160 (Theisen Mark L) is taking 1 courses:
+   PS319
+
+Student 48294 (Thomas Charles K) is taking 1 courses:
+   PS319
+
+Student 43185 (Thomas Ed T) is taking 1 courses:
+   CS370
+
+Student 66078 (Thorne Randall J) is taking 1 courses:
+   CS370
+
+Student 28668 (Tobin Robin L) is taking 1 courses:
+   CS370
+
+Student 81111 (Toombs Michael L) is taking 1 courses:
+   CS370
+
+Student 67041 (Trapani Michael D) is taking 1 courses:
+   ST584
+
+Student 23944 (Travis Jeffery F) is taking 1 courses:
+   ST584
+
+Student 13922 (Tremblay Mark S) is taking 1 courses:
+   ST584
+
+Student 29668 (Tweedie Janet M) is taking 1 courses:
+   ST584
+
+Student 15907 (Urban John J) is taking 1 courses:
+   ST584
+
+Student 72090 (VanEpps Jeffrey J) is taking 1 courses:
+   ST584
+
+Student 15100 (VanVliet Todd T) is taking 1 courses:
+   ST584
+
+Student 57597 (Vanderstouw Richard W) is taking 1 courses:
+   ST584
+
+Student 68496 (Vener Avram R) is taking 1 courses:
+   ST584
+
+Student 46455 (Vergara Dana M) is taking 1 courses:
+   ST584
+
+Student 33117 (Wagner David L) is taking 1 courses:
+   ST584
+
+Student 84936 (Walker Jeffrey S) is taking 1 courses:
+   BU532
+
+Student 27164 (Warasila Peter D) is taking 1 courses:
+   BU532
+
+Student 95807 (Wasmer Geoff S) is taking 1 courses:
+   BU532
+
+Student 17991 (Wasmer Geoffrey S) is taking 1 courses:
+   BU532
+
+Student 66000 (Wasnock Lisa A) is taking 1 courses:
+   BU532
+
+Student 03063 (Wegner Ralph E) is taking 1 courses:
+   BU532
+
+Student 88667 (Wehner Michael D) is taking 1 courses:
+   BU532
+
+Student 31537 (Wein Myra S) is taking 1 courses:
+   BU532
+
+Student 97107 (Wells Sharon A) is taking 1 courses:
+   BU532
+
+Student 87954 (Werner Bradford S) is taking 1 courses:
+   BU532
+
+Student 79974 (West Suzanne L) is taking 1 courses:
+   BU532
+
+Student 17944 (White Mark A) is taking 1 courses:
+   BU532
+
+Student 59819 (Wilcocks Ronald L) is taking 1 courses:
+   AN232
+
+Student 62022 (Wiles Edwin L) is taking 1 courses:
+   AN232
+
+Student 06791 (Wiley Cheryl A) is taking 1 courses:
+   AN232
+
+Student 04358 (Williams Annette M) is taking 1 courses:
+   AN232
+
+Student 62856 (Williams Jeffrey W) is taking 1 courses:
+   AN232
+
+Student 40386 (Williams John P) is taking 1 courses:
+   EE648
+
+Student 97860 (Williams Kevin L) is taking 1 courses:
+   EE648
+
+Student 16264 (Wolf David A) is taking 1 courses:
+   EE648
+
+Student 63846 (Woodward Thomas P) is taking 1 courses:
+   EE648
+
+Student 85307 (Woolery Jill T) is taking 1 courses:
+   EE648
+
+Student 93969 (Wooton Rex J) is taking 1 courses:
+   EE648
+
+Student 13358 (Wyckoff Brook J) is taking 1 courses:
+   EE648
+
+Student 98124 (Ylitalo Terri E) is taking 1 courses:
+   EE648
+
+Student 01385 (Young Karin L) is taking 1 courses:
+   EE648
+
+Student 45175 (Zahniser Albert W) is taking 1 courses:
+   EE648
+
+Student 73413 (Zibbon Barbara A) is taking 1 courses:
+   EE648
+
+Student 72509 (Zimmerman Mark W) is taking 1 courses:
+   EE648
+
+Student 62235 (Zywiczynski Douglas R) is taking 1 courses:
+   EE648
+
+Course AC386 (limit 37) contains 7 students:
+   71269 (Hott Daniel E)
+   21450 (Howarth Larry R)
+   58573 (Hui Steve C)
+   05822 (Isaac Deborah J)
+   05691 (Jahn Gregory W)
+   49690 (Johnstone Joseph H)
+   54640 (Jones Jeffrey S)
+
+Course AE514 (limit 1) is empty
+
+Course AN232 (limit 35) contains 5 students:
+   59819 (Wilcocks Ronald L)
+   62022 (Wiles Edwin L)
+   06791 (Wiley Cheryl A)
+   04358 (Williams Annette M)
+   62856 (Williams Jeffrey W)
+
+Course BU532 (limit 12) contains 12 students:
+   84936 (Walker Jeffrey S)
+   27164 (Warasila Peter D)
+   95807 (Wasmer Geoff S)
+   17991 (Wasmer Geoffrey S)
+   66000 (Wasnock Lisa A)
+   03063 (Wegner Ralph E)
+   88667 (Wehner Michael D)
+   31537 (Wein Myra S)
+   97107 (Wells Sharon A)
+   87954 (Werner Bradford S)
+   79974 (West Suzanne L)
+   17944 (White Mark A)
+
+Course CE898 (limit 17) is empty
+
+Course CH410 (limit 20) contains 20 students:
+   14281 (Dalessio Joseph A)
+   06391 (Daly Mark S)
+   13521 (Daum Frank R)
+   58235 (DePalma Lanay A)
+   69370 (DeVita Alfred J)
+   74544 (Demetriades Athena E)
+   95577 (Denzel Michael D)
+   55686 (Deppa Larry M)
+   00571 (Dermott Lynn A)
+   61263 (DiStaso Patrick S)
+   06450 (Digaletos John G)
+   67051 (Dikeman Samson M)
+   04907 (Dimopoulos George D)
+   37054 (Dinoff Robert K)
+   99424 (Dnistrian Helen B)
+   08817 (Domurat Meredith L)
+   04917 (Downey Evan T)
+   52236 (Drake Ellery J)
+   36437 (Drummond Thomas F)
+   94779 (Duffy James E)
+
+Course CJ945 (limit 31) contains 11 students:
+   66997 (Maser Linda J)
+   15338 (McAlpine Jeffrey R)
+   80064 (McCabe Shirley J)
+   83549 (McMaster Maureen A)
+   40999 (Methe Edward G)
+   40163 (Miers David B)
+   42890 (Miller James J)
+   09665 (Morgese John A)
+   88340 (Morss Charles H)
+   41078 (Mosher Todd W)
+   87556 (Moss Ann L)
+
+Course CS231 (limit 23) contains 23 students:
+   09225 (Bennett James M)
+   91453 (Bennion Pamela A)
+   06705 (Benz Kenneth J)
+   44192 (Berson Keith D)
+   22585 (Best Theresa A)
+   33195 (Bhinder Ranjit S)
+   12848 (Bielenberg Kenneth R)
+   65114 (Blake Barbara C)
+   21031 (Bloss Donald T)
+   62438 (Bodurtha Craig A)
+   95124 (Bolduc Mark E)
+   03520 (Bonnette Michael D)
+   65206 (Boyce Laurie J)
+   08675 (Bradley John C)
+   77010 (Bradley Susan B)
+   22955 (Breckenridge Mary B)
+   12363 (Bresnowitz Paul J)
+   58151 (Bridgman Thomas E)
+   26552 (Brigito Mary D)
+   66344 (Brill Lyssa E)
+   48487 (Brisbane Linda L)
+   30410 (Brogan Jeffrey P)
+   45041 (Brothers William J)
+
+Course CS370 (limit 34) contains 4 students:
+   43185 (Thomas Ed T)
+   66078 (Thorne Randall J)
+   28668 (Tobin Robin L)
+   81111 (Toombs Michael L)
+
+Course CS975 (limit 33) contains 33 students:
+   72287 (Brown Ann B)
+   67940 (Brown Timothy P)
+   65004 (Brunngraber Robert M)
+   87223 (Buchanan Elizabeth A)
+   31574 (Bulau Linda J)
+   34742 (Bundschuh William D)
+   95328 (Burke Charles J)
+   68055 (Burns Luanne M)
+   57677 (Bushman Thomas G)
+   01423 (Butler Lee A)
+   30748 (Buttner Thomas C)
+   32066 (Campanaro Gary R)
+   16635 (Carulli AnnMarie N)
+   35599 (Casper James E)
+   43480 (Celecki Dave M)
+   25334 (Celecki David M)
+   90445 (Chabowski Lee C)
+   34065 (Chard George M)
+   72408 (Charney Elizabeth A)
+   33071 (Christiana Michelle M)
+   76885 (Chung Edward F)
+   53028 (Ciccariello Sebastian N)
+   25245 (Clare John J)
+   26316 (Clayback Michael J)
+   11803 (Cobb Jean L)
+   21076 (Cochrane Joseph J)
+   52976 (Coene Paul J)
+   09959 (Cohen David N)
+   78979 (Conoway Douglas R)
+   83615 (Contino Thomas N)
+   63116 (Cora Kathleen E)
+   21661 (Coyne Ann M)
+   57273 (Cummings Leslie J)
+
+Course EE145 (limit 38) contains 18 students:
+   82525 (Jones Thomas D)
+   08327 (Jones Tom D)
+   54083 (Kagan Philip E)
+   02578 (Kallfelz Karen G)
+   20668 (Kastory Janice L)
+   44472 (Keehnle Peter J)
+   15745 (Keesan Barry M)
+   01576 (Kehoe Kathleen A)
+   76959 (Keisling Kurt F)
+   79375 (Kelly Geoffrey O)
+   62305 (Kelsey Laurence R)
+   78105 (Kessler Mark E)
+   10951 (Keye Michele N)
+   08847 (Kogler Keith P)
+   18171 (Kowalik Cheryl A)
+   36408 (Krol Anna T)
+   97109 (Kroot Larry H)
+   52746 (Kurtz Steven H)
+
+Course EE191 (limit 27) contains 27 students:
+   74521 (Rattinger John E)
+   55076 (Reggio Anthony J)
+   43528 (Riolo Joseph P)
+   79966 (Rizzo Robert G)
+   31207 (Rock Jean A)
+   10322 (Rodgers Richard J)
+   32176 (Romano Donna M)
+   78999 (Rosholt Dirk A)
+   07829 (Ruff Barry C)
+   76292 (Rutiba Eva D)
+   16769 (Rutland Henry M)
+   54016 (Ryan Michael E)
+   16617 (Sacheli Robert J)
+   95638 (Sanders Joseph J)
+   09360 (Savage Gary R)
+   24334 (Schaefer Jay A)
+   21336 (Schaner Andrew J)
+   21687 (Schopf Joan N)
+   47576 (Schreiber Richard C)
+   36854 (Schubert Lisa K)
+   76715 (Schummer Jeffrey L)
+   62877 (Selinsky Brian M)
+   10232 (Seyler Annette C)
+   67731 (Sheppard Karen A)
+   01948 (Shugars Terry A)
+   37969 (Slater Wendi L)
+   49649 (Smith Sharon L)
+
+Course EE648 (limit 13) contains 13 students:
+   40386 (Williams John P)
+   97860 (Williams Kevin L)
+   16264 (Wolf David A)
+   63846 (Woodward Thomas P)
+   85307 (Woolery Jill T)
+   93969 (Wooton Rex J)
+   13358 (Wyckoff Brook J)
+   98124 (Ylitalo Terri E)
+   01385 (Young Karin L)
+   45175 (Zahniser Albert W)
+   73413 (Zibbon Barbara A)
+   72509 (Zimmerman Mark W)
+   62235 (Zywiczynski Douglas R)
+
+Course EN618 (limit 33) contains 23 students:
+   01013 (Neff Brenda L)
+   95465 (Nelson David J)
+   49504 (Newman Joseph P)
+   59568 (Nguyen Thanh D)
+   08444 (Nichols David E)
+   35966 (Nielson Stephen A)
+   30351 (Nobis Steven W)
+   09830 (OBrien Eric D)
+   53407 (OConner Thomas J)
+   47342 (OConnor Claire M)
+   95698 (Olis Arnold B)
+   06083 (Palmer Michael S)
+   28394 (Pape Colin A)
+   33358 (Pappas Tony J)
+   74485 (Parasiliti Ross C)
+   30357 (Payne Matthew D)
+   80563 (Pence Richard C)
+   56653 (Perley Gregory D)
+   52148 (Perry Susan A)
+   91592 (Petrucci John L)
+   51610 (Poppoon Amy E)
+   10989 (Porcellio Rocco J)
+   44766 (Prescott James G)
+
+Course IT936 (limit 12) contains 12 students:
+   72500 (Duong Kim T)
+   19540 (Dwier Robert H)
+   68146 (Earnest Debra A)
+   50831 (Easton Robin R)
+   92917 (Eckhaus Neal J)
+   10541 (Eggert Frederick P)
+   07491 (Elling Scott L)
+   89680 (Fadden Francis D)
+   69548 (Fahrer Thomas P)
+   69042 (Falby Daniel C)
+   30232 (Filmer John S)
+   02116 (Flavin Paul W)
+
+Course MA589 (limit 3) contains 3 students:
+   91773 (Goodman Gordon I)
+   99425 (Gottesman Eric E)
+   49267 (Grapek Howard I)
+
+Course MA802 (limit 37) contains 17 students:
+   94888 (Fleming Patricia L)
+   33380 (Flemming Erich D)
+   59882 (Fletcher Brian A)
+   99394 (Fluharty Karen L)
+   76795 (Ford Elizabeth A)
+   71686 (Forer Edward J)
+   68945 (Franklin Wayne A)
+   42804 (Gabarron Rolando J)
+   71255 (Gale Robert A)
+   75973 (Gardner Kent T)
+   47158 (Gawron David G)
+   60041 (Gayler Tom C)
+   91543 (Gellai Andrew P)
+   99653 (Gentile Linda C)
+   48868 (Geromel Laurie A)
+   22476 (Giaccone Anthony J)
+   34410 (Gibbard Donald W)
+
+Course ME951 (limit 2) contains 2 students:
+   75970 (Kushall Edward L)
+   12501 (Lane Brett L)
+
+Course NS056 (limit 33) contains 13 students:
+   57712 (Snyder Marcia L)
+   06839 (Snyder Scott P)
+   35287 (Solowsky Ellen L)
+   49958 (Sonner Wendy L)
+   02748 (Spaziani Joseph H)
+   23455 (Speer John W)
+   70405 (Spencer Lillian B)
+   46910 (StPierre Jeffrey A)
+   86450 (Sterzin Kevin M)
+   33590 (Stewart Paul P)
+   34682 (Sundberg Andrew T)
+   51669 (Sweet Vicki A)
+   69081 (Tabasco Mark D)
+
+Course NS721 (limit 37) contains 17 students:
+   88702 (Lane Mary T)
+   34777 (Lapiczak Igar J)
+   85711 (Lau Mariano R)
+   20200 (Leibson David A)
+   82071 (Leibson Dayv A)
+   21168 (Leonardo Maria C)
+   06566 (Levin Karen M)
+   01158 (Lodico Marc R)
+   84554 (Long Daniel P)
+   29575 (Lopes Manuel C)
+   14148 (Lutter Steve H)
+   97791 (Maisel Timothy A)
+   84524 (Mallott Brenda L)
+   08215 (Maloney Eileen T)
+   01973 (Mancuso Carl M)
+   44768 (Mark Richard J)
+   27324 (Markoff Lorraine B)
+
+Course PE188 (limit 38) contains 18 students:
+   26595 (Griffeth Jon L)
+   17154 (Gupta Surendra K)
+   74295 (Guzman Juan A)
+   78462 (Haag Lawrence E)
+   67877 (Hadrosek Paul J)
+   47131 (Hagan Lynne M)
+   25919 (Hahne David A)
+   43994 (Halasinski Michael T)
+   76939 (Hargrave Kenneth R)
+   13942 (Harrigan Colleen R)
+   17539 (Hartley Brent G)
+   25055 (Hartley Bruce C)
+   30626 (Hatch Douglas V)
+   18027 (Heitz Dan M)
+   80808 (Heywood William B)
+   24617 (Hilimire Ronald F)
+   31222 (Hill Harvil J)
+   46655 (Hobson Kenneth W)
+
+Course PH765 (limit 21) contains 21 students:
+   68952 (Adams Mary E)
+   90528 (Adams Steve E)
+   35165 (Aldrich Michael W)
+   42806 (Alessi Denise A)
+   46841 (Anderson Holly J)
+   27976 (Andrews Melanie J)
+   25129 (Aronson Ross A)
+   65225 (Avilez Michael J)
+   36678 (Azurin Philip M)
+   91691 (Babbi Anna N)
+   33296 (Bakker Kenneth T)
+   48641 (Balcom Lori N)
+   19883 (Barkman Larry T)
+   21574 (Barrett Steven P)
+   63651 (Bartucca Paul M)
+   95573 (Bawden Linda J)
+   32161 (Baxter Brenda L)
+   86054 (Bayline Michael S)
+   48137 (Beal Peter D)
+   44599 (Beaty Joseph P)
+   18770 (Beck Ralph L)
+
+Course PS319 (limit 7) contains 7 students:
+   49719 (Taylor Charles A)
+   97523 (Taylor Chuck A)
+   22521 (Taylor Edward W)
+   68752 (Taylor Pauline E)
+   18943 (Terranova Nancy J)
+   01160 (Theisen Mark L)
+   48294 (Thomas Charles K)
+
+Course SE042 (limit 24) contains 4 students:
+   92606 (Muench David L)
+   09640 (Mullen Jeffrey D)
+   78854 (Muthig Mark J)
+   10565 (Myles Richard D)
+
+Course ST584 (limit 11) contains 11 students:
+   67041 (Trapani Michael D)
+   23944 (Travis Jeffery F)
+   13922 (Tremblay Mark S)
+   29668 (Tweedie Janet M)
+   15907 (Urban John J)
+   72090 (VanEpps Jeffrey J)
+   15100 (VanVliet Todd T)
+   57597 (Vanderstouw Richard W)
+   68496 (Vener Avram R)
+   46455 (Vergara Dana M)
+   33117 (Wagner David L)

@@ -1,0 +1,55 @@
+Important files:
+
+	header.mak	for use with 'makemake > Makefile'
+
+	input.?		sample input files
+
+	stdout.?	sample output from "project1 < input.?"
+	stdout.?v	sample output from "project1 -v < input.?"
+
+	stderr.?	sample error output from "project1 < input.?"
+	stderr.?v	sample error output from "project1 -v < input.?"
+
+	RUN		script to run project1 against input.*
+
+If you are testing on the main network, you will need to use an
+architecture-specific version of the allocation library.  By default,
+this is the x86 version, which will work on all the machines in ICL1-4;
+if you are testing on a SPARC-based system (the GradLab systems or one
+of the compute servers), generate the Makefile, then edit it and change
+-lallocate to -lallocate-s to link against the SPARC version of the
+allocate library.
+
+You can test your program with the RUN script found here, or with
+commands like these.  For Bourne shell and Bash users:
+
+	project1 < input.1 > out 2> err
+	diff out stdout.1
+	diff err stderr.1
+	project1 -v < input.1 > outv 2> errv
+	diff outv stdout.1v
+	diff errv stderr.1v
+
+For C-shell users (note the use of parentheses):
+
+	(project1 < input.1 > out) >& err
+	diff out stdout.1
+	diff err stderr.1
+	(project1 -v < input.1 > outv) >& errv
+	diff outv stdout.1v
+	diff errv stderr.1v
+
+The RUN script allows you to easily test your program with an arbitrary
+limit on the amount of dynamic memory that can be used.  Execute it
+with a command-line argument to limit memory to that amount; e.g.,
+
+	./RUN 1024
+
+runs all the tests with a memory limit of 1024 bytes of allocatable
+memory.
+
+Any differences between your output and the test output should be
+corrected before submitting your program.
+
+NOTE:  These sets of test files test only some of the program's
+functionality!  Be sure to exhaustively test your solution.

@@ -1,0 +1,667 @@
+open CS231 23
+open MA802 37
+open AN232 35
+open CS370 34
+open CS975 33
+open PH765 21
+open EN618 33
+open ST584 11
+open EE145 38
+open EE648 13
+open BU532 12
+open CH410 20
+open CE898 17
+open SE042 24
+open IT936 12
+open MA589 3
+open AE514 1
+open ME951 2
+open AC386 37
+open CJ945 31
+open NS056 33
+open NS721 37
+open PS319 7
+open PE188 38
+open EE191 27
+student 00571 Dermott Lynn A
+student 01013 Neff Brenda L
+student 01158 Lodico Marc R
+student 01160 Theisen Mark L
+student 01385 Young Karin L
+student 01423 Butler Lee A
+student 01576 Kehoe Kathleen A
+student 01948 Shugars Terry A
+student 01973 Mancuso Carl M
+student 02116 Flavin Paul W
+student 02578 Kallfelz Karen G
+student 02748 Spaziani Joseph H
+student 03063 Wegner Ralph E
+student 03520 Bonnette Michael D
+student 04358 Williams Annette M
+student 04907 Dimopoulos George D
+student 04917 Downey Evan T
+student 05691 Jahn Gregory W
+student 05822 Isaac Deborah J
+student 06083 Palmer Michael S
+student 06391 Daly Mark S
+student 06450 Digaletos John G
+student 06566 Levin Karen M
+student 06705 Benz Kenneth J
+student 06791 Wiley Cheryl A
+student 06839 Snyder Scott P
+student 07491 Elling Scott L
+student 07829 Ruff Barry C
+student 08215 Maloney Eileen T
+student 08327 Jones Tom D
+student 08444 Nichols David E
+student 08675 Bradley John C
+student 08817 Domurat Meredith L
+student 08847 Kogler Keith P
+student 09225 Bennett James M
+student 09360 Savage Gary R
+student 09640 Mullen Jeffrey D
+student 09665 Morgese John A
+student 09830 OBrien Eric D
+student 09959 Cohen David N
+student 10232 Seyler Annette C
+student 10322 Rodgers Richard J
+student 10541 Eggert Frederick P
+student 10565 Myles Richard D
+student 10951 Keye Michele N
+student 10989 Porcellio Rocco J
+student 11803 Cobb Jean L
+student 12363 Bresnowitz Paul J
+student 12501 Lane Brett L
+student 12848 Bielenberg Kenneth R
+student 13358 Wyckoff Brook J
+student 13521 Daum Frank R
+student 13922 Tremblay Mark S
+student 13942 Harrigan Colleen R
+student 14148 Lutter Steve H
+student 14281 Dalessio Joseph A
+student 15100 VanVliet Todd T
+student 15338 McAlpine Jeffrey R
+student 15745 Keesan Barry M
+student 15907 Urban John J
+student 16264 Wolf David A
+student 16617 Sacheli Robert J
+student 16635 Carulli AnnMarie N
+student 16769 Rutland Henry M
+student 17154 Gupta Surendra K
+student 17539 Hartley Brent G
+student 17944 White Mark A
+student 17991 Wasmer Geoffrey S
+student 18027 Heitz Dan M
+student 18171 Kowalik Cheryl A
+student 18770 Beck Ralph L
+student 18943 Terranova Nancy J
+student 19540 Dwier Robert H
+student 19883 Barkman Larry T
+student 20200 Leibson David A
+student 20668 Kastory Janice L
+student 21031 Bloss Donald T
+student 21076 Cochrane Joseph J
+student 21168 Leonardo Maria C
+student 21336 Schaner Andrew J
+student 21450 Howarth Larry R
+student 21574 Barrett Steven P
+student 21661 Coyne Ann M
+student 21687 Schopf Joan N
+student 22476 Giaccone Anthony J
+student 22521 Taylor Edward W
+student 22585 Best Theresa A
+student 22955 Breckenridge Mary B
+student 23455 Speer John W
+student 23944 Travis Jeffery F
+student 24334 Schaefer Jay A
+student 24617 Hilimire Ronald F
+student 25055 Hartley Bruce C
+student 25129 Aronson Ross A
+student 25245 Clare John J
+student 25334 Celecki David M
+student 25919 Hahne David A
+student 26316 Clayback Michael J
+student 26552 Brigito Mary D
+student 26595 Griffeth Jon L
+student 27164 Warasila Peter D
+student 27324 Markoff Lorraine B
+student 27976 Andrews Melanie J
+student 28394 Pape Colin A
+student 28668 Tobin Robin L
+student 29575 Lopes Manuel C
+student 29668 Tweedie Janet M
+student 30232 Filmer John S
+student 30351 Nobis Steven W
+student 30357 Payne Matthew D
+student 30410 Brogan Jeffrey P
+student 30626 Hatch Douglas V
+student 30748 Buttner Thomas C
+student 31207 Rock Jean A
+student 31222 Hill Harvil J
+student 31537 Wein Myra S
+student 31574 Bulau Linda J
+student 32066 Campanaro Gary R
+student 32161 Baxter Brenda L
+student 32176 Romano Donna M
+student 33071 Christiana Michelle M
+student 33117 Wagner David L
+student 33195 Bhinder Ranjit S
+student 33296 Bakker Kenneth T
+student 33358 Pappas Tony J
+student 33380 Flemming Erich D
+student 33590 Stewart Paul P
+student 34065 Chard George M
+student 34410 Gibbard Donald W
+student 34682 Sundberg Andrew T
+student 34742 Bundschuh William D
+student 34777 Lapiczak Igar J
+student 35165 Aldrich Michael W
+student 35287 Solowsky Ellen L
+student 35599 Casper James E
+student 35966 Nielson Stephen A
+student 36408 Krol Anna T
+student 36437 Drummond Thomas F
+student 36678 Azurin Philip M
+student 36854 Schubert Lisa K
+student 37054 Dinoff Robert K
+student 37969 Slater Wendi L
+student 40163 Miers David B
+student 40386 Williams John P
+student 40999 Methe Edward G
+student 41078 Mosher Todd W
+student 42804 Gabarron Rolando J
+student 42806 Alessi Denise A
+student 42890 Miller James J
+student 43185 Thomas Ed T
+student 43480 Celecki Dave M
+student 43528 Riolo Joseph P
+student 43994 Halasinski Michael T
+student 44192 Berson Keith D
+student 44472 Keehnle Peter J
+student 44599 Beaty Joseph P
+student 44766 Prescott James G
+student 44768 Mark Richard J
+student 45041 Brothers William J
+student 45175 Zahniser Albert W
+student 46455 Vergara Dana M
+student 46655 Hobson Kenneth W
+student 46841 Anderson Holly J
+student 46910 StPierre Jeffrey A
+student 47131 Hagan Lynne M
+student 47158 Gawron David G
+student 47342 OConnor Claire M
+student 47576 Schreiber Richard C
+student 48137 Beal Peter D
+student 48294 Thomas Charles K
+student 48487 Brisbane Linda L
+student 48641 Balcom Lori N
+student 48868 Geromel Laurie A
+student 49267 Grapek Howard I
+student 49504 Newman Joseph P
+student 49649 Smith Sharon L
+student 49690 Johnstone Joseph H
+student 49719 Taylor Charles A
+student 49958 Sonner Wendy L
+student 50831 Easton Robin R
+student 51610 Poppoon Amy E
+student 51669 Sweet Vicki A
+student 52148 Perry Susan A
+student 52236 Drake Ellery J
+student 52746 Kurtz Steven H
+student 52976 Coene Paul J
+student 53028 Ciccariello Sebastian N
+student 53407 OConner Thomas J
+student 54016 Ryan Michael E
+student 54083 Kagan Philip E
+student 54640 Jones Jeffrey S
+student 55076 Reggio Anthony J
+student 55686 Deppa Larry M
+student 56653 Perley Gregory D
+student 57273 Cummings Leslie J
+student 57597 Vanderstouw Richard W
+student 57677 Bushman Thomas G
+student 57712 Snyder Marcia L
+student 58151 Bridgman Thomas E
+student 58235 DePalma Lanay A
+student 58573 Hui Steve C
+student 59568 Nguyen Thanh D
+student 59819 Wilcocks Ronald L
+student 59882 Fletcher Brian A
+student 60041 Gayler Tom C
+student 61263 DiStaso Patrick S
+student 62022 Wiles Edwin L
+student 62235 Zywiczynski Douglas R
+student 62305 Kelsey Laurence R
+student 62438 Bodurtha Craig A
+student 62856 Williams Jeffrey W
+student 62877 Selinsky Brian M
+student 63116 Cora Kathleen E
+student 63651 Bartucca Paul M
+student 63846 Woodward Thomas P
+student 65004 Brunngraber Robert M
+student 65114 Blake Barbara C
+student 65206 Boyce Laurie J
+student 65225 Avilez Michael J
+student 66000 Wasnock Lisa A
+student 66078 Thorne Randall J
+student 66344 Brill Lyssa E
+student 66997 Maser Linda J
+student 67041 Trapani Michael D
+student 67051 Dikeman Samson M
+student 67731 Sheppard Karen A
+student 67877 Hadrosek Paul J
+student 67940 Brown Timothy P
+student 68055 Burns Luanne M
+student 68146 Earnest Debra A
+student 68496 Vener Avram R
+student 68752 Taylor Pauline E
+student 68945 Franklin Wayne A
+student 68952 Adams Mary E
+student 69042 Falby Daniel C
+student 69081 Tabasco Mark D
+student 69370 DeVita Alfred J
+student 69548 Fahrer Thomas P
+student 70405 Spencer Lillian B
+student 71255 Gale Robert A
+student 71269 Hott Daniel E
+student 71686 Forer Edward J
+student 72090 VanEpps Jeffrey J
+student 72287 Brown Ann B
+student 72408 Charney Elizabeth A
+student 72500 Duong Kim T
+student 72509 Zimmerman Mark W
+student 73413 Zibbon Barbara A
+student 74295 Guzman Juan A
+student 74485 Parasiliti Ross C
+student 74521 Rattinger John E
+student 74544 Demetriades Athena E
+student 75970 Kushall Edward L
+student 75973 Gardner Kent T
+student 76292 Rutiba Eva D
+student 76715 Schummer Jeffrey L
+student 76795 Ford Elizabeth A
+student 76885 Chung Edward F
+student 76939 Hargrave Kenneth R
+student 76959 Keisling Kurt F
+student 77010 Bradley Susan B
+student 78105 Kessler Mark E
+student 78462 Haag Lawrence E
+student 78854 Muthig Mark J
+student 78979 Conoway Douglas R
+student 78999 Rosholt Dirk A
+student 79375 Kelly Geoffrey O
+student 79966 Rizzo Robert G
+student 79974 West Suzanne L
+student 80064 McCabe Shirley J
+student 80563 Pence Richard C
+student 80808 Heywood William B
+student 81111 Toombs Michael L
+student 82071 Leibson Dayv A
+student 82525 Jones Thomas D
+student 83549 McMaster Maureen A
+student 83615 Contino Thomas N
+student 84524 Mallott Brenda L
+student 84554 Long Daniel P
+student 84936 Walker Jeffrey S
+student 85307 Woolery Jill T
+student 85711 Lau Mariano R
+student 86054 Bayline Michael S
+student 86450 Sterzin Kevin M
+student 87223 Buchanan Elizabeth A
+student 87556 Moss Ann L
+student 87954 Werner Bradford S
+student 88340 Morss Charles H
+student 88667 Wehner Michael D
+student 88702 Lane Mary T
+student 89680 Fadden Francis D
+student 90445 Chabowski Lee C
+student 90528 Adams Steve E
+student 91453 Bennion Pamela A
+student 91543 Gellai Andrew P
+student 91592 Petrucci John L
+student 91691 Babbi Anna N
+student 91773 Goodman Gordon I
+student 92606 Muench David L
+student 92917 Eckhaus Neal J
+student 93969 Wooton Rex J
+student 94779 Duffy James E
+student 94888 Fleming Patricia L
+student 95124 Bolduc Mark E
+student 95328 Burke Charles J
+student 95465 Nelson David J
+student 95573 Bawden Linda J
+student 95577 Denzel Michael D
+student 95638 Sanders Joseph J
+student 95698 Olis Arnold B
+student 95807 Wasmer Geoff S
+student 97107 Wells Sharon A
+student 97109 Kroot Larry H
+student 97523 Taylor Chuck A
+student 97791 Maisel Timothy A
+student 97860 Williams Kevin L
+student 98124 Ylitalo Terri E
+student 99394 Fluharty Karen L
+student 99424 Dnistrian Helen B
+student 99425 Gottesman Eric E
+student 99653 Gentile Linda C
+enroll 00571 CH410
+enroll 01013 EN618
+enroll 01158 NS721
+enroll 01160 PS319
+enroll 01385 EE648
+enroll 01423 CS975
+enroll 01576 EE145
+enroll 01948 EE191
+enroll 01973 NS721
+enroll 02116 IT936
+enroll 02578 EE145
+enroll 02748 NS056
+enroll 03063 BU532
+enroll 03520 CS231
+enroll 04358 AN232
+enroll 04907 CH410
+enroll 04917 CH410
+enroll 05691 AC386
+enroll 05822 AC386
+enroll 06083 EN618
+enroll 06391 CH410
+enroll 06450 CH410
+enroll 06566 NS721
+enroll 06705 CS231
+enroll 06791 AN232
+enroll 06839 NS056
+enroll 07491 IT936
+enroll 07829 EE191
+enroll 08215 NS721
+enroll 08327 EE145
+enroll 08444 EN618
+enroll 08675 CS231
+enroll 08817 CH410
+enroll 08847 EE145
+enroll 09225 CS231
+enroll 09360 EE191
+enroll 09640 SE042
+enroll 09665 CJ945
+enroll 09830 EN618
+enroll 09959 CS975
+enroll 10232 EE191
+enroll 10322 EE191
+enroll 10541 IT936
+enroll 10565 SE042
+enroll 10951 EE145
+enroll 10989 EN618
+enroll 11803 CS975
+enroll 12363 CS231
+enroll 12501 ME951
+enroll 12848 CS231
+enroll 13358 EE648
+enroll 13521 CH410
+enroll 13922 ST584
+enroll 13942 PE188
+enroll 14148 NS721
+enroll 14281 CH410
+enroll 15100 ST584
+enroll 15338 CJ945
+enroll 15745 EE145
+enroll 15907 ST584
+enroll 16264 EE648
+enroll 16617 EE191
+enroll 16635 CS975
+enroll 16769 EE191
+enroll 17154 PE188
+enroll 17539 PE188
+enroll 17944 BU532
+enroll 17991 BU532
+enroll 18027 PE188
+enroll 18171 EE145
+enroll 18770 PH765
+enroll 18943 PS319
+enroll 19540 IT936
+enroll 19883 PH765
+enroll 20200 NS721
+enroll 20668 EE145
+enroll 21031 CS231
+enroll 21076 CS975
+enroll 21168 NS721
+enroll 21336 EE191
+enroll 21450 AC386
+enroll 21574 PH765
+enroll 21661 CS975
+enroll 21687 EE191
+enroll 22476 MA802
+enroll 22521 PS319
+enroll 22585 CS231
+enroll 22955 CS231
+enroll 23455 NS056
+enroll 23944 ST584
+enroll 24334 EE191
+enroll 24617 PE188
+enroll 25055 PE188
+enroll 25129 PH765
+enroll 25245 CS975
+enroll 25334 CS975
+enroll 25919 PE188
+enroll 26316 CS975
+enroll 26552 CS231
+enroll 26595 PE188
+enroll 27164 BU532
+enroll 27324 NS721
+enroll 27976 PH765
+enroll 28394 EN618
+enroll 28668 CS370
+enroll 29575 NS721
+enroll 29668 ST584
+enroll 30232 IT936
+enroll 30351 EN618
+enroll 30357 EN618
+enroll 30410 CS231
+enroll 30626 PE188
+enroll 30748 CS975
+enroll 31207 EE191
+enroll 31222 PE188
+enroll 31537 BU532
+enroll 31574 CS975
+enroll 32066 CS975
+enroll 32161 PH765
+enroll 32176 EE191
+enroll 33071 CS975
+enroll 33117 ST584
+enroll 33195 CS231
+enroll 33296 PH765
+enroll 33358 EN618
+enroll 33380 MA802
+enroll 33590 NS056
+enroll 34065 CS975
+enroll 34410 MA802
+enroll 34682 NS056
+enroll 34742 CS975
+enroll 34777 NS721
+enroll 35165 PH765
+enroll 35287 NS056
+enroll 35599 CS975
+enroll 35966 EN618
+enroll 36408 EE145
+enroll 36437 CH410
+enroll 36678 PH765
+enroll 36854 EE191
+enroll 37054 CH410
+enroll 37969 EE191
+enroll 40163 CJ945
+enroll 40386 EE648
+enroll 40999 CJ945
+enroll 41078 CJ945
+enroll 42804 MA802
+enroll 42806 PH765
+enroll 42890 CJ945
+enroll 43185 CS370
+enroll 43480 CS975
+enroll 43528 EE191
+enroll 43994 PE188
+enroll 44192 CS231
+enroll 44472 EE145
+enroll 44599 PH765
+enroll 44766 EN618
+enroll 44768 NS721
+enroll 45041 CS231
+enroll 45175 EE648
+enroll 46455 ST584
+enroll 46655 PE188
+enroll 46841 PH765
+enroll 46910 NS056
+enroll 47131 PE188
+enroll 47158 MA802
+enroll 47342 EN618
+enroll 47576 EE191
+enroll 48137 PH765
+enroll 48294 PS319
+enroll 48487 CS231
+enroll 48641 PH765
+enroll 48868 MA802
+enroll 49267 MA589
+enroll 49504 EN618
+enroll 49649 EE191
+enroll 49690 AC386
+enroll 49719 PS319
+enroll 49958 NS056
+enroll 50831 IT936
+enroll 51610 EN618
+enroll 51669 NS056
+enroll 52148 EN618
+enroll 52236 CH410
+enroll 52746 EE145
+enroll 52976 CS975
+enroll 53028 CS975
+enroll 53407 EN618
+enroll 54016 EE191
+enroll 54083 EE145
+enroll 54640 AC386
+enroll 55076 EE191
+enroll 55686 CH410
+enroll 56653 EN618
+enroll 57273 CS975
+enroll 57597 ST584
+enroll 57677 CS975
+enroll 57712 NS056
+enroll 58151 CS231
+enroll 58235 CH410
+enroll 58573 AC386
+enroll 59568 EN618
+enroll 59819 AN232
+enroll 59882 MA802
+enroll 60041 MA802
+enroll 61263 CH410
+enroll 62022 AN232
+enroll 62235 EE648
+enroll 62305 EE145
+enroll 62438 CS231
+enroll 62856 AN232
+enroll 62877 EE191
+enroll 63116 CS975
+enroll 63651 PH765
+enroll 63846 EE648
+enroll 65004 CS975
+enroll 65114 CS231
+enroll 65206 CS231
+enroll 65225 PH765
+enroll 66000 BU532
+enroll 66078 CS370
+enroll 66344 CS231
+enroll 66997 CJ945
+enroll 67041 ST584
+enroll 67051 CH410
+enroll 67731 EE191
+enroll 67877 PE188
+enroll 67940 CS975
+enroll 68055 CS975
+enroll 68146 IT936
+enroll 68496 ST584
+enroll 68752 PS319
+enroll 68945 MA802
+enroll 68952 PH765
+enroll 69042 IT936
+enroll 69081 NS056
+enroll 69370 CH410
+enroll 69548 IT936
+enroll 70405 NS056
+enroll 71255 MA802
+enroll 71269 AC386
+enroll 71686 MA802
+enroll 72090 ST584
+enroll 72287 CS975
+enroll 72408 CS975
+enroll 72500 IT936
+enroll 72509 EE648
+enroll 73413 EE648
+enroll 74295 PE188
+enroll 74485 EN618
+enroll 74521 EE191
+enroll 74544 CH410
+enroll 75970 ME951
+enroll 75973 MA802
+enroll 76292 EE191
+enroll 76715 EE191
+enroll 76795 MA802
+enroll 76885 CS975
+enroll 76939 PE188
+enroll 76959 EE145
+enroll 77010 CS231
+enroll 78105 EE145
+enroll 78462 PE188
+enroll 78854 SE042
+enroll 78979 CS975
+enroll 78999 EE191
+enroll 79375 EE145
+enroll 79966 EE191
+enroll 79974 BU532
+enroll 80064 CJ945
+enroll 80563 EN618
+enroll 80808 PE188
+enroll 81111 CS370
+enroll 82071 NS721
+enroll 82525 EE145
+enroll 83549 CJ945
+enroll 83615 CS975
+enroll 84524 NS721
+enroll 84554 NS721
+enroll 84936 BU532
+enroll 85307 EE648
+enroll 85711 NS721
+enroll 86054 PH765
+enroll 86450 NS056
+enroll 87223 CS975
+enroll 87556 CJ945
+enroll 87954 BU532
+enroll 88340 CJ945
+enroll 88667 BU532
+enroll 88702 NS721
+enroll 89680 IT936
+enroll 90445 CS975
+enroll 90528 PH765
+enroll 91453 CS231
+enroll 91543 MA802
+enroll 91592 EN618
+enroll 91691 PH765
+enroll 91773 MA589
+enroll 92606 SE042
+enroll 92917 IT936
+enroll 93969 EE648
+enroll 94779 CH410
+enroll 94888 MA802
+enroll 95124 CS231
+enroll 95328 CS975
+enroll 95465 EN618
+enroll 95573 PH765
+enroll 95577 CH410
+enroll 95638 EE191
+enroll 95698 EN618
+enroll 95807 BU532
+enroll 97107 BU532
+enroll 97109 EE145
+enroll 97523 PS319
+enroll 97791 NS721
+enroll 97860 EE648
+enroll 98124 EE648
+enroll 99394 MA802
+enroll 99424 CH410
+enroll 99425 MA589
+enroll 99653 MA802

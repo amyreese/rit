@@ -1,0 +1,70 @@
+new student 25353 (Smith John P)
+new student 98532 (Davis John E)
+new student 21865 (Mustard Claire N)
+new student 34937 (Masters Steven M)
+new student 60555 (Plum Sandra J)
+new student 17198 (Peacock Mary K)
+new student 38901 (White John M)
+CS362 created with limit 26
+CS423 created with limit 26
+MA558 created with limit 29
+PH724 created with limit 6
+CS621 created with limit 36
+BU163 created with limit 28
+EE427 created with limit 33
+34937 enrolled in CS621
+17198 enrolled in PH724
+34937 enrolled in MA558
+CH310 created with limit 21
+MA299 created with limit 35
+EN327 created with limit 37
+new student 60729 (Green John C)
+new student 67558 (Scott Damien S)
+new student 53492 (Scarlet David R)
+MA558 cancelled
+34937 enrolled in PH724
+34937 enrolled in CS362
+34937 withdrawn from CS362
+
+Student 98532 (Davis John E) is taking no courses
+
+Student 60729 (Green John C) is taking no courses
+
+Student 34937 (Masters Steven M) is taking 2 courses:
+   CS621 PH724
+
+Student 21865 (Mustard Claire N) is taking no courses
+
+Student 17198 (Peacock Mary K) is taking 1 courses:
+   PH724
+
+Student 60555 (Plum Sandra J) is taking no courses
+
+Student 53492 (Scarlet David R) is taking no courses
+
+Student 67558 (Scott Damien S) is taking no courses
+
+Student 25353 (Smith John P) is taking no courses
+
+Student 38901 (White John M) is taking no courses
+
+Course BU163 (limit 28) is empty
+
+Course CH310 (limit 21) is empty
+
+Course CS362 (limit 26) is empty
+
+Course CS423 (limit 26) is empty
+
+Course CS621 (limit 36) contains 1 students:
+   34937 (Masters Steven M)
+
+Course EE427 (limit 33) is empty
+
+Course EN327 (limit 37) is empty
+
+Course MA299 (limit 35) is empty
+
+Course PH724 (limit 6) contains 2 students:
+   34937 (Masters Steven M)
+   17198 (Peacock Mary K)

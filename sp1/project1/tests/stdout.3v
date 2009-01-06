@@ -1,0 +1,22 @@
+CS123 created with limit 5
+MA034 created with limit 10
+new student 12345 (Public John Q)
+new student 03456 (Smith John Q)
+12345 enrolled in CS123
+12345 enrolled in MA034
+03456 enrolled in CS123
+03456 enrolled in MA034
+12345 withdrawn from MA034
+03456 withdrawn from MA034
+
+Student 12345 (Public John Q) is taking 1 courses:
+   CS123
+
+Student 03456 (Smith John Q) is taking 1 courses:
+   CS123
+
+Course CS123 (limit 5) contains 2 students:
+   12345 (Public John Q)
+   03456 (Smith John Q)
+
+Course MA034 (limit 10) is empty
