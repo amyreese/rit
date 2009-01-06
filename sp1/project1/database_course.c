@@ -61,8 +61,8 @@ int db_course_insert( db_database* db, char* id, int size ) {
 	}
 
 	// Initialize new course
-	db_course* course = allocate( sizeof( db_course ) );
-	course->id = allocate( strlen( id ) );
+	db_course* course = db_allocate( sizeof( db_course ) );
+	course->id = db_allocate( strlen( id ) );
 	course->size = size;
 	course->next = NULL;
 	course->last = NULL;

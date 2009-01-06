@@ -28,8 +28,19 @@
 #  define unallocate free
 #endif
 
+void* db_allocate( size_t size ) {
+	void* ptr = allocate( size );
+
+	if ( ptr == NULL ) {
+		db_error( DBERR_OUT_OF_MEMORY );
+		exit(-1);
+	}
+
+	return ptr;
+}
+
 db_database* db_init() {
-	db_database* db = allocate( sizeof( db_database ) );
+	db_database* db = db_allocate( sizeof( db_database ) );
 	db->courses = NULL;
 	db->students = NULL;
 
@@ -180,7 +191,7 @@ char* db_messages[] = {
 };
 
 char* db_errors[] = {
-	"", 
+	"Memory allocation failed!\n",
 	"%s already exists\n",
 	"%s does not exists\n",
 	"%s already exists\n",

@@ -62,6 +62,12 @@ typedef struct db_enrollment {
 } db_enrollment;
 
 /**
+ * Allocate memory.
+ * If failed, print error message, and terminate.
+ */
+void* db_allocate( size_t size );
+
+/**
  * Create a new database.
  */
 db_database* db_init();
@@ -147,6 +153,7 @@ char* db_messages[6];
  * Database error messages.
  */
 char* db_errors[10];
+#define DBERR_OUT_OF_MEMORY 0
 #define DBERR_STUDENT_EXISTS 1
 #define DBERR_STUDENT_NOT_EXISTS 2
 #define DBERR_COURSE_EXISTS 3
