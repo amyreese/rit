@@ -54,10 +54,10 @@ int db_course_insert( db_database* db, char* id, int size ) {
 			return DBERR_COURSE_EXISTS;
 		} else if ( cmp < 1 ) {
 			break;
-		} else {
-			last = next;
-			next = next->next;
 		}
+
+		last = next;
+		next = next->next;
 	}
 
 	// Initialize new course
@@ -70,20 +70,15 @@ int db_course_insert( db_database* db, char* id, int size ) {
 	strcpy( course->id, id );
 
 	// Insert new course into the list as appropriate
-	if ( last == NULL ) {
-		if ( db->courses != NULL ) {
-			course->next = db->courses;
-			course->next->last = course;
-		}
-		db->courses = course;
-	} else {
-		course->last = last;
-		course->next = last->next;
+	course->last = last;
+	course->next = next;
+	if ( last != NULL ) {
 		last->next = course;
-
-		if ( course->next != NULL ) {
-			course->next->last = course;
-		}
+	} else {
+		db->courses = course;
+	}
+	if ( next != NULL ) {
+		next->last = course;
 	}
 
 	return 0;

@@ -68,16 +68,13 @@ int db_student_insert( db_database* db, char* id, char* name ) {
 				return DBERR_STUDENT_EXISTS;
 			} else if ( cmp < 1 ) {
 				break;
-			} else {
-				last = next;
-				next = next->next;
 			}
 		} else if ( cmp < 1 ) {
 			break;
-		} else {
-			last = next;
-			next = next->next;
 		}
+
+		last = next;
+		next = next->next;
 	}
 
 	// Initialize new student
@@ -91,20 +88,15 @@ int db_student_insert( db_database* db, char* id, char* name ) {
 	strcpy( student->name, name );
 
 	// Insert new student into the list as appropriate
-	if ( last == NULL ) {
-		if ( db->students != NULL ) {
-			student->next = db->students;
-			student->next->last = student;
-		}
-		db->students = student;
-	} else {
-		student->last = last;
-		student->next = last->next;
+	student->last = last;
+	student->next = next;
+	if ( last != NULL ) {
 		last->next = student;
-
-		if ( student->next != NULL ) {
-			student->next->last = student;
-		}
+	} else {
+		db->students = student;
+	}
+	if ( next != NULL ) {
+		next->last = student;
 	}
 
 	return 0;
