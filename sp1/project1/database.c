@@ -41,6 +41,27 @@ db_database* db_init() {
 }
 
 void db_destroy( db_database* db ) {
+	// Destroy all courses
+	db_course* course = db->courses;
+	db_course* next_course;
+	while ( course != NULL ) {
+		next_course = course->next;
+		db_course_remove( db, course->id );
+
+		course = next_course;
+	}
+
+	// Destroy all students
+	db_student* student = db->students;
+	db_student* next_student;
+	while ( student != NULL ) {
+		next_student = student->next;
+		db_student_remove( db, student->id );
+
+		student = next_student;
+	}
+
+	// Destroy the database
 	unallocate( db );
 }
 
@@ -48,10 +69,6 @@ int db_new_course( db_database* db, char* tokens[] ) {
 	char* id = tokens[0];
 	int size = atoi( tokens[1] );
 	int error;
-
-#if DEBUG
-	printf( "Creating course '%s' with limit %d\n", id, size );
-#endif
 
 	// Insert course into the database
 	if ( ( error = db_course_insert( db, id, size ) ) ) {
@@ -67,10 +84,6 @@ int db_new_student( db_database* db, char* tokens[] ) {
 	int index = 0;
 	char* token;
 	int token_length;
-
-#if DEBUG
-	printf( "Creating new student, id '%s'\n", id );
-#endif
 
 	// Truncate and concatenate name tokens
 	for ( int i = 1; i <= 3; i++ ) {
@@ -92,10 +105,6 @@ int db_new_student( db_database* db, char* tokens[] ) {
 		}
 	}
 
-#if DEBUG
-	printf( "Student name is '%s'\n", name );
-#endif
-
 	// Insert student into database
 	int error;
 	if ( ( error = db_student_insert( db, id, name ) ) ) {
@@ -108,8 +117,6 @@ int db_new_student( db_database* db, char* tokens[] ) {
 int db_cancel_course( db_database* db, char* tokens[] ) {
 	char* id = tokens[0];
 	int error;
-
-	// TODO: unenroll students from the course
 
 	// Remove the course from the database
 	if ( ( error = db_course_remove( db, id ) ) ) {
@@ -124,11 +131,23 @@ int db_enroll_student( db_database* db, char* tokens[] ) {
 	char* course_id = tokens[1];
 	int error;
 
-	return db_message( DBMSG_STUDENT_ENROLLED, "", "" );
+	if ( ( error = db_enrollment_insert( db, course_id, student_id ) ) ) {
+		return db_error( error );
+	}
+
+	return db_message( DBMSG_STUDENT_ENROLLED, student_id, course_id );
 }
 
 int db_withdraw_student( db_database* db, char* tokens[] ) {
-	return db_message( DBMSG_STUDENT_WITHDRAWN, "", "" );
+	char* student_id = tokens[0];
+	char* course_id = tokens[1];
+	int error;
+
+	if ( ( error = db_enrollment_remove( db, course_id, student_id ) ) ) {
+		return db_error( error );
+	}
+
+	return db_message( DBMSG_STUDENT_WITHDRAWN, student_id, course_id );
 }
 
 void db_dump( db_database* db ) {
