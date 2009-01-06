@@ -18,6 +18,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#define DB_STUDENT_MAX_COURSES 5
+
 /**
  * General database, set of courses and students.
  */
@@ -132,6 +134,7 @@ int db_course_withdraw( db_database* db, char* id, char* student_id );
 
 //// Private student API
 
+db_student* db_student_get( db_database* db, char* id );
 int db_student_exists( db_database* db, char* id );
 int db_student_insert( db_database* db, char* id, char* name );
 int db_student_remove( db_database* db, char* id );

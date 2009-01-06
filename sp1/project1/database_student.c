@@ -21,19 +21,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-int db_student_exists( db_database* db, char* id ) {
+db_student* db_student_get( db_database* db, char* id ) {
 	int cmp;
-	db_student* next = db->students;
-	while ( next != NULL ) {
-		cmp = strcmp( id, next->id );
+	db_student* student = db->students;
+	while ( student != NULL ) {
+		cmp = strcmp( id, student->id );
 		if ( cmp == 0 ) {
-			return 1;
+			break;
 		}
 
-		next = next->next;
+		student = student->next;
 	}
 
-	return 0;
+	return student;
+}
+
+int db_student_exists( db_database* db, char* id ) {
+	db_student* student = db_student_get( db, id );
+
+	return ( student != NULL );
 }
 
 int db_student_insert( db_database* db, char* id, char* name ) {
@@ -139,3 +145,29 @@ int db_student_remove( db_database* db, char* id ) {
 	return 0;
 }
 
+int db_student_count( db_database* db, char* id ) {
+	int count = 0;
+	db_student* student = db_student_get( db, id );
+
+	if ( student == NULL ) {
+		return -1;
+	}
+
+	db_enrollment* course = student->courses;
+	while ( course != NULL ) {
+		count++;
+		course = course->next_course;
+	}
+
+	return count;
+}
+
+int db_student_free( db_database* db, char* id ) {
+	int count = db_student_count( db, id );
+
+	if ( count < 0 ) {
+		return -1;
+	}
+
+	return ( DB_STUDENT_MAX_COURSES - count );
+}

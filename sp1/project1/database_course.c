@@ -118,7 +118,29 @@ int db_course_remove( db_database* db, char* id ) {
 int db_course_count( db_database* db, char* id ) {
 	int count = 0;
 	db_course* course = db_course_get( db, id );
+
+	if ( course == NULL ) {
+		return -1;
+	}
+
 	db_enrollment* student = course->students;
+	while ( student != NULL ) {
+		count++;
+		student = student->next_student;
+	}
+
+	return count;
+}
+
+int db_course_free( db_database* db, char* id ) {
+	int count = db_course_count( db, id );
+
+	if ( count < 0 ) {
+		return -1;
+	}
+
+	db_course* course = db_course_get( db, id );
+	return course->size - count;
 }
 
 int db_course_enroll( db_database* db, char* id, char* student_id ) {
