@@ -17,7 +17,11 @@ $(output): $(sources) $(headers)
 run: $(output)
 	./$(output) -v
 
+.PHONY:test
+test: $(output)
+	cd tests; ./RUN
+
 .PHONY:clean
 clean:
-	rm -f $(output) core MAX_MEMORY_USED
+	rm -f $(output) core MAX_MEMORY_USED tests/core tests/MAX_MEMORY_USED tests/err.* tests/out.*
 
