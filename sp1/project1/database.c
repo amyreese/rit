@@ -72,7 +72,7 @@ int db_new_course( db_database* db, char* tokens[] ) {
 
 	// Insert course into the database
 	if ( ( error = db_course_insert( db, id, size ) ) ) {
-		return db_error( error );
+		return db_error( error, id );
 	}
 
 	return db_message( DBMSG_COURSE_NEW, id, size );
@@ -108,7 +108,7 @@ int db_new_student( db_database* db, char* tokens[] ) {
 	// Insert student into database
 	int error;
 	if ( ( error = db_student_insert( db, id, name ) ) ) {
-		return db_error( error );
+		return db_error( error, id );
 	}
 
 	return db_message( DBMSG_STUDENT_NEW, id, name );
@@ -120,7 +120,7 @@ int db_cancel_course( db_database* db, char* tokens[] ) {
 
 	// Remove the course from the database
 	if ( ( error = db_course_remove( db, id ) ) ) {
-		return db_error( error );
+		return db_error( error, id );
 	}
 
 	return db_message( DBMSG_COURSE_CANCELLED, id );
@@ -131,8 +131,17 @@ int db_enroll_student( db_database* db, char* tokens[] ) {
 	char* course_id = tokens[1];
 	int error;
 
-	if ( ( error = db_enrollment_insert( db, course_id, student_id ) ) ) {
-		return db_error( error );
+	switch ( ( error = db_enrollment_insert( db, course_id, student_id ) ) ) {
+		case DBERR_STUDENT_NOT_EXISTS:
+		case DBERR_STUDENT_IS_FULL:
+			return db_error( error, student_id );
+
+		case DBERR_COURSE_NOT_EXISTS:
+		case DBERR_COURSE_IS_FULL:
+			return db_error( error, course_id );
+
+		case DBERR_STUDENT_ENROLLED:
+			return db_error( error, student_id, course_id );
 	}
 
 	return db_message( DBMSG_STUDENT_ENROLLED, student_id, course_id );
@@ -143,8 +152,15 @@ int db_withdraw_student( db_database* db, char* tokens[] ) {
 	char* course_id = tokens[1];
 	int error;
 
-	if ( ( error = db_enrollment_remove( db, course_id, student_id ) ) ) {
-		return db_error( error );
+	switch ( ( error = db_enrollment_remove( db, course_id, student_id ) ) ) {
+		case DBERR_STUDENT_NOT_EXISTS:
+			return db_error( error, student_id );
+
+		case DBERR_COURSE_NOT_EXISTS:
+			return db_error( error, course_id );
+
+		case DBERR_STUDENT_ENROLLED:
+			return db_error( error, student_id, course_id );
 	}
 
 	return db_message( DBMSG_STUDENT_WITHDRAWN, student_id, course_id );
@@ -232,9 +248,9 @@ char* db_messages[] = {
 char* db_errors[] = {
 	"Memory allocation failed!\n",
 	"%s already exists\n",
-	"%s does not exists\n",
+	"%s does not exist\n",
 	"%s already exists\n",
-	"%s does not exists\n",
+	"%s does not exist\n",
 	"%s has a full schedule\n",
 	"%s is full\n",
 	"%s already enrolled in %s\n",
