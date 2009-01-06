@@ -21,13 +21,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if 0
-#  undef malloc
-#  undef free
-#  define allocate malloc
-#  define unallocate free
-#endif
-
 void* db_allocate( size_t size ) {
 	void* ptr = allocate( size );
 
