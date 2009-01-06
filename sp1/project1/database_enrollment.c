@@ -54,7 +54,6 @@ int db_enrollment_insert( db_database* db, char* course_id, char* student_id ) {
 	db_course* course;
 	db_student* student;
 	db_enrollment* enrollment;
-	db_enrollment* next;
 
 	// Make sure the student exists
 	student = db_student_get( db, student_id );
@@ -91,21 +90,8 @@ int db_enrollment_insert( db_database* db, char* course_id, char* student_id ) {
 	enrollment->last_course = NULL;
 	enrollment->last_student = NULL;
 
-	// Insert the enrollment at the beginning of the course list
-	next = course->students;
-	if ( next != NULL ) {
-		next->last_student = enrollment;
-	}
-	enrollment->next_student = next;
-	course->students = enrollment;
-
-	// Insert the enrollment at the beginning of the student list
-	next = student->courses;
-	if ( next != NULL ) {
-		next->last_course = enrollment;
-	}
-	enrollment->next_course = next;
-	student->courses = enrollment;
+	// Insert the enrollment into the course and student lists
+	db_enrollment_plonk( db, enrollment );
 
 	return 0;
 }
@@ -185,6 +171,71 @@ int db_enrollment_remove_student( db_database* db, char* student_id ) {
 		unallocate( enrollment );
 
 		enrollment = next;
+	}
+
+	return 0;
+}
+
+int db_enrollment_plonk( db_database* db, db_enrollment* enrollment ) {
+	int cmp;
+	db_course* course = enrollment->course;
+	db_student* student = enrollment->student;
+	db_enrollment* last;
+	db_enrollment* next;
+
+	// Find the appropriate spot in the course list
+	last = NULL;
+	next = course->students;
+	while ( next != NULL ) {
+		cmp = strcmp( student->name, next->student->name );
+		if ( cmp == 0 ) {
+			cmp = strcmp( student->id, next->student->id );
+			if ( cmp < 1 ) {
+				break;
+			}
+		} else if ( cmp < 1 ) {
+			break;
+		}
+
+		last = next;
+		next = next->next_student;
+	}
+
+	// Insert the enrollment in the course list
+	enrollment->last_student = last;
+	enrollment->next_student = next;
+	if ( last != NULL ) {
+		last->next_student = enrollment;
+	} else {
+		course->students = enrollment;
+	}
+	if ( next != NULL ) {
+		next->last_student = enrollment;
+	}
+
+	// Find the appropriate spot in the student list
+	last = NULL;
+	next = student->courses;
+	while ( next != NULL ) {
+		cmp = strcmp( course->id, next->course->id );
+		if ( cmp < 1 ) {
+			break;
+		}
+
+		last = next;
+		next = next->next_course;
+	}
+
+	// Insert the enrollment in the student list
+	enrollment->last_course = last;
+	enrollment->next_course = next;
+	if ( last != NULL ) {
+		last->next_course = enrollment;
+	} else {
+		student->courses = enrollment;
+	}
+	if ( next != NULL ) {
+		next->last_course = enrollment;
 	}
 
 	return 0;

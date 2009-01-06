@@ -149,6 +149,7 @@ int db_enrollment_insert( db_database* db, char* course_id, char* student_id );
 int db_enrollment_remove( db_database* db, char* course_id, char* student_id );
 int db_enrollment_remove_course( db_database* db, char* course_id );
 int db_enrollment_remove_student( db_database* db, char* student_id );
+int db_enrollment_plonk( db_database* db, db_enrollment* enrollment );
 int db_enrollment_pluck( db_database* db, db_enrollment* enrollment );
 
 /**
