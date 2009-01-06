@@ -66,6 +66,7 @@ int db_course_insert( db_database* db, char* id, int size ) {
 	course->size = size;
 	course->next = NULL;
 	course->last = NULL;
+	course->students = NULL;
 	strcpy( course->id, id );
 
 	// Insert new course into the list as appropriate

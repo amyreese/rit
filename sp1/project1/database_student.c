@@ -86,6 +86,7 @@ int db_student_insert( db_database* db, char* id, char* name ) {
 	student->name = db_allocate( strlen( name ) );
 	student->next = NULL;
 	student->last = NULL;
+	student->courses = NULL;
 	strcpy( student->id, id );
 	strcpy( student->name, name );
 
