@@ -151,10 +151,35 @@ int db_enrollment_remove_course( db_database* db, char* course_id ) {
 		return DBERR_COURSE_NOT_EXISTS;
 	}
 
-	// Remove all enrollments for the class
+	// Remove all enrollments for the course
 	enrollment = course->students;
 	while ( enrollment != NULL ) {
 		next = enrollment->next_student;
+
+		db_enrollment_pluck( db, enrollment );
+		unallocate( enrollment );
+
+		enrollment = next;
+	}
+
+	return 0;
+}
+
+int db_enrollment_remove_student( db_database* db, char* student_id ) {
+	db_student* student;
+	db_enrollment* enrollment;
+	db_enrollment* next;
+
+	// Make sure the student exists
+	student = db_student_get( db, student_id );
+	if ( student == NULL ) {
+		return DBERR_STUDENT_NOT_EXISTS;
+	}
+
+	// Remove all enrollments for the student
+	enrollment = student->courses;
+	while ( enrollment != NULL ) {
+		next = enrollment->next_course;
 
 		db_enrollment_pluck( db, enrollment );
 		unallocate( enrollment );
