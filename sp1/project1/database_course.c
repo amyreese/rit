@@ -143,15 +143,3 @@ int db_course_free( db_database* db, char* id ) {
 	return course->size - count;
 }
 
-int db_course_enroll( db_database* db, char* id, char* student_id ) {
-	int error;
-
-	if ( ! db_student_exists( db, student_id ) ) {
-		return DBERR_STUDENT_NOT_EXISTS;
-	}
-
-	if ( ! db_course_exists( db, id ) ) {
-		return DBERR_COURSE_NOT_EXISTS;
-	}
-}
-

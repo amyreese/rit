@@ -129,9 +129,6 @@ int db_course_remove( db_database* db, char* id );
 int db_course_count( db_database* db, char* id );
 int db_course_free( db_database* db, char* id );
 
-int db_course_enroll( db_database* db, char* id, char* student_id );
-int db_course_withdraw( db_database* db, char* id, char* student_id );
-
 //// Private student API
 
 db_student* db_student_get( db_database* db, char* id );
@@ -141,6 +138,14 @@ int db_student_remove( db_database* db, char* id );
 
 int db_student_count( db_database* db, char* id );
 int db_student_free( db_database* db, char* id );
+
+//// Private enrollment API
+
+db_enrollment* db_enrollment_get( db_database* db, char* course_id, char* student_id );
+int db_enrollment_exists( db_database* db, char* course_id, char* student_id );
+int db_enrollment_insert( db_database* db, char* course_id, char* student_id );
+int db_enrollment_remove( db_database* db, char* course_id, char* student_id );
+int db_enrollment_remove_course( db_database* db, char* course_id );
 
 /**
  * Database messages.

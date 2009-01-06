@@ -124,11 +124,6 @@ int db_enroll_student( db_database* db, char* tokens[] ) {
 	char* course_id = tokens[1];
 	int error;
 
-	// Enroll the student
-	//if ( ( error = db_course_enroll( db, course_id, student_id ) ) ) {
-	//	return db_error( error );
-	//}
-
 	return db_message( DBMSG_STUDENT_ENROLLED, "", "" );
 }
 
