@@ -141,6 +141,8 @@ int db_student_remove( db_database* db, char* id ) {
 		student->next->last = student->last;
 	}
 
+	unallocate( student->name );
+	unallocate( student->id );
 	unallocate( student );
 	return 0;
 }
