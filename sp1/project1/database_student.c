@@ -128,6 +128,9 @@ int db_student_remove( db_database* db, char* id ) {
 		return DBERR_STUDENT_NOT_EXISTS;
 	}
 
+	// Remove associated enrollments
+	db_enrollment_remove_student( db, id );
+
 	// Remove student from the list
 	if ( student->last == NULL && student->next == NULL ) {
 		db->students = NULL;

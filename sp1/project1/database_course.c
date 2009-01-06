@@ -97,6 +97,9 @@ int db_course_remove( db_database* db, char* id ) {
 		return DBERR_COURSE_NOT_EXISTS;
 	}
 
+	// Remove associated enrollments
+	db_enrollment_remove_course( db, id );
+
 	// Remove course from the list
 	if ( course->last == NULL && course->next == NULL ) {
 		db->courses = NULL;
