@@ -214,7 +214,7 @@ int db_error( int error, ... ) {
 	va_list args;
 	va_start( args, error );
 
-	vfprintf( stdout, db_errors[ error ], args );
+	vfprintf( stderr, db_errors[ error ], args );
 
 	va_end( args );
 	return error;
