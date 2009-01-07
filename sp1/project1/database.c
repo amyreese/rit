@@ -65,9 +65,7 @@ void db_destroy( db_database* db ) {
 	unallocate( db );
 }
 
-int db_new_course( db_database* db, char* tokens[] ) {
-	char* id = tokens[0];
-	int size = atoi( tokens[1] );
+int db_new_course( db_database* db, char* id, int size ) {
 	int error;
 
 	// Insert course into the database
@@ -78,15 +76,14 @@ int db_new_course( db_database* db, char* tokens[] ) {
 	return db_message( DBMSG_COURSE_NEW, id, size );
 }
 
-int db_new_student( db_database* db, char* tokens[] ) {
-	char* id = tokens[0];
+int db_new_student( db_database* db, char* id, char* tokens[] ) {
 	char name[120];
 	int index = 0;
 	char* token;
 	int token_length;
 
 	// Truncate and concatenate name tokens
-	for ( int i = 1; i <= 3; i++ ) {
+	for ( int i = 0; i < 3; i++ ) {
 		if ( tokens[i] == NULL ) {
 			break;
 		}
@@ -114,8 +111,7 @@ int db_new_student( db_database* db, char* tokens[] ) {
 	return db_message( DBMSG_STUDENT_NEW, id, name );
 }
 
-int db_cancel_course( db_database* db, char* tokens[] ) {
-	char* id = tokens[0];
+int db_cancel_course( db_database* db, char* id ) {
 	int error;
 
 	// Remove the course from the database
@@ -126,9 +122,7 @@ int db_cancel_course( db_database* db, char* tokens[] ) {
 	return db_message( DBMSG_COURSE_CANCELLED, id );
 }
 
-int db_enroll_student( db_database* db, char* tokens[] ) {
-	char* student_id = tokens[0];
-	char* course_id = tokens[1];
+int db_enroll_student( db_database* db, char* student_id, char* course_id ) {
 	int error;
 
 	switch ( ( error = db_enrollment_insert( db, course_id, student_id ) ) ) {
@@ -147,9 +141,7 @@ int db_enroll_student( db_database* db, char* tokens[] ) {
 	return db_message( DBMSG_STUDENT_ENROLLED, student_id, course_id );
 }
 
-int db_withdraw_student( db_database* db, char* tokens[] ) {
-	char* student_id = tokens[0];
-	char* course_id = tokens[1];
+int db_withdraw_student( db_database* db, char* student_id, char* course_id ) {
 	int error;
 
 	switch ( ( error = db_enrollment_remove( db, course_id, student_id ) ) ) {

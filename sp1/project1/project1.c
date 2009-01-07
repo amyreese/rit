@@ -94,23 +94,23 @@ int main( int argc, char** argv ) {
 		// Dispatch processing based on the inputted command
 		switch ( command ) {
 			case 0: // student
-				error = db_new_student( db, tokens + 1 );
+				error = db_new_student( db, tokens[1], tokens + 2 );
 				break;
 
 			case 1: // open
-				error = db_new_course( db, tokens + 1 );
+				error = db_new_course( db, tokens[1], atoi( tokens[2] ) );
 				break;
 
 			case 2: // cancel
-				error = db_cancel_course( db, tokens + 1 );
+				error = db_cancel_course( db, tokens[1] );
 				break;
 
 			case 3: // enroll
-				error = db_enroll_student( db, tokens + 1 );
+				error = db_enroll_student( db, tokens[1], tokens[2] );
 				break;
 
 			case 4: // withdraw
-				error = db_withdraw_student( db, tokens + 1 );
+				error = db_withdraw_student( db, tokens[1], tokens[2] );
 				break;
 
 			default: // error?

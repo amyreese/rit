@@ -84,27 +84,27 @@ void db_destroy( db_database* db );
 /**
  * Create a new course.
  */
-int db_new_course( db_database* db, char* tokens[] );
+int db_new_course( db_database* db, char* id, int size );
 
 /**
  * Create a new student.
  */
-int db_new_student( db_database* db, char* tokens[] );
+int db_new_student( db_database* db, char* id, char* tokens[] );
 
 /**
  * Cancel an existing course.
  */
-int db_cancel_course( db_database* db, char* tokens[] );
+int db_cancel_course( db_database* db, char* id );
 
 /**
  * Enroll an existing student in an existing course.
  */
-int db_enroll_student( db_database* db, char* tokens[] );
+int db_enroll_student( db_database* db, char* student_id, char* course_id );
 
 /**
  * Withdraw an enrolled student from a course.
  */
-int db_withdraw_student( db_database* db, char* tokens[] );
+int db_withdraw_student( db_database* db, char* student_id, char* course_id );
 
 /**
  * Dump the database contents to output.
