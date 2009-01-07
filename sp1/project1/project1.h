@@ -18,4 +18,3 @@
  * Global values
  */
 int verbose;
-char* commands[6];

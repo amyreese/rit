@@ -24,14 +24,6 @@
 #include "input.h"
 
 int verbose = 0;
-char* commands[] = {
-	"student",
-	"open",
-	"cancel",
-	"enroll",
-	"withdraw",
-	NULL
-};
 
 // Pointer to the database to be used by cleanun_db()
 db_database* database = NULL;
@@ -75,54 +67,31 @@ int main( int argc, char** argv ) {
 	char input[ LINE_SIZE ];   // input buffer
 	char* tokens[ ARGS_SIZE ]; // array of pointers into input buffer
 	int count;                 // count of input tokens
-	int command;               // the command number
-	int error;                 // error code
+	char* command;             // the command string
 	while ( ( count = tokenize_input( input, tokens ) ) >= 0 ) {
 
-		// Check against a set of valid commands
-		command = -1;
-		for ( int i = 0; commands[i] != NULL; i++ ) {
-			if ( strcmp( commands[i], tokens[0] ) == 0 ) {
-				command = i;
-			}
-		}
-
-#if DEBUG
-		printf( "Command number: %d\n", command );
-#endif
-
 		// Dispatch processing based on the inputted command
-		switch ( command ) {
-			case 0: // student
-				error = db_new_student( db, tokens[1], tokens + 2 );
-				break;
+		command = tokens[0];
 
-			case 1: // open
-				error = db_new_course( db, tokens[1], atoi( tokens[2] ) );
-				break;
+		if ( strcmp( "student", command ) == 0 ) {
+			db_new_student( db, tokens[1], tokens + 2 );
 
-			case 2: // cancel
-				error = db_cancel_course( db, tokens[1] );
-				break;
+		} else if ( strcmp( "open", command ) == 0 ) {
+			db_new_course( db, tokens[1], atoi( tokens[2] ) );
 
-			case 3: // enroll
-				error = db_enroll_student( db, tokens[1], tokens[2] );
-				break;
+		} else if ( strcmp( "cancel", command ) == 0 ) {
+			db_cancel_course( db, tokens[1] );
 
-			case 4: // withdraw
-				error = db_withdraw_student( db, tokens[1], tokens[2] );
-				break;
+		} else if ( strcmp( "enroll", command ) == 0 ) {
+			db_enroll_student( db, tokens[1], tokens[2] );
 
-			default: // error?
-				break;
+		} else if ( strcmp( "withdraw", command ) == 0 ) {
+			db_withdraw_student( db, tokens[1], tokens[2] );
+
 		}
 	}
 
 	// Done processing input
-#if DEBUG
-	printf( "Goodbye!\n" );
-#endif
-
 	db_dump( db );
 	db_destroy( db );
 	database = NULL;
