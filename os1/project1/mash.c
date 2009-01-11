@@ -26,7 +26,7 @@
  * @author John Reese
  */
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define LINE_SIZE 80 // 80 bytes should be enough for anybody
 #define ARGS_SIZE LINE_SIZE/2 + 1
@@ -90,13 +90,13 @@ int parse_input( char* input, char *args[] ) {
 	// Nullify next argument
 	args[count] = NULL;
 
-	if ( DEBUG ) {
-		printf( "\n" );
-		for ( i = 0; i < count; i++ ) {
-			printf( "%d: '%s'\n", i, args[i] );
-		}
-		printf( "Total: %d\n", count );
+#if DEBUG
+	printf( "\n" );
+	for ( i = 0; i < count; i++ ) {
+		printf( "%d: '%s'\n", i, args[i] );
 	}
+	printf( "Total: %d\n", count );
+#endif
 
 	return count;
 }
@@ -123,7 +123,9 @@ int main( void ) {
 		// Fork to execute command
 		pid = fork();
 
-		if ( DEBUG ) { printf( "Fork pid: %d\n", pid ); }
+#if DEBUG
+		printf( "Fork pid: %d\n", pid );
+#endif
 
 		// Child
 		if ( pid == 0 ) {
