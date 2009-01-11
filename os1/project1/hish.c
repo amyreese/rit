@@ -20,8 +20,8 @@
 #include <wait.h>
 
 /**
- * mAsh - my Awesome shell
- * Very basic pass-through shell.
+ * Hish - History shell
+ * Very basic pass-through shell with history support.
  *
  * @author John Reese
  */
@@ -33,6 +33,9 @@
 
 char* error_string = "Error!\n";
 int error_string_len = 7;
+
+char shell_history[10][LINE_SIZE];
+int shell_history_count = 0;
 
 /**
  * "Safe" write: call write() as needed to make sure all bytes are written.
@@ -101,9 +104,21 @@ int parse_input( char* input, char *args[] ) {
 	return count;
 }
 
+char* history_entry( int index ) {
+	if ( index < 0 ) {
+		index = shell_history_count % 10;
+	} else if ( index + 10 < shell_history_count ) {
+		return NULL;
+	} else {
+		index %= 10;
+	}
+
+	return shell_history[index];
+}
+
 int main( void ) {
-	char input[LINE_SIZE]; // input buffer
-	char *args[ARGS_SIZE]; // array of pointers into input buffer
+	char* input;
+	char* args[ARGS_SIZE]; // array of pointers into input buffer
 
 	int count; // number of arguments
 	int pid;   // process ID from fork()
@@ -112,7 +127,10 @@ int main( void ) {
 	// parse and execute input until EOF
 	while(1) {
 		swrite( STDOUT_FILENO, ">> ", 3 );
+
+		input = history_entry( -1 );
 		count = parse_input( input, args );
+		shell_history_count++;
 
 		// EOF from user, quit shell
 		if ( count < 0 ) {
