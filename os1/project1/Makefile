@@ -1,7 +1,7 @@
 cpp=gcc
 cflags=-Wall
-output=mash
-sources=mash.c
+output=hish
+sources=hish.c
 
 $(output):
 	$(cpp) $(cflags) $(sources) -o $(output)
