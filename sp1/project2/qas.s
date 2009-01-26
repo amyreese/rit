@@ -144,7 +144,7 @@ main_exit:
 // compile the symbol table of all labels and their effective address
 //
 pass1:
-	enter	$4, $0
+	enter	$0, $0
 	pushl	%ebx
 	pushl	%edi
 	pushl	%esi
@@ -244,16 +244,6 @@ pass1_leave:
 	ret
 
 //
-// second pass processing
-//
-pass2:
-	enter	$0, $0
-
-pass2_leave:
-	leave
-	ret
-
-//
 // Return the word-count for the given instruction line
 //
 // @param string instruction
@@ -316,6 +306,440 @@ inst_wc_leave:
 	popl	%ebx
 	leave
 	ret
+
+//
+// second pass processing
+//
+pass2:
+	enter	$0, $0
+	pushl	%ebx
+	pushl	%edi
+	pushl	%esi
+
+	movl	$16, %esi		// instruction address
+	movl	$0, %ebx		// word count
+
+pass2_nextline:
+	call	clear_line_buffer
+
+	addl	%ebx, %esi
+	movl	$0, %ebx
+
+	pushl	$line_buffer		// get the next input line
+	pushl	file
+	call	getline
+	addl	$8, %esp
+
+	cmp	$-1, %eax		// check for EOF
+	je	pass1_print
+
+	pushl	$1			// check for comment
+	pushl	$line_buffer
+	pushl	$comment
+	call	ncompare
+	addl	$12, %esp
+
+	cmp	$0, %eax
+	jne	pass2_parse_line
+
+	pushl	$25			// print the comment and then loop
+	call	print_spaces
+	pushl	$line_buffer
+	call	printzn
+	addl	$8, %esp
+
+	jmp	pass2_nextline
+
+pass2_parse_line:
+	pushl	%esi			// call the instruction parser
+	pushl	$line_buffer
+	pushl	$0
+	pushl	$0
+	pushl	$0
+	call	inst_word_parse
+	movl	%esp, %ebx
+
+	pushl	%esi
+	call	printi
+	pushl	$3
+	call	print_spaces
+	pushl	4(%ebx)
+	call	printi
+	addl	$8, %esp
+
+	cmp	$1, %eax		// check for single word instructions
+	je	pass2_parse_one
+
+	cmp	$2, %eax		// check for two word instructions
+	je	pass2_parse_two
+
+pass2_parse_three:			// fall through to three word instructions
+	pushl	$1			// print two extension words and the spacing
+	call	print_spaces
+	pushl	8(%ebx)
+	call	printi
+	pushl	$1
+	call	print_spaces
+	pushl	12(%ebx)
+	call	printi
+	pushl	$4
+	call	print_spaces
+	addl	$20, %esp
+
+	movl	$3, %ebx
+	jmp	pass2_parse_done
+
+pass2_parse_two:
+	pushl	$1			// print one extension word and the spacing
+	call	print_spaces
+	pushl	8(%ebx)
+	call	printi
+	pushl	$9
+	call	print_spaces
+	addl	$12, %esp
+
+	movl	$2, %ebx		// set the word-count to two
+	jmp	pass2_parse_done
+
+pass2_parse_one:
+	movl	$1, %ebx
+	jmp	pass2_parse_done
+
+pass2_parse_done:
+	pushl	$line_buffer		// print the input line
+	call	printzn
+	addl	$24, %esp		// reset the stack and loop
+	jmp	pass2_nextline
+
+pass2_leave:
+	popl	%esi
+	popl	%edi
+	popl	%ebx
+	leave
+	ret
+//
+// Return the word-count for the given instruction line
+//
+// @param int instruction word
+// @param int first extension word
+// @param int second extension word
+// @param string instruction
+// @param int instruction address
+// @return int instruction word count
+//
+inst_word_parse:
+	enter	$0, $0
+	pushl	%ebx
+	pushl	%edi
+	pushl	%esi
+
+	// 8  instruction word
+	// 12 first extension word
+	// 16 second extension word
+	// 20 instruction string
+	// 24 address
+
+	movl	20(%ebp), %ebx		// instruction string
+	addl	$5, %ebx		// ignore the first five characters
+
+	movl	$0, 8(%ebp)		// clear the return values
+	movl	$0, 12(%ebp)
+	movl	$0, 16(%ebp)
+	movl	$0, %esi
+
+inst_wpop_halt:
+	pushl	$4			// compare to halt
+	pushl	$inst_halt
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wpop_move		// not halt
+
+	movl	$1, %eax		// halt is one word, all zeroes
+	jmp	inst_wp_leave
+
+inst_wpop_move:
+	pushl	$4			// compare to move
+	pushl	$inst_move
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not move
+
+	movl	$0x1000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_two:				// two operands
+	pushl	%ebx			// grab the source operand
+	pushl	$0
+	call	inst_source_op
+	movl	4(%esp), %edx
+
+	orl	%eax, %edi		// combine the operand with the opcode
+
+	cmp	$0, %edx		// check for an extension word
+	jne	inst_wpop_two_dest
+
+	incl	%esi
+	movl	%edx, 12(%ebp)
+
+inst_wpop_two_dest:
+	pushl	%ebx			// grab the destination operand
+	pushl	$0
+	call	inst_dest_op
+	movl	4(%esp), %edx
+
+	orl	%eax, %edi		// combine the operand with the opcode
+
+	cmp	$0, %edx		// check for an extension word
+	jne	inst_wpop_two_done
+
+	incl	%esi			// check if it's the second extension word
+	cmp	$1, %esi
+	ja	inst_wpop_two_dest2
+
+inst_wpop_two_dest1:			// first extension word
+	movl	%edx, 12(%ebp)
+	jmp	inst_wpop_two_done
+
+inst_wpop_two_dest2:			// second extension word
+	movl	%edx, 16(%ebp)
+	jmp	inst_wpop_two_done
+
+inst_wpop_two_done:			// done parsing two ops
+	movl	%edi, 8(%ebp)
+	movl	%esi, %eax
+
+	jmp	inst_wp_leave
+
+inst_wp_leave:
+	popl	%esi
+	popl	%edi
+	popl	%ebx
+	leave
+	ret
+
+//
+// Parse the source operand bits for an instruction word
+//
+// @param int extension word
+// @ebx string instruction string, at the operation label
+// @return int operand bits
+//
+inst_source_op:
+	enter	$0, $0
+	pushl	%ebx
+
+	movl	$0, 8(%ebp)
+	addl	$5, %ebx
+
+inst_so_indirect:
+	movb	(%ebx), %al			// check for @
+	cmp	$64, %al
+	jne	inst_so_register		// otherwise jump
+
+	movb	1(%ebx), %al			// check for %
+	cmp	$37, %al
+	jne	inst_so_indirect_location
+	
+inst_so_indirect_register:			// we have a @% indirect register ref
+	movl	$0, %eax
+	movb	2(%ebx), %al
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	orl	$0x0C00, %eax
+
+	jmp	inst_so_leave
+
+inst_so_indirect_location:
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	shl	%eax				// just a regular indirect location ref
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	orl	$0x800, %eax
+
+	jmp	inst_so_leave
+
+inst_so_register:
+	movb	(%ebx), %al			// check for %
+	cmp	$37, %al
+	jne	inst_so_immediate		// otherwise jum
+
+inst_so_register_direct:
+	movl	$0, %eax			// direct register ref
+	movb	2(%ebx), %al
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	orl	$0x0400, %eax
+
+	jmp	inst_so_leave
+
+inst_so_immediate:
+	movb	(%ebx), %al			// check for #
+	cmp	$35, %al
+	jne	inst_so_location
+
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	cmp	$7, %eax			// check for > 7
+	ja	inst_so_large_immediate
+
+inst_so_small_immediate:
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	orl	$0x600, %eax			// small immediate value
+
+	jmp	inst_so_leave
+	
+inst_so_large_immediate:
+	movl	%eax, 8(%ebp)			// large immediate value in extension word
+	movl	$0x0E00, %eax
+
+	jmp	inst_so_leave
+	
+inst_so_location:
+	movl	%ebx, %edx			// get the location value
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	shl	%eax				// direct location
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+	shl	%eax
+
+	jmp	inst_so_leave
+
+inst_so_leave:
+	popl	%ebx
+	leave
+	ret
+
+//
+// Parse the destination operand bits for an instruction word
+//
+// @param int extension word
+// @ebx string instruction string, at the operation label
+// @return int operand bits
+//
+inst_dest_op:
+	enter	$0, $0
+	pushl	%ebx
+
+	movl	$0, 8(%ebp)
+	addl	$5, %ebx
+
+inst_do_indirect:
+	movb	(%ebx), %al			// check for @
+	cmp	$64, %al
+	jne	inst_do_register		// otherwise jump
+
+	movb	1(%ebx), %al			// check for %
+	cmp	$37, %al
+	jne	inst_do_indirect_location
+	
+inst_do_indirect_register:			// we have a @% indirect register ref
+	movl	$0, %eax
+	movb	2(%ebx), %al
+	orl	$0x0030, %eax
+
+	jmp	inst_do_leave
+
+inst_do_indirect_location:
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	orl	$0x0020, %eax	// just a regular indirect location ref
+
+	jmp	inst_do_leave
+
+inst_do_register:
+	movb	(%ebx), %al			// check for %
+	cmp	$37, %al
+	jne	inst_do_immediate		// otherwise jum
+
+inst_do_register_direct:
+	movl	$0, %eax			// direct register ref
+	movb	2(%ebx), %al
+	orl	$0x0010, %eax
+
+	jmp	inst_do_leave
+
+inst_do_immediate:
+	movb	(%ebx), %al			// check for #
+	cmp	$35, %al
+	jne	inst_do_location
+
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	cmp	$7, %eax			// check for > 7
+	ja	inst_do_large_immediate
+
+inst_do_small_immediate:
+	orl	$0x0018, %eax	// small immediate value
+
+	jmp	inst_do_leave
+	
+inst_do_large_immediate:
+	movl	%eax, 8(%ebp)			// large immediate value in extension word
+	movl	$0x0038, %eax
+
+	jmp	inst_do_leave
+	
+inst_do_location:
+	movl	%ebx, %edx			// get the location value
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	// no-op, because operand in %eax is all we need
+
+	jmp	inst_do_leave
+
+inst_do_leave:
+	popl	%ebx
+	leave
+	ret
+
 //
 // Clear the line_buffer string
 //
