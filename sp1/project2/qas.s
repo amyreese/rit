@@ -359,6 +359,10 @@ pass2_parse_line:
 	call	inst_word_parse
 	movl	%esp, %ebx
 
+	pushl	%eax
+	call printin
+	add	$4, %esp
+
 	pushl	%esi
 	call	printi
 	pushl	$3
@@ -739,7 +743,7 @@ inst_wpop_prt:
 	movl	$0xF4C0, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
 
-//// Operand Parsing
+//// Two Operand Parsing
 
 inst_wpop_two:				// two operands
 	pushl	%ebx			// grab the source operand
@@ -784,9 +788,21 @@ inst_wpop_two_done:			// done parsing two ops
 
 	jmp	inst_wp_leave
 
+//// Branch Label Parsing
+
 inst_wpop_branch:			// handle branch extension word
+	movl	$2, %eax
+
+	jmp	inst_wp_leave
+
+//// One Operand Parsing
 
 inst_wpop_one:				// handle single operand instructions
+	movl	$1, %eax
+
+	jmp	inst_wp_leave
+
+//// Done Parsing
 
 inst_wp_leave:
 	popl	%esi
