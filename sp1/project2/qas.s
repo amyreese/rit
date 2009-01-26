@@ -97,7 +97,7 @@ main_open_file:
 	pushl	$0		// O_RDONLY
 	pushl	%eax		// argv[1]
 	pushl	$0
-	movl	$0x5, %eax	// SYS_open
+	movl	$5, %eax	// SYS_open
 	lcall	$0x27, $0
 	addl	$12, %esp
 
@@ -107,7 +107,23 @@ main_open_file:
 	movl	%eax, file	// new file descriptor
 
 	call	pass1
+
+	pushl	$0		// SEEK_SET
+	pushl	$0		// offset
+	pushl	file		// file descriptor
+	pushl	$0
+	movl	$19, %eax	// SYS_lseek
+	lcall	$0x27, $0
+	addl	$16, %esp
+
 	call	pass2
+
+	pushl	file		// file descriptor
+	pushl	$0
+	movl	$6, %eax	// SYS_close
+	lcall	$0x27, $0
+	addl	$8, %esp
+
 	jmp	main_exit
 
 main_error:
@@ -241,6 +257,7 @@ pass2_leave:
 // Return the word-count for the given instruction line
 //
 // @param string instruction
+// @return int instruction word count
 //
 inst_word_count:
 	enter	$0, $0
