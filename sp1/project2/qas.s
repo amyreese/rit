@@ -363,9 +363,9 @@ pass2_parse_line:
 	call	printi
 	pushl	$3
 	call	print_spaces
-	pushl	4(%ebx)
+	pushl	(%ebx)
 	call	printi
-	addl	$8, %esp
+	addl	$12, %esp
 
 	cmp	$1, %eax		// check for single word instructions
 	je	pass2_parse_one
@@ -376,11 +376,11 @@ pass2_parse_line:
 pass2_parse_three:			// fall through to three word instructions
 	pushl	$1			// print two extension words and the spacing
 	call	print_spaces
-	pushl	8(%ebx)
+	pushl	4(%ebx)
 	call	printi
 	pushl	$1
 	call	print_spaces
-	pushl	12(%ebx)
+	pushl	8(%ebx)
 	call	printi
 	pushl	$4
 	call	print_spaces
@@ -460,6 +460,8 @@ inst_wpop_halt:
 	movl	$1, %eax		// halt is one word, all zeroes
 	jmp	inst_wp_leave
 
+//// Two operand dispatch
+
 inst_wpop_move:
 	pushl	$4			// compare to move
 	pushl	$inst_move
@@ -472,6 +474,272 @@ inst_wpop_move:
 
 	movl	$0x1000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_add:
+	pushl	$4			// compare to add
+	pushl	$inst_add
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not add
+
+	movl	$0x2000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_sub:
+	pushl	$4			// compare to sub
+	pushl	$inst_sub
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not sub
+
+	movl	$0x3000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_comp:
+	pushl	$4			// compare to comp
+	pushl	$inst_comp
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not comp
+
+	movl	$0x4000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_mult:
+	pushl	$4			// compare to mult
+	pushl	$inst_mult
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not mult
+
+	movl	$0x5000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_divd:
+	pushl	$4			// compare to divd
+	pushl	$inst_divd
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not divd
+
+	movl	$0x6000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+inst_wpop_rem:
+	pushl	$4			// compare to rem
+	pushl	$inst_rem
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not rem
+
+	movl	$0x7000, %edi		// move opcode
+	jmp	inst_wpop_two		// parse two operands
+
+/// Branch operand dispatch
+
+inst_wpop_breq:
+	pushl	$4			// compare to breq
+	pushl	$inst_breq
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not breq
+
+	movl	$0xF038, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+inst_wpop_brne:
+	pushl	$4			// compare to brne
+	pushl	$inst_brne
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not brne
+
+	movl	$0xF078, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+inst_wpop_brgt:
+	pushl	$4			// compare to brgt
+	pushl	$inst_brgt
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not brgt
+
+	movl	$0xF058, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+inst_wpop_brge:
+	pushl	$4			// compare to brge
+	pushl	$inst_brge
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not brge
+
+	movl	$0xF0F8, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+inst_wpop_brlt:
+	pushl	$4			// compare to brlt
+	pushl	$inst_brlt
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not brlt
+
+	movl	$0xF198, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+inst_wpop_brle:
+	pushl	$4			// compare to brle
+	pushl	$inst_brle
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not brle
+
+	movl	$0xF178, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+inst_wpop_br:
+	pushl	$4			// compare to br
+	pushl	$inst_br
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not br
+
+	movl	$0xF1F8, %edi		// move opcode
+	jmp	inst_wpop_branch	// parse destination symbol
+
+//// Single operand dispatch
+
+inst_wpop_incr:
+	pushl	$4			// compare to incr
+	pushl	$inst_incr
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not incr
+
+	movl	$0xF400, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+inst_wpop_decr:
+	pushl	$4			// compare to decr
+	pushl	$inst_decr
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not decr
+
+	movl	$0xF440, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+inst_wpop_rot:
+	pushl	$4			// compare to rot
+	pushl	$inst_rot
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not rot
+
+	movl	$0xF500, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+inst_wpop_shl:
+	pushl	$4			// compare to shl
+	pushl	$inst_shl
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not shl
+
+	movl	$0xF600, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+inst_wpop_shr:
+	pushl	$4			// compare to shr
+	pushl	$inst_shr
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not shr
+
+	movl	$0xF700, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+inst_wpop_read:
+	pushl	$4			// compare to read
+	pushl	$inst_read
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not read
+
+	movl	$0xF480, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+inst_wpop_prt:
+	pushl	$4			// compare to prt
+	pushl	$inst_prt
+	pushl	%ebx
+	call	ncompare
+	add	$12, %esp
+
+	cmp	$0, %eax
+	jne	inst_wp_leave		// not prt
+
+	movl	$0xF4C0, %edi		// move opcode
+	jmp	inst_wpop_one		// parse destination operand
+
+//// Operand Parsing
 
 inst_wpop_two:				// two operands
 	pushl	%ebx			// grab the source operand
@@ -515,6 +783,10 @@ inst_wpop_two_done:			// done parsing two ops
 	movl	%esi, %eax
 
 	jmp	inst_wp_leave
+
+inst_wpop_branch:			// handle branch extension word
+
+inst_wpop_one:				// handle single operand instructions
 
 inst_wp_leave:
 	popl	%esi
