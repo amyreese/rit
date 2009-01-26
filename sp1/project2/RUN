@@ -1,0 +1,10 @@
+#!/bin/sh
+
+n=1
+while [ -f test$n.q16 ]
+do
+	echo "./qas test$n.q16 < /dev/null > out.$n"
+	./qas test$n.q16 < /dev/null > out.$n
+	diff stdout.$n out.$n
+	n=`expr $n + 1`
+done

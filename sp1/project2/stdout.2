@@ -1,0 +1,61 @@
+inpt   0012
+x      0025
+y      0026
+z      0028
+w      002a
+
+
+                         +
+                         + a sample q16 program that reads in values for
+                         + variables a, b, c, d, and e, echo prints these
+                         + values, and then implements the multiple
+                         + assignment statement
+                         +
+                         +       f = g = h = -(a*b) + (c/d) - (a%e)
+                         +
+                         +
+                         + input initial values
+                         +
+0010   1610                   move #0,%0     starting location
+0011   1751                   move #5,%1     input count
+                         +
+0012   f4b0              inpt read @%0       read next number
+0013   f451                   decr %1        include this in count
+0014   4458                   comp %1,#0     are we done
+0015   f0b8 fffd              brgt inpt      yes, so loop
+                         +
+                         + compute expression
+                         +
+0017   1012                   move 0,%2
+0018   5052                   mult 1,%2
+0019   1613                   move #0,%3
+001a   34d2                   sub  %3,%2     %2 now contains -(a*b)
+                         +
+001b   1094                   move 2,%4
+001c   60d4                   divd 3,%4      %4 now contains (c/d)
+                         +
+001d   2512                   add  %4,%2     %2 now contains -(a*b) + (c/d)
+                         +
+001e   1014                   move 0,%4
+001f   7154                   rem  5,%4      %4 now contains (a%e)
+                         +
+0020   3512                   sub  %4,%2     %2 now contains full expression value
+                         +
+                         + now do assignments
+                         +
+0021   1485                   move %2,5      assign to h
+0022   1146                   move 5,6       assign to g
+0023   114f                   move 5,15      assign to f
+                         +
+                         + print final result
+                         +
+0024   f4d2                   prt  %2
+                         +
+                         + a few miscellaneous extras
+                         +
+0025   4619              x    comp #0,#1
+0026   47f8 000c         y    comp #7,#12
+0028   4e1f 000c         z    comp #12,#7
+002a   4e38 ffff 0010    w    comp #-1,#16
+                         +
+002d   0000                   halt

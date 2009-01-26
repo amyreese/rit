@@ -1,0 +1,38 @@
++
++ q16 test program - all instructions
++
+frst halt
++
+     move #1,%7
+     add  #1,%7
+     sub  #1,%7
+     comp #1,%7
+     mult #1,%7
+     divd #1,%7
+     rem  #1,%7
++
+     breq frst
+     brne frst
+     brgt frst
+     brge frst
+     brlt frst
+     brle frst
+     br   frst
++
+     breq last
+     brne last
+     brgt last
+     brge last
+     brlt last
+     brle last
+     br   last
++
+     incr %7
+     decr %7
++
+     rot  %7
+     shl  %7
+     shr  %7
++
+     read %7
+last prt  %7

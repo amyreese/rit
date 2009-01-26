@@ -1,0 +1,54 @@
++
++ a sample q16 program that reads in values for
++ variables a, b, c, d, and e, echo prints these
++ values, and then implements the multiple
++ assignment statement
++
++       f = g = h = -(a*b) + (c/d) - (a%e)
++
++
++ input initial values
++
+     move #0,%0     starting location
+     move #5,%1     input count
++
+inpt read @%0       read next number
+     decr %1        include this in count
+     comp %1,#0     are we done
+     brgt inpt      yes, so loop
++
++ compute expression
++
+     move 0,%2
+     mult 1,%2
+     move #0,%3
+     sub  %3,%2     %2 now contains -(a*b)
++
+     move 2,%4
+     divd 3,%4      %4 now contains (c/d)
++
+     add  %4,%2     %2 now contains -(a*b) + (c/d)
++
+     move 0,%4
+     rem  5,%4      %4 now contains (a%e)
++
+     sub  %4,%2     %2 now contains full expression value
++
++ now do assignments
++
+     move %2,5      assign to h
+     move 5,6       assign to g
+     move 5,15      assign to f
++
++ print final result
++
+     prt  %2
++
++ a few miscellaneous extras
++
+x    comp #0,#1
+y    comp #7,#12
+z    comp #12,#7
+w    comp #-1,#16
++
+     halt

@@ -1,0 +1,42 @@
+frst   0010
+last   003a
+
+
+                         +
+                         + q16 test program - all instructions
+                         +
+0010   0000              frst halt
+                         +
+0011   1657                   move #1,%7
+0012   2657                   add  #1,%7
+0013   3657                   sub  #1,%7
+0014   4657                   comp #1,%7
+0015   5657                   mult #1,%7
+0016   6657                   divd #1,%7
+0017   7657                   rem  #1,%7
+                         +
+0018   f038 fff8              breq frst
+001a   f078 fff6              brne frst
+001c   f0b8 fff4              brgt frst
+001e   f0f8 fff2              brge frst
+0020   f138 fff0              brlt frst
+0022   f178 ffee              brle frst
+0024   f1f8 ffec              br   frst
+                         +
+0026   f038 0014              breq last
+0028   f078 0012              brne last
+002a   f0b8 0010              brgt last
+002c   f0f8 000e              brge last
+002e   f138 000c              brlt last
+0030   f178 000a              brle last
+0032   f1f8 0008              br   last
+                         +
+0034   f417                   incr %7
+0035   f457                   decr %7
+                         +
+0036   f517                   rot  %7
+0037   f617                   shl  %7
+0038   f717                   shr  %7
+                         +
+0039   f497                   read %7
+003a   f4d7              last prt  %7
