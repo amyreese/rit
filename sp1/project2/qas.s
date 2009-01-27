@@ -101,7 +101,7 @@ main_open_file:
 	lcall	$0x27, $0
 	addl	$12, %esp
 
-	cmp	$2, %eax	// error check
+	cmpl	$2, %eax	// error check
 	jle	main_error
 
 	movl	%eax, file	// new file descriptor
@@ -132,10 +132,6 @@ main_error:
 	addl	$4, %esp
 
 main_exit:
-	pushl	$bye
-	call	printz
-	addl	$4, %esp
-
 	leave
 	ret
 
@@ -165,7 +161,7 @@ pass1_nextline:
 	call	getline
 	addl	$8, %esp
 
-	cmp	$-1, %eax		// check for EOF
+	cmpl	$-1, %eax		// check for EOF
 	je	pass1_print
 
 	pushl	$1			// check for comment
@@ -174,7 +170,7 @@ pass1_nextline:
 	call	ncompare
 	addl	$12, %esp
 
-	cmp	$0, %eax		// ignore comments
+	cmpl	$0, %eax		// ignore comments
 	je	pass1_nextline
 
 	pushl	$line_buffer		// get the instruction's word-count
@@ -189,7 +185,7 @@ pass1_check_label:
 	call	ncompare
 	addl	$12, %esp
 
-	cmp	$0, %eax		// ignore empty labels
+	cmpl	$0, %eax		// ignore empty labels
 	je	pass1_nextline
 
 	incl	symbol_count
@@ -265,7 +261,7 @@ inst_wc_branches:			// all branches require a second word
 	call	ncompare
 	addl	$12, %esp
 
-	cmp	$0, %eax		// not a branch statement
+	cmpl	$0, %eax		// not a branch statement
 	jne	inst_wc_operands
 
 	movl	$2, %eax		// is a branch, return two
@@ -291,7 +287,7 @@ inst_wc_next_operand:
 	call	evaluate
 	addl	$4, %esp
 
-	cmp	$7, %eax		// is it bigger than 7?
+	cmpl	$7, %eax		// is it bigger than 7?
 	jbe	inst_wc_next_operand	
 
 	incl	%edi			// increment byte-count
@@ -330,8 +326,8 @@ pass2_nextline:
 	call	getline
 	addl	$8, %esp
 
-	cmp	$-1, %eax		// check for EOF
-	je	pass1_print
+	cmpl	$-1, %eax		// check for EOF
+	je	pass2_leave
 
 	pushl	$1			// check for comment
 	pushl	$line_buffer
@@ -339,7 +335,7 @@ pass2_nextline:
 	call	ncompare
 	addl	$12, %esp
 
-	cmp	$0, %eax
+	cmpl	$0, %eax
 	jne	pass2_parse_line
 
 	pushl	$25			// print the comment and then loop
@@ -359,10 +355,6 @@ pass2_parse_line:
 	call	inst_word_parse
 	movl	%esp, %ebx
 
-	pushl	%eax
-	call printin
-	add	$4, %esp
-
 	pushl	%esi
 	call	printi
 	pushl	$3
@@ -371,10 +363,10 @@ pass2_parse_line:
 	call	printi
 	addl	$12, %esp
 
-	cmp	$1, %eax		// check for single word instructions
+	cmpl	$1, %eax		// check for single word instructions
 	je	pass2_parse_one
 
-	cmp	$2, %eax		// check for two word instructions
+	cmpl	$2, %eax		// check for two word instructions
 	je	pass2_parse_two
 
 pass2_parse_three:			// fall through to three word instructions
@@ -396,7 +388,7 @@ pass2_parse_three:			// fall through to three word instructions
 pass2_parse_two:
 	pushl	$1			// print one extension word and the spacing
 	call	print_spaces
-	pushl	8(%ebx)
+	pushl	4(%ebx)
 	call	printi
 	pushl	$9
 	call	print_spaces
@@ -406,6 +398,10 @@ pass2_parse_two:
 	jmp	pass2_parse_done
 
 pass2_parse_one:
+	pushl	$14
+	call	print_spaces
+	add	$4, %esp
+
 	movl	$1, %ebx
 	jmp	pass2_parse_done
 
@@ -449,7 +445,7 @@ inst_word_parse:
 	movl	$0, 8(%ebp)		// clear the return values
 	movl	$0, 12(%ebp)
 	movl	$0, 16(%ebp)
-	movl	$0, %esi
+	movl	$1, %esi		// all ops use at least one word
 
 inst_wpop_halt:
 	pushl	$4			// compare to halt
@@ -458,7 +454,7 @@ inst_wpop_halt:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
+	cmpl	$0, %eax
 	jne	inst_wpop_move		// not halt
 
 	movl	$1, %eax		// halt is one word, all zeroes
@@ -473,8 +469,8 @@ inst_wpop_move:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not move
+	cmpl	$0, %eax
+	jne	inst_wpop_add		// not move
 
 	movl	$0x1000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -486,8 +482,8 @@ inst_wpop_add:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not add
+	cmpl	$0, %eax
+	jne	inst_wpop_sub		// not add
 
 	movl	$0x2000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -499,8 +495,8 @@ inst_wpop_sub:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not sub
+	cmpl	$0, %eax
+	jne	inst_wpop_comp		// not sub
 
 	movl	$0x3000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -512,8 +508,8 @@ inst_wpop_comp:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not comp
+	cmpl	$0, %eax
+	jne	inst_wpop_mult		// not comp
 
 	movl	$0x4000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -525,8 +521,8 @@ inst_wpop_mult:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not mult
+	cmpl	$0, %eax
+	jne	inst_wpop_divd		// not mult
 
 	movl	$0x5000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -538,8 +534,8 @@ inst_wpop_divd:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not divd
+	cmpl	$0, %eax
+	jne	inst_wpop_rem		// not divd
 
 	movl	$0x6000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -551,8 +547,8 @@ inst_wpop_rem:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not rem
+	cmpl	$0, %eax
+	jne	inst_wpop_breq		// not rem
 
 	movl	$0x7000, %edi		// move opcode
 	jmp	inst_wpop_two		// parse two operands
@@ -566,8 +562,8 @@ inst_wpop_breq:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not breq
+	cmpl	$0, %eax
+	jne	inst_wpop_brne		// not breq
 
 	movl	$0xF038, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
@@ -579,8 +575,8 @@ inst_wpop_brne:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not brne
+	cmpl	$0, %eax
+	jne	inst_wpop_brgt		// not brne
 
 	movl	$0xF078, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
@@ -592,10 +588,10 @@ inst_wpop_brgt:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not brgt
+	cmpl	$0, %eax
+	jne	inst_wpop_brge		// not brgt
 
-	movl	$0xF058, %edi		// move opcode
+	movl	$0xF0B8, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
 
 inst_wpop_brge:
@@ -605,8 +601,8 @@ inst_wpop_brge:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not brge
+	cmpl	$0, %eax
+	jne	inst_wpop_brlt		// not brge
 
 	movl	$0xF0F8, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
@@ -618,10 +614,10 @@ inst_wpop_brlt:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not brlt
+	cmpl	$0, %eax
+	jne	inst_wpop_brle		// not brlt
 
-	movl	$0xF198, %edi		// move opcode
+	movl	$0xF138, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
 
 inst_wpop_brle:
@@ -631,8 +627,8 @@ inst_wpop_brle:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not brle
+	cmpl	$0, %eax
+	jne	inst_wpop_br		// not brle
 
 	movl	$0xF178, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
@@ -644,8 +640,8 @@ inst_wpop_br:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not br
+	cmpl	$0, %eax
+	jne	inst_wpop_incr		// not br
 
 	movl	$0xF1F8, %edi		// move opcode
 	jmp	inst_wpop_branch	// parse destination symbol
@@ -659,8 +655,8 @@ inst_wpop_incr:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not incr
+	cmpl	$0, %eax
+	jne	inst_wpop_decr		// not incr
 
 	movl	$0xF400, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
@@ -672,8 +668,8 @@ inst_wpop_decr:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not decr
+	cmpl	$0, %eax
+	jne	inst_wpop_rot		// not decr
 
 	movl	$0xF440, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
@@ -685,8 +681,8 @@ inst_wpop_rot:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not rot
+	cmpl	$0, %eax
+	jne	inst_wpop_shl		// not rot
 
 	movl	$0xF500, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
@@ -698,8 +694,8 @@ inst_wpop_shl:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not shl
+	cmpl	$0, %eax
+	jne	inst_wpop_shr		// not shl
 
 	movl	$0xF600, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
@@ -711,8 +707,8 @@ inst_wpop_shr:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not shr
+	cmpl	$0, %eax
+	jne	inst_wpop_read		// not shr
 
 	movl	$0xF700, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
@@ -724,8 +720,8 @@ inst_wpop_read:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
-	jne	inst_wp_leave		// not read
+	cmpl	$0, %eax
+	jne	inst_wpop_prt		// not read
 
 	movl	$0xF480, %edi		// move opcode
 	jmp	inst_wpop_one		// parse destination operand
@@ -737,7 +733,7 @@ inst_wpop_prt:
 	call	ncompare
 	add	$12, %esp
 
-	cmp	$0, %eax
+	cmpl	$0, %eax
 	jne	inst_wp_leave		// not prt
 
 	movl	$0xF4C0, %edi		// move opcode
@@ -749,29 +745,31 @@ inst_wpop_two:				// two operands
 	pushl	%ebx			// grab the source operand
 	pushl	$0
 	call	inst_source_op
-	movl	4(%esp), %edx
+	movl	(%esp), %edx
+	add	$8, %esp
 
 	orl	%eax, %edi		// combine the operand with the opcode
 
-	cmp	$0, %edx		// check for an extension word
-	jne	inst_wpop_two_dest
+	cmpl	$0, %edx		// check for an extension word
+	je	inst_wpop_two_dest
 
-	incl	%esi
+	incl	%esi			// increase the word-count and put the extension word on the return stack
 	movl	%edx, 12(%ebp)
 
 inst_wpop_two_dest:
 	pushl	%ebx			// grab the destination operand
 	pushl	$0
-	call	inst_dest_op
-	movl	4(%esp), %edx
+	call	inst_dest_op2
+	movl	(%esp), %edx
+	add	$8, %esp
 
 	orl	%eax, %edi		// combine the operand with the opcode
 
-	cmp	$0, %edx		// check for an extension word
-	jne	inst_wpop_two_done
+	cmpl	$0, %edx		// check for an extension word
+	je	inst_wpop_two_done
 
 	incl	%esi			// check if it's the second extension word
-	cmp	$1, %esi
+	cmpl	$2, %esi
 	ja	inst_wpop_two_dest2
 
 inst_wpop_two_dest1:			// first extension word
@@ -791,6 +789,13 @@ inst_wpop_two_done:			// done parsing two ops
 //// Branch Label Parsing
 
 inst_wpop_branch:			// handle branch extension word
+	pushl	24(%ebp)		// get extension word with relative branch address
+	pushl	%ebx
+	call	inst_branch_op
+	addl	$8, %esp
+
+	movl	%eax, 12(%ebp)		// all branch instructions are two words
+	movl	%edi, 8(%ebp)
 	movl	$2, %eax
 
 	jmp	inst_wp_leave
@@ -798,13 +803,72 @@ inst_wpop_branch:			// handle branch extension word
 //// One Operand Parsing
 
 inst_wpop_one:				// handle single operand instructions
-	movl	$1, %eax
+	pushl	%ebx			// grab the destination operand
+	pushl	$0
+	call	inst_dest_op
+	movl	(%esp), %edx
+	add	$8, %esp
+
+	orl	%eax, %edi		// combine the operand with the opcode
+
+	cmpl	$0, %edx		// check for an extension word
+	je	inst_wpop_one_done
+
+	incl	%esi			// increase the word-count and put the extension word on the return stack
+	movl	%edx, 12(%ebp)
+
+inst_wpop_one_done:
+	movl	%edi, 8(%ebp)
+	movl	%esi, %eax
 
 	jmp	inst_wp_leave
 
 //// Done Parsing
 
 inst_wp_leave:
+	popl	%esi
+	popl	%edi
+	popl	%ebx
+	leave
+	ret
+
+//
+// Parse the label operand for a branch instruction
+//
+// @param string instruction string
+// @param int instruction address
+// @return int branch operand
+//
+inst_branch_op:
+	enter	$0, $0
+	pushl	%ebx
+	pushl	%edi
+	pushl	%esi
+
+	movl	8(%ebp), %ebx		// instruction string
+	movl	12(%ebp), %esi		// instruction address
+	movl	$symbol_table, %edi
+
+	addl	$5, %ebx		// move to branch label
+
+inst_bo_search:
+	pushl	$4			// compare label to symbol table
+	pushl	%ebx
+	pushl	%edi
+	call	ncompare
+	addl	$12, %esp
+
+	cmpl	$0, %eax		// match?
+	je	inst_bo_found
+
+	addl	$8, %edi		// next symbol table entry
+	jmp	inst_bo_search
+
+inst_bo_found:
+	movl	4(%edi), %eax		// target address
+	subl	%esi, %eax		// subtract instruction address
+
+inst_bo_leave:
 	popl	%esi
 	popl	%edi
 	popl	%ebx
@@ -835,8 +899,12 @@ inst_so_indirect:
 	jne	inst_so_indirect_location
 	
 inst_so_indirect_register:			// we have a @% indirect register ref
-	movl	$0, %eax
-	movb	2(%ebx), %al
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
 	shl	%eax
 	shl	%eax
 	shl	%eax
@@ -871,8 +939,12 @@ inst_so_register:
 	jne	inst_so_immediate		// otherwise jum
 
 inst_so_register_direct:
-	movl	$0, %eax			// direct register ref
-	movb	2(%ebx), %al
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
 	shl	%eax
 	shl	%eax
 	shl	%eax
@@ -894,8 +966,11 @@ inst_so_immediate:
 	call	evaluate
 	add	$4, %esp
 
-	cmp	$7, %eax			// check for > 7
-	ja	inst_so_large_immediate
+	cmpl	$7, %eax			// check for > 7
+	jg	inst_so_large_immediate
+
+	cmpl	$0, %eax
+	jl	inst_so_large_immediate
 
 inst_so_small_immediate:
 	shl	%eax
@@ -942,11 +1017,30 @@ inst_so_leave:
 // @return int operand bits
 //
 inst_dest_op:
-	enter	$0, $0
+	enter	$0, $0				// entrance for instructions with only destination operands
 	pushl	%ebx
 
+	movl	$0, %eax
 	movl	$0, 8(%ebp)
 	addl	$5, %ebx
+
+	jmp	inst_do_ready			// go straight to op parsing
+
+inst_dest_op2:
+	enter	$0, $0				// entrance for instructions with source and destination operands
+	pushl	%ebx
+
+	movl	$0, %eax
+	movl	$0, 8(%ebp)
+	addl	$5, %ebx
+
+inst_do_find_comma:
+	movb	(%ebx), %al			// go through the string until we get past the comma
+	incl	%ebx
+	cmp	$44, %al
+	jne	inst_do_find_comma
+
+inst_do_ready:					// ready to start parsing
 
 inst_do_indirect:
 	movb	(%ebx), %al			// check for @
@@ -958,13 +1052,6 @@ inst_do_indirect:
 	jne	inst_do_indirect_location
 	
 inst_do_indirect_register:			// we have a @% indirect register ref
-	movl	$0, %eax
-	movb	2(%ebx), %al
-	orl	$0x0030, %eax
-
-	jmp	inst_do_leave
-
-inst_do_indirect_location:
 	movl	%ebx, %edx			// get the immediate value
 	incl	%edx
 	incl	%edx
@@ -972,7 +1059,18 @@ inst_do_indirect_location:
 	call	evaluate
 	add	$4, %esp
 
-	orl	$0x0020, %eax	// just a regular indirect location ref
+	orl	$0x0030, %eax
+
+	jmp	inst_do_leave
+
+inst_do_indirect_location:
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
+	orl	$0x0020, %eax			// just a regular indirect location ref
 
 	jmp	inst_do_leave
 
@@ -982,8 +1080,12 @@ inst_do_register:
 	jne	inst_do_immediate		// otherwise jum
 
 inst_do_register_direct:
-	movl	$0, %eax			// direct register ref
-	movb	2(%ebx), %al
+	movl	%ebx, %edx			// get the immediate value
+	incl	%edx
+	pushl	%edx
+	call	evaluate
+	add	$4, %esp
+
 	orl	$0x0010, %eax
 
 	jmp	inst_do_leave
@@ -999,11 +1101,14 @@ inst_do_immediate:
 	call	evaluate
 	add	$4, %esp
 
-	cmp	$7, %eax			// check for > 7
-	ja	inst_do_large_immediate
+	cmpl	$7, %eax			// check for > 7
+	jg	inst_do_large_immediate
+
+	cmpl	$0, %eax
+	jl	inst_do_large_immediate
 
 inst_do_small_immediate:
-	orl	$0x0018, %eax	// small immediate value
+	orl	$0x0018, %eax			// small immediate value
 
 	jmp	inst_do_leave
 	
@@ -1097,7 +1202,7 @@ strncpy:
 	movl	12(%ebp), %ebx	// destination string
 	movl	16(%ebp), %ecx	// count
 
-	cmp	$0, %ecx
+	cmpl	$0, %ecx
 	jle	strncpy_leave
 
 strncpy_loop:
@@ -1120,6 +1225,7 @@ strncpy_leave:
 //
 printi:
 	enter	$0, $0
+	pushal
 
 	movl	8(%ebp), %eax
 
@@ -1137,6 +1243,7 @@ printi:
 	addl	$16, %esp
 
 printi_leave:
+	popal
 	leave
 	ret
 
@@ -1147,6 +1254,7 @@ printi_leave:
 //
 printin:
 	enter	$0, $0
+	pushal
 
 	movl	8(%ebp), %eax
 
@@ -1168,6 +1276,7 @@ printin:
 	addl	$24, %esp
 
 printin_leave:
+	popal
 	leave
 	ret
 
@@ -1178,7 +1287,7 @@ printin_leave:
 //
 printzn:
 	enter	$0, $0
-	pushl	%ebx
+	pushal
 
 	movl	$0, %eax	// count
 	movl	8(%ebp), %ebx
@@ -1203,7 +1312,7 @@ printzn_ready:
 	addl	$8, %esp
 
 printzn_leave:
-	popl	%ebx
+	popal
 	leave
 	ret
 
@@ -1214,7 +1323,7 @@ printzn_leave:
 //
 printz:
 	enter	$0, $0
-	pushl	%ebx
+	pushal
 
 	movl	$0, %eax	// count
 	movl	8(%ebp), %ebx
@@ -1235,7 +1344,7 @@ printz_ready:
 	addl	$8, %esp
 
 printz_leave:
-	popl	%ebx
+	popal
 	leave
 	ret
 
@@ -1246,6 +1355,7 @@ printz_leave:
 //
 print_spaces:
 	enter	$0, $0
+	pushal
 
 	movl	8(%ebp), %ecx
 
@@ -1258,6 +1368,7 @@ print_spaces_loop:
 	loop	print_spaces_loop
 
 print_spaces_leave:
+	popal
 	leave
 	ret
 
