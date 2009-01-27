@@ -355,7 +355,7 @@ pass2_parse_line:
 	call	inst_word_parse
 	movl	%esp, %ebx
 
-	pushl	%esi
+	pushl	%esi			// print the instruction address and instruction word
 	call	printi
 	pushl	$3
 	call	print_spaces
@@ -398,7 +398,7 @@ pass2_parse_two:
 	jmp	pass2_parse_done
 
 pass2_parse_one:
-	pushl	$14
+	pushl	$14			// print no extensions words, just spacing
 	call	print_spaces
 	add	$4, %esp
 
