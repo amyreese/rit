@@ -13,5 +13,10 @@
  */
 void game_run( void );
 
+/**
+ * Initialize and seed the random number generator.
+ */
+void game_seed_rng( void );
+
 #endif // __GAME_H__
 
