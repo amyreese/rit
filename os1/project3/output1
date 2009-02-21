@@ -1,0 +1,78 @@
+Enter a page replacement algorithm (fifo or lru) >> 
+Enter the number of frames available >> 
+Enter the reference string, each character must be 0-7 >> 
+
+Algorithm: fifo
+Number of frames: 3
+Reference string: 1234325611
+
+**********************
+Starting simulation...
+**********************
+[E][E][E]
+[1][E][E]
+[1][2][E]
+[1][2][3]
+[4][2][3]
+[4][5][3]
+[4][5][6]
+[1][5][6]
+
+Number of page faults: 7
+
+***************************************************
+***************************************************
+Enter a page replacement algorithm (fifo or lru) >> 
+*ERROR* Algorithm must be lru or fifo >> 
+Enter the number of frames available >> 
+*ERROR* Number of frames must be greater than 0 and less than 21 >> 
+*ERROR* Number of frames must be greater than 0 and less than 21 >> 
+*ERROR* Number of frames must be greater than 0 and less than 21 >> 
+Enter the reference string, each character must be 0-7 >> 
+*ERROR* Length of reference string must be greater than 0 and less than 21 >> 
+
+Algorithm: FIFO
+Number of frames: 5
+Reference string: 1234325611
+
+**********************
+Starting simulation...
+**********************
+[E][E][E][E][E]
+[1][E][E][E][E]
+[1][2][E][E][E]
+[1][2][3][E][E]
+[1][2][3][4][E]
+[1][2][3][4][5]
+[6][2][3][4][5]
+[6][1][3][4][5]
+
+Number of page faults: 7
+
+***************************************************
+***************************************************
+Enter a page replacement algorithm (fifo or lru) >> 
+Enter the number of frames available >> 
+Enter the reference string, each character must be 0-7 >> 
+*ERROR* Reference string characters must be 0-7. 
+Enter the reference string, each character must be 0-7 >> 
+*ERROR* Reference string characters must be 0-7. 
+Enter the reference string, each character must be 0-7 >> 
+
+Algorithm: fifo
+Number of frames: 2
+Reference string: 157
+
+**********************
+Starting simulation...
+**********************
+[E][E]
+[1][E]
+[1][5]
+[7][5]
+
+Number of page faults: 3
+
+***************************************************
+***************************************************
+Enter a page replacement algorithm (fifo or lru) >> 
