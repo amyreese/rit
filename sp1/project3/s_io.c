@@ -71,7 +71,7 @@ void s_putchar( char ch ) {
 
   /* disable TX interrupt */
   char interrupts = __inb(UA4_IER);
-  __outb(UA4_IER, interrupts & !(UA4_IER_TX_INT_ENABLE));
+  __outb(UA4_IER, interrupts & ~(UA4_IER_TX_INT_ENABLE));
 
 }
 
@@ -87,7 +87,10 @@ unsigned int s_getchar( void ) {
 
   /* disable RX */
   char interrupts = __inb(UA4_IER);
-  __outb(UA4_IER, interrupts & !(UA4_IER_RX_INT_ENABLE));
+  __outb(UA4_IER, interrupts & ~(UA4_IER_RX_INT_ENABLE));
+
+  /* echo the read character */
+  s_putchar(input_buffer[0]);
   
   return (unsigned int)*input_buffer;
 }
@@ -98,20 +101,13 @@ void s_puts(char *str) {
   }
 }
 
-char *s_gets( void ) {
-  read_characters = 0;
-  S_IO_DONE = 0;
-
-  /* enable the serial interrupt */
-
-
-  /* S_IO_DONE is set by the ISR when read_characters is 80 or a \n or \r is read */
-  while(!S_IO_DONE)
-    ;
-
-  /* disable the interrupt */
-
-
-  return input_buffer;
+void s_putint(int value) {
+  if(value < 10) {
+    s_putchar(value+48);
+  } else {
+    int digit = value % 10;
+    value = value/10;
+    s_putint(value);
+    s_putchar(digit+48);
+  } 
 }
-

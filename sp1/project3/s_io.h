@@ -45,5 +45,12 @@ void s_putchar( char ch );
  */
 void s_puts(char *str);
 
+/**
+ * Writes an integer to the screen
+ * 
+ * @param an integer to print to the screen
+ */
+void s_putint(int value);
+
 #endif // __S_IO_H__
 
