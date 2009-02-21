@@ -16,8 +16,11 @@
 int main( void ) {
 	c_puts( "Starting Project 3...\n" );
 
+	// Enable timer and serial controller interrupts
 	isr_register_all();
-	__delay( 50 );
+
+	// Start the game
+	game_run();
 
 	c_puts( "Project 3 ended...\n" );
 	return( 0 );

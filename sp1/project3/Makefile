@@ -9,8 +9,8 @@
 #
 # User supplied files
 #
-U_C_SRC = main.c helper.c isr.c s_io.c
-U_C_OBJ = main.o helper.o isr.o s_io.o
+U_C_SRC = main.c helper.c isr.c s_io.c game.c
+U_C_OBJ = main.o helper.o isr.o s_io.o game.o
 U_S_SRC =
 U_S_OBJ =
 U_LIBS	=
