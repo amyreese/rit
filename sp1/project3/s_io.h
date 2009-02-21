@@ -13,8 +13,10 @@
 /**
  * Global external variable def's
  */
-extern char input[];
-extern unsigned int S_IO_DONE;
+extern char input_buffer[];
+extern char output_buffer[];
+extern int output_index;
+extern int read_characters;
 
 /**
  * Initialize the serial I/O controller.
@@ -30,6 +32,13 @@ void s_io_init( void );
 unsigned int s_getchar( void );
 
 /**
+ * Sends a single char. DOES NOT enable or disable the interrupts 
+ *
+ * @param ch the character to send
+ */
+void s_putchar( char ch );
+
+/**
  * Enables the serial interrupt, reads until a \r or \n is found, or until the buffer
  * is full, disables the serial interrupt, and returns the address of the read string
  *
@@ -38,7 +47,7 @@ unsigned int s_getchar( void );
 char *s_gets( void );
 
 /**
- * Enables serial interrupt and sends out a string. Disables interrupt when done
+ * Enables serial interrupt and sends out a NULL terminated string. Disables interrupt when done
  *
  * @param str the string to send over serial device
  */

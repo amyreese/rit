@@ -6,6 +6,7 @@
  */
 
 #include "isr.h"
+#include "uart.h"
 #include "s_io.h"
 #include "c_io.h"
 #include "helper.h"
@@ -42,18 +43,19 @@ void isr_serial( int vector, int code ) {
 
   /* if this interrupt trips, then there is a character waiting for us */
   if((interrupts & UA4_EIR_RX_INT_PENDING) != 0) {
-    *input = __inb(UA4_RX_DATA) & 0x7f;
+    input_buffer[0] = __inb(UA4_RX_DATA) & 0x7f;
     read_characters = 1;
   }
 
   if((interrupts & UA5_EIR_RX_FIFO_TIMEOUT_INT_PENDING) != 0) {
-    *input = __inb(UA4_RX_DATA) & 0x7f;
+    input_buffer[0] = __inb(UA4_RX_DATA) & 0x7f;
     read_characters = 1;
   }
 
   /* if this trips, then the transmit fifo is empty */
   if((interrupts & UA4_EIR_TX_INT_PENDING) != 0) {
-    __outb(UA4_TXD, output_buffer[output_index]);
+    if((output_index >= 0) && (output_buffer[output_index] != '\0'))
+      __outb(UA4_TXD, output_buffer[output_index++]);
   }
 
   if((interrupts & UA4_EIR_MODEM_STATUS_INT_PENDING) != 0) {
