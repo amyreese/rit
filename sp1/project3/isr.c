@@ -35,6 +35,9 @@ void isr_serial( int vector, int code ) {
 void isr_register_all( void ) {
 	__install_isr( INT_VEC_TIMER, &isr_timer );
 
+	s_io_init();
+	__install_isr( INT_VEC_SERIAL_PORT1, &isr_serial );
+
 	interrupts_on();
 }
 
