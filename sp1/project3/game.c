@@ -7,7 +7,10 @@
 
 #include "c_io.h"
 #include "game.h"
+#include "helper.h"
+#include "rngs.h"
 #include "s_io.h"
+#include "timer.h"
 
 /**
  * Entry point into the game's main processing sequence.
@@ -43,7 +46,7 @@ void game_play_round( void ) {
 
 	// Random target character
 	random = Random() * (double) 26.0;
-	target = (char) ( ( random % 26 ) + 'a' );
+	target = (char) ( (int) random ) + 'a';
 
 	// Reset the timer
 	timer_reset( 0 );
