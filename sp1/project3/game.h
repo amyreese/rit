@@ -14,6 +14,13 @@
 void game_run( void );
 
 /**
+ * Play a round of timed response.
+ * Wait for the user to be ready, then display a character and time how long
+ * it takes for the user to respond correctly.
+ */
+void game_play_round( void );
+
+/**
  * Initialize and seed the random number generator.
  */
 void game_seed_rng( void );
