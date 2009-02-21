@@ -61,7 +61,7 @@ void game_play_round( void ) {
 	// Wait for the user to press enter
 	do {
 		input = (char) s_getchar();
-	} while ( input != '\n' );
+	} while ( input != '\n' && input != '\r' );
 
 	// DING!
 	s_putchar( '\a' );
