@@ -276,12 +276,91 @@ print_frames( page_frames* frames ) {
 	printf( "\n" );
 }
 
-int fifo_algo( page_frames* frames, int ref ) {
-	return 0;
+/**
+ * First In First Out replacement algorithm
+ */
+int fifo_algo( page_frames* frames, int ref, int step ) {
+	int found = 0;
+	int placed = 0;
+
+	int i;
+
+	// look for frame hits
+	for ( i = 0; i < frames->count; i++ ) {
+		// frame hit
+		if ( ref == frames->value[i] ) {
+			return 0;
+		}
+	}
+
+	int oldest = 100;
+	int oldest_slot = 0;
+
+	// look for empty frames
+	for ( i = 0; i < frames->count; i++ ) {
+		// track the oldest frame at the same time
+		if ( frames->usage[i] < oldest ) {
+			oldest = frames->usage[i];
+			oldest_slot = i;
+		}
+
+		// empty
+		if ( frames->value[i] == -1 ) {
+			frames->value[i] = ref;
+			frames->usage[i] = step;
+			return 1;
+		}
+	}
+
+	// no emtpy frame, frame replacement using oldest slot
+	frames->value[oldest_slot] = ref;
+	frames->usage[oldest_slot] = step;
+
+	return 1;
 }
 
-int lru_algo( page_frames* frames, int ref ) {
-	return 0;
+/**
+ * Least Recently Used replacement algorithm
+ */
+int lru_algo( page_frames* frames, int ref, int step ) {
+	int found = 0;
+	int placed = 0;
+
+	int i;
+
+	// look for frame hits
+	for ( i = 0; i < frames->count; i++ ) {
+		// frame hit
+		if ( ref == frames->value[i] ) {
+			frames->usage[i] = step;
+			return 0;
+		}
+	}
+
+	int oldest = 100;
+	int oldest_slot = 0;
+
+	// look for empty frames
+	for ( i = 0; i < frames->count; i++ ) {
+		// track the oldest frame at the same time
+		if ( frames->usage[i] < oldest ) {
+			oldest = frames->usage[i];
+			oldest_slot = i;
+		}
+
+		// empty
+		if ( frames->value[i] == -1 ) {
+			frames->value[i] = ref;
+			frames->usage[i] = step;
+			return 1;
+		}
+	}
+
+	// no emtpy frame, frame replacement using oldest slot
+	frames->value[oldest_slot] = ref;
+	frames->usage[oldest_slot] = step;
+
+	return 1;
 }
 
 /**
@@ -313,7 +392,7 @@ int main( int argc, char* argv[] ) {
 		}
 
 		// determine which algorithm function to use
-		int (* algo ) ( page_frames*, int );
+		int (* algo ) ( page_frames*, int, int );
 		switch ( type ) {
 			case FIFO:
 				algo = &fifo_algo;
@@ -344,7 +423,7 @@ int main( int argc, char* argv[] ) {
 
 		int fault;
 		for ( i = 0; i < reference_count; i++ ) {
-			fault = algo( frames, references[i] );
+			fault = algo( frames, references[i], i );
 
 			if ( fault ) {
 				fault_count++;
