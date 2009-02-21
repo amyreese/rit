@@ -12,7 +12,7 @@
 /**
  * The current timer tick count.
  */
-extern nsigned int timer_tick_count;
+extern unsigned int timer_tick_count;
 
 /**
  * The timer is (or is not) running.
@@ -27,7 +27,7 @@ void timer_init( void );
 /**
  * Reset the timer count to a given value, or zero.
  */
-void timer_reset( int count=0 );
+void timer_reset( int count );
 
 /**
  * Start the timer.

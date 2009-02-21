@@ -19,7 +19,7 @@ extern unsigned int S_IO_DONE;
 /**
  * Initialize the serial I/O controller.
  */
-void s_io_init();
+void s_io_init( void );
 
 /**
  * Enables the serial input interrupt and blocks until a single character is read.

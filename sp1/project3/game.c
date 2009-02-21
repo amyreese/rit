@@ -5,7 +5,9 @@
  * @author Adam Risi
  */
 
+#include "c_io.h"
 #include "game.h"
+#include "s_io.h"
 
 /**
  * Entry point into the game's main processing sequence.

@@ -9,6 +9,7 @@
 #include "s_io.h"
 #include "c_io.h"
 #include "helper.h"
+#include "s_io.h"
 #include "startup.h"
 #include "support.h"
 #include "timer.h"
