@@ -68,7 +68,7 @@ void game_play_round( void ) {
 	timer_reset( 0 );
 
 	// Prompt the user
-	s_puts( "Press the enter key when you are ready" );
+	s_puts( "\nPress the enter key when you are ready" );
 
 	// Wait for the user to press enter
 	do {
@@ -128,7 +128,7 @@ int game_play_again( void ) {
 	char input;
 
 	// Prompt the user
-	s_puts( "Another try?" );
+	s_puts( "Another try? " );
 
 	// Wait for the user to reply
 	do {
@@ -170,12 +170,12 @@ void game_seed_rng( void ) {
 	y = (unsigned long) input[1];
 	z = (unsigned long) input[2];
 
-	c_printf( "Input values: %u %u %u\n", x, y, z );
+	c_printf( "Input values: %d %d %d\n", x, y, z );
 
 	// XOR input words to create a seed value
 	seed = x ^ y ^ z;
 
-	c_printf( "Seed value: %u\n", seed );
+	c_printf( "Seed value: %d\n", seed );
 
 	// Seed the RNG
 	PutSeed( seed );
