@@ -75,6 +75,8 @@ void game_play_round( void ) {
 		input = (char) s_getchar();
 	} while ( input != '\n' && input != '\r' );
 
+	s_putchar( '\n' );
+
 	// DING!
 	s_putchar( '\a' );
 
@@ -112,8 +114,7 @@ void game_play_round( void ) {
 	average = game_timer_count / game_round_count;
 
 	// Results display
-	s_putint( count );
-	s_puts( "\nCurrent:  " );
+	s_puts( "\n\nCurrent:  " );
 	s_putint( count );
 	s_puts( " ticks   Average:  " );
 	s_putint( average );
@@ -127,7 +128,7 @@ int game_play_again( void ) {
 	char input;
 
 	// Prompt the user
-	s_puts( "Another try?\n" );
+	s_puts( "Another try?" );
 
 	// Wait for the user to reply
 	do {
@@ -136,8 +137,10 @@ int game_play_again( void ) {
 		// Check the answer
 		switch ( input ) {
 			case 'y':
+				s_puts( "\n" );
 				return TRUE;
 			case 'n':
+				s_puts( "\n" );
 				return FALSE;
 		}
 
