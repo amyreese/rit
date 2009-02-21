@@ -13,6 +13,16 @@
 #include "timer.h"
 
 /**
+ * The cumulative user round count.
+ */
+int game_round_count = 0;
+
+/**
+ * The cumulative user reaction time.
+ */
+int game_timer_count = 0;
+
+/**
  * Entry point into the game's main processing sequence.
  */
 void game_run( void ) {
@@ -44,6 +54,7 @@ void game_run( void ) {
  */
 void game_play_round( void ) {
 	int count;
+	int average;
 	char input;
 	char target;
 	double random;
@@ -93,6 +104,20 @@ void game_play_round( void ) {
 
 	// Results
 	count = timer_count();
+
+	// Cumulative totals
+	++game_round_count;
+	game_timer_count += count;
+	average = game_timer_count / game_round_count;
+
+	// Results display
+	s_putint( count );
+	s_puts( " ticks\nCurrent:  " );
+	s_putint( count );
+	s_puts( "   Average:  " );
+	s_putint( average );
+	s_puts( "\n" );
+
 }
 
 /**
