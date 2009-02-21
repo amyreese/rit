@@ -83,7 +83,11 @@ int get_algo( char* name ) {
 
 		// Prompt the user
 		printf( "Enter a page replacement algorithm (fifo or lru) >> " );
-		status = fgets( input, LINE, stdin );
+		do {
+			status = fgets( input, LINE, stdin );
+			strmunge( input );
+		} while ( strlen( input ) < 1 );
+
 
 		do {
 
@@ -119,7 +123,7 @@ int get_algo( char* name ) {
 			// Bad input
 			if ( type == 0 ) {
 				// Prompt the user
-				printf( "*ERROR* Algorithm mut be lru or fifo >> " );
+				printf( "\n*ERROR* Algorithm must be lru or fifo >> " );
 				status = fgets( input, LINE, stdin );
 			}
 
@@ -142,7 +146,7 @@ int get_frames() {
 	while ( count == 0 ) {
 
 		// Prompt the user
-		printf( "Enter the number of frames available >> " );
+		printf( "\nEnter the number of frames available >> " );
 		status = fgets( input, LINE, stdin );
 
 		do {
@@ -172,7 +176,7 @@ int get_frames() {
 				count = 0;
 
 				// Prompt the user
-				printf( "*ERROR* Number of frames must be greater than 0 and less than 21 >> " );
+				printf( "\n*ERROR* Number of frames must be greater than 0 and less than 21 >> " );
 				status = fgets( input, LINE, stdin );
 			}
 
@@ -195,7 +199,7 @@ int get_references( int* references ) {
 	while ( count == 0 ) {
 
 		// Prompt the user
-		printf( "Enter the reference string, each character must be 0-7 >> " );
+		printf( "\nEnter the reference string, each character must be 0-7 >> " );
 		status = fgets( input, LINE, stdin );
 
 		do {
@@ -225,7 +229,7 @@ int get_references( int* references ) {
 				count = 0;
 
 				// Prompt the user
-				printf( "*ERROR* Length of reference string must be greater than 0 and less than 21 >> " );
+				printf( "\n*ERROR* Length of reference string must be greater than 0 and less than 21 >> " );
 				status = fgets( input, LINE, stdin );
 			}
 
@@ -240,7 +244,7 @@ int get_references( int* references ) {
 					count = 0;
 
 					// Prompt the user
-					printf( "*ERROR* Reference string characters must be 0-7 >> " );
+					printf( "\n*ERROR* Reference string characters must be 0-7. \nEnter the reference string, each character must be 0-7 >> " );
 					status = fgets( input, LINE, stdin );
 					break;
 				} else {
@@ -403,7 +407,7 @@ int main( int argc, char* argv[] ) {
 		}
 
 		// Pre-sim output
-		printf( "\nAlgorithm: %s\nNumber of frames: %d\nReference string: ", algo_name, frame_count );
+		printf( "\n\nAlgorithm: %s\nNumber of frames: %d\nReference string: ", algo_name, frame_count );
 		int i;
 		for ( i = 0; i < reference_count; i++ ) {
 			printf( "%d", references[i] );
@@ -415,7 +419,7 @@ int main( int argc, char* argv[] ) {
 		page_frames* frames = pf_new( frame_count );
 
 		printf( "**********************\n" );
-		printf( "Starting Simulation...\n" );
+		printf( "Starting simulation...\n" );
 		printf( "**********************\n" );
 
 		// initial page frame status
