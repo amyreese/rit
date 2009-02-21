@@ -31,6 +31,11 @@ void game_run( void );
 void game_play_round( void );
 
 /**
+ * Ask the user if they want to play again.
+ */
+int game_play_again( void );
+
+/**
  * Initialize and seed the random number generator.
  */
 void game_seed_rng( void );

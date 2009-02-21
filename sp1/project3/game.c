@@ -42,6 +42,7 @@ void game_run( void ) {
 	int repeat;
 	do {
 		game_play_round();
+		repeat = game_play_again();
 	} while ( repeat );
 
 	c_puts( "Game completed.\n" );
@@ -112,12 +113,35 @@ void game_play_round( void ) {
 
 	// Results display
 	s_putint( count );
-	s_puts( " ticks\nCurrent:  " );
+	s_puts( "\nCurrent:  " );
 	s_putint( count );
-	s_puts( "   Average:  " );
+	s_puts( " ticks   Average:  " );
 	s_putint( average );
-	s_puts( "\n" );
+	s_puts( " ticks\n" );
+}
 
+/**
+ * Ask the user if they want to play again.
+ */
+int game_play_again( void ) {
+	char input;
+
+	// Prompt the user
+	s_puts( "Another try?\n" );
+
+	// Wait for the user to reply
+	do {
+		input = (char) s_getchar();
+
+		// Check the answer
+		switch ( input ) {
+			case 'y':
+				return TRUE;
+			case 'n':
+				return FALSE;
+		}
+
+	} while ( TRUE );
 }
 
 /**
@@ -135,6 +159,8 @@ void game_seed_rng( void ) {
 	for ( i = 0; i < 12; i++ ) {
 		input[i] = (char) s_getchar();
 	}
+
+	s_puts( "\n" );
 
 	// Pull out 4 long words
 	x = (unsigned long) input[0];
