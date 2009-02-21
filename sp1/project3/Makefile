@@ -9,8 +9,8 @@
 #
 # User supplied files
 #
-U_C_SRC = main.c
-U_C_OBJ = main.o
+U_C_SRC = main.c helper.c isr.c s_io.c
+U_C_OBJ = main.o helper.o isr.o s_io.h
 U_S_SRC =
 U_S_OBJ =
 U_LIBS	=
@@ -93,8 +93,8 @@ S_SRC =	startup.S isr_stubs.S $(U_S_SRC)
 
 # C object/source files
 
-C_OBJ =	c_io.o support.o $(U_C_OBJ)
-C_SRC =	c_io.c support.c $(U_C_SRC)
+C_OBJ =	c_io.o rngs.o support.o $(U_C_OBJ)
+C_SRC =	c_io.c rngs.c support.c $(U_C_SRC)
 
 # Collections of files
 

@@ -1,5 +1,5 @@
 /*
-** SCCS ID:	@(#)startup.S	1.8	04/03/07
+** SCCS ID:	@(#)startup.S	1.7	02/01/07
 **
 ** File:	startup.S
 **
@@ -78,12 +78,13 @@ clearbss:
 
 #endif
 
-#ifdef SP2_CONFIG
-
 /*
-** Initialize devices
+** Initialize various devices
 */
-	call	_init		// initialize the OS
+	call	__init_interrupts	/* initialize the interrupt system */
+	call	c_io_init	/* initialize the console I/O routines */
+
+#ifdef SP2_CONFIG
 
 /*
 ** Restore the first user process context
@@ -95,12 +96,6 @@ clearbss:
 	jmp	__isr_restore   // defined in isr_stubs.S
 
 #else
-
-/*
-** Initialize various devices
-*/
-	call	__init_interrupts	/* initialize the interrupt system */
-	call	c_io_init	/* initialize the console I/O routines */
 
 /*
 ** Call the user's main program

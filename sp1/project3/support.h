@@ -1,5 +1,5 @@
 /*
-** SCCS ID:	@(#)support.h	1.4	04/03/07
+** SCCS ID:	@(#)support.h	1.3	10/14/06
 **
 ** File:	support.h
 **
@@ -16,7 +16,7 @@
 #define	IDT_PADDR	0x2400
 
 /*
-** Name:	__panic
+** Name:	panic
 **
 ** Description:	Called when we find an unrecoverable error, this
 **		routine disables interrupts, prints a description of
@@ -25,7 +25,7 @@
 **
 ** Arguments:	The reason for the panic
 */
-void __panic( char *reason );
+void panic( char *reason );
 
 /*
 ** Name:	__init_interrupts

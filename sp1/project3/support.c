@@ -1,5 +1,5 @@
 /*
-** SCCS ID:	@(#)support.c	1.5	04/03/07
+** SCCS ID:	@(#)support.c	1.4	10/14/06
 **
 ** File:	support.c
 **
@@ -60,7 +60,7 @@ typedef struct	{
 */
 static void __default_unexpected_handler( int vector, int code ){
 	c_printf( "\nVector=0x%02x, code=%d\n", vector, code );
-	__panic( "Unhandled interrupt" );
+	panic( "Unhandled interrupt" );
 }
 
 /*
@@ -86,7 +86,7 @@ static void __default_expected_handler( int vector, int code ){
 		** code above.  If we get down here, the isr table may
 		** have been corrupted.  Print message and don't return.
 		*/
-		__panic( "Unexpected \"expected\" interrupt!" );
+		panic( "Unexpected \"expected\" interrupt!" );
 	}
 }
 
@@ -179,9 +179,9 @@ static void init_idt( void ){
 */
 
 /*
-** Name:	__panic
+** Name:	panic
 */
-void __panic( char *reason ){
+void panic( char *reason ){
 	asm( "cli" );
 	c_printf( "\nPANIC: %s\nHalting...", reason );
 	for(;;){
