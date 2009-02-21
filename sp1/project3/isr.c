@@ -22,8 +22,6 @@
 void isr_timer( int vector, int code ) {
 	// Increment the timer counter
 	if ( timer_running ) {
-		c_puts( "Tick\n" );
-
 		++timer_tick_count;
 	}
 
