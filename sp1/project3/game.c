@@ -18,6 +18,10 @@
 void game_run( void ) {
 	c_puts( "Starting game...\n" );
 
+	// Clear the screen
+	int i;
+	for ( i = 0; i < 24; i++ ) { s_puts( "\n" ); }
+
 	// Intro banner
 	s_puts( "Timed Response Game\n\nJohn Reese (jmr8223)\nAdam Risi (ajr7708)\n\n" );
 
