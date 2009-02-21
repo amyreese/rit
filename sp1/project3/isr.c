@@ -10,13 +10,19 @@
 #include "helper.h"
 #include "startup.h"
 #include "support.h"
+#include "timer.h"
 #include "x86arch.h"
 
 /**
  * Timer interrupt service routine.
  */
 void isr_timer( int vector, int code ) {
-	c_puts( "Timer interrupt\n" );
+	c_puts( "Tick\n" );
+
+	// Increment the timer counter
+	if ( timer_running ) {
+		++timer_tick_count;
+	}
 
 	__outw( PIC_MASTER_CMD_PORT, PIC_EOI );
 }
