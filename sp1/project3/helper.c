@@ -3,6 +3,7 @@
  * Generic functions useful to the project.
  *
  * @author John Reese
+ * @author Adam Risi
  */
 
 #include "helper.h"

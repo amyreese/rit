@@ -3,6 +3,7 @@
  * Generic functions useful to the project.
  *
  * @author John Reese
+ * @author Adam Risi
  */
 
 #ifndef __HELPER_H__
