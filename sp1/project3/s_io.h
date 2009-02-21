@@ -39,14 +39,6 @@ unsigned int s_getchar( void );
 void s_putchar( char ch );
 
 /**
- * Enables the serial interrupt, reads until a \r or \n is found, or until the buffer
- * is full, disables the serial interrupt, and returns the address of the read string
- *
- * @return the read in string
- */
-char *s_gets( void );
-
-/**
  * Enables serial interrupt and sends out a NULL terminated string. Disables interrupt when done
  *
  * @param str the string to send over serial device
