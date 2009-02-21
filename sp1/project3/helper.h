@@ -8,6 +8,11 @@
 #ifndef __HELPER_H__
 #define __HELPER_H__
 
+// True, false, null
+#define TRUE 1
+#define FALSE 0
+#define NULL 0
+
 /**
  * Enable CPU interrupts.
  */
