@@ -10,7 +10,7 @@ CC	= g++
 CFLAGS	= -W $(patsubst %.h, -include %.h, $(HEADERS))
 
 INCLUDE	= -I. -I/usr/include
-LIBS	= -L/usr/lib -lglut 
+LIBS	= -L/usr/lib -lglut -lGL -lGLU
 
 # Rules
 
@@ -25,7 +25,7 @@ test : $(TARGET)
 	./$<
 
 $(TARGET) : $(OBJECTS)
-	$(CC) -o $@ $(LIBS) $+
+	$(CC) $+ -o $@ $(LIBS)
 
 $(OBJECTS) : %.o : %.cpp
 	$(CC) -o $@ -c $(CFLAGS) $(INCLUDE) $<

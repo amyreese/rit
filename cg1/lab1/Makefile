@@ -2,8 +2,8 @@
 CC	= gcc
 CFLAGS	= -W
 
-INCLUDE	= -I. -I/usr/include
-LIBS	= -L/usr/lib -lglut 
+INCLUDE	= -I. -I/usr/include -I/usr/include/GL
+LIBS	= -L/usr/lib -L/usr/lib/x86_64-linux-gnu -lglut
 
 TARGET	= lab1
 

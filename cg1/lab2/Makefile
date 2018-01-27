@@ -15,7 +15,7 @@ CC	= g++
 CFLAGS	= -W $(patsubst %.h, -include %.h, $(HEADERS))
 
 INCLUDE	= -I. -I/usr/include
-LIBS	= -L/usr/lib -lglut 
+LIBS	= -L/usr/lib -lglut -lGL -lGLU
 
 # Rules
 
@@ -38,13 +38,13 @@ clip : $(CLIP_TARGET)
 	./$<
 
 $(LINE_TARGET) : $(OBJECTS) $(LINE_OBJECTS)
-	$(CC) -o $@ $(LIBS) $+
+	$(CC) $+ -o $@ $(LIBS)
 
 $(FILL_TARGET) : $(OBJECTS) $(FILL_OBJECTS)
-	$(CC) -o $@ $(LIBS) $+
+	$(CC) $+ -o $@ $(LIBS)
 
 $(CLIP_TARGET) : $(OBJECTS) $(CLIP_OBJECTS)
-	$(CC) -o $@ $(LIBS) $+
+	$(CC) $+ -o $@ $(LIBS)
 
 $(OBJECTS) : %.o : %.cpp
 	$(CC) -o $@ -c $(CFLAGS) $(INCLUDE) $<
